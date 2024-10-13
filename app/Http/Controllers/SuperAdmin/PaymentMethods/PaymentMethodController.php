@@ -1,0 +1,77 @@
+<?php
+
+namespace App\Http\Controllers\SuperAdmin\PaymentMethods;
+
+use App\Http\Requests\SuperAdmin\PaymentMethods\PaymentMethodRequest;
+use App\Models\SuperAdmin\PaymentMethod;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Http\Traits\Utils\UploadFileTrait;
+use Illuminate\Support\Facades\Auth;
+
+class PaymentMethodController extends Controller
+{
+    use UploadFileTrait;
+
+    protected $filePath = 'images/paymentMethods';
+
+    function __construct()
+    {
+        // $this->middleware(['can:PaymentMethod-list'], ['only' => ['index', 'show']]);
+        // $this->middleware(['can:PaymentMethod-create'], ['only' => ['create', 'store']]);
+        // $this->middleware(['can:PaymentMethod-edit'], ['only' => ['edit', 'update']]);
+        // $this->middleware(['can:PaymentMethod-delete'], ['only' => ['destroy']]);
+    }
+
+    public function index(Request $request)
+    {
+        $paymentMethods = PaymentMethod::latest()->paginate(5);
+        return view('dashboard.paymentMethods.index',compact('paymentMethods'));
+    }
+
+    public function create()
+    {
+        return view('dashboard.paymentMethods.create');
+    }
+
+    public function store(PaymentMethodRequest $request)
+    {
+        $input = $request->validated();
+
+        if (isset($input['image'])) {
+            $input['image'] = $this->uploadFile($input['image'], $this->filePath);
+        }
+
+        PaymentMethod::create($input);
+
+        return redirect()->route('payment-methods.index')->with('success','Payment Method created successfully');
+    }
+
+
+    public function edit($id)
+    {
+        $paymentMethods = PaymentMethod::find($id);
+        return view('dashboard.paymentMethods.edit',compact('paymentMethods'));
+    }
+
+    public function update(PaymentMethodRequest $request, $id)
+    {
+        $input = $request->validated();
+
+        $paymentMethod = PaymentMethod::find($id);
+
+        if (isset($input['image'])) {
+            $input['image'] = $this->updateFile($input['image'], $paymentMethod->image, $this->filePath);
+        }
+
+        $paymentMethod->update($input);
+
+        return redirect()->route('payment-methods.index')->with('success','Payment Method updated successfully');
+    }
+
+    public function destroy($id)
+    {
+        PaymentMethod::find($id)->delete();
+        return redirect()->route('payment-methods.index') ->with('success','Payment Method deleted successfully');
+    }
+}
