@@ -3,7 +3,7 @@
 namespace Database\Seeders\landlord;
 
 use Carbon\Carbon;
-use App\Models\User;
+use App\Models\SuperAdmin\User;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
