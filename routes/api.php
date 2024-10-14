@@ -1,6 +1,7 @@
 <?php
 
 
+use App\Http\Controllers\SuperAdmin\Api\Auth\AuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\SuperAdmin\FAQController;
@@ -32,6 +33,21 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+// auth for each sub-doman
+Route::group(['prefix' => "auth"],function (){
+    Route::post('register',[AuthController::class,'register']);
+    Route::post('login',[AuthController::class,'login']);
+});
+
+Route::middleware('auth:sanctum')->get('/auth', function (Request $request) {
+        Route::post('/logout',[AuthController::class,'logout']);
+});
+
+Route::group(['middleware' => 'auth:sanctum'],function (){
+    Route::group(['prefix' => "auth"],function (){
+        Route::post('logout',[AuthController::class,'logout']);
+    });
+});
 
 
 

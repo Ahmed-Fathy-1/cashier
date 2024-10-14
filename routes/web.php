@@ -91,9 +91,14 @@ foreach (config('tenancy.central_domains') as $domain) {
             Route::put('/faqs/{faq}/restore', [FAQController::class, 'restore'])->name('faqs.restore');
             Route::resource('faqs', FAQController::class);
 
-        });
+    
+                // packages
+                Route::resource('packages', PackageController::class);
+
+            });
     });
 }
+
 
 
 
