@@ -9,12 +9,14 @@ use App\Http\Traits\Utils\UploadFileTrait;
 use Illuminate\Validation\ValidationException;
 use App\Http\Requests\SuperAdmin\Dashboard\LoginRequest;
 use App\Http\Requests\SuperAdmin\Dashboard\ProfileRequest;
-
+use App\Http\Traits\Utils\ApiResponseTrait;
 
 class AuthController extends Controller
 {
 
     use UploadFileTrait;
+    use ApiResponseTrait;
+
 
     public function loginPage()
     {
@@ -26,7 +28,16 @@ class AuthController extends Controller
         if (!auth()->attempt(["email" => $request->email, "password" => $request->password])) {
             throw ValidationException::withMessages(['The provided credentials are incorrect.']);
         }
-        return redirect()->route('homePage');
+        // return the token 
+
+        $user = User::where('email', $request->email)->first();
+
+        $token = $user->createToken('auth_token')->plainTextToken;
+
+        return response()->json(['token' => $token], 200);
+
+        
+        
     }
 
     public function logout()

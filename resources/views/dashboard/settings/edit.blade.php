@@ -3,6 +3,7 @@
 @section('title', 'Update Setting')
 
 @push('style')
+
 @endpush
 
 @section('main')
