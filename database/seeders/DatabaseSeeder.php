@@ -8,6 +8,8 @@ use Database\Seeders\landlord\PackageDetailsSeeder;
 use Database\Seeders\landlord\PackageSeeder;
 use Database\Seeders\landlord\PaymentMethodsSeeder;
 use Database\Seeders\landlord\SettingSeeder;
+use Database\Seeders\landlord\ContactUsSeeder;
+
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -34,6 +36,7 @@ class DatabaseSeeder extends Seeder
         $this->call(PaymentMethodsSeeder::class);
         $this->call(PackageSeeder::class);
         $this->call(PackageDetailsSeeder::class);
+        $this->call(ContactUsSeeder::class);
 
 
 

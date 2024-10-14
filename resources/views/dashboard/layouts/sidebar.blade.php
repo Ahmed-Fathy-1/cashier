@@ -85,6 +85,15 @@
                                 @endcan --}}
 
 
+                                <ul class="flex flex-1 flex-col px-4 font-inter">
+                                    <li>
+                                        <a href="{{ url('/contact-us') }}" class="">
+                                            <span>ContactUs</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                                
+                                <div class="my-3 mx-4 h-px bg-slate-100 dark:bg-navy-500"></div>
 
                                 <ul class="flex flex-1 flex-col px-4 font-inter">
                                     <li>

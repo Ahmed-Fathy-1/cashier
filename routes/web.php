@@ -8,6 +8,7 @@ use App\Http\Controllers\SuperAdmin\Domains\TenantController;
 use App\Http\Controllers\SuperAdmin\Packages\PackageController;
 use App\Http\Controllers\SuperAdmin\Settings\SettingController;
 use App\Http\Controllers\SuperAdmin\PaymentMethods\PaymentMethodController;
+use App\Http\Controllers\SuperAdmin\ContactUs\ContactUsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -64,6 +65,11 @@ foreach (config('tenancy.central_domains') as $domain) {
 
                 // packages
                 Route::resource('packages', PackageController::class);
+                
+                // contact us
+                Route::resource('contact-us', ContactUsController::class);
+
+                
                 
             });
     });
