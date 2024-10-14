@@ -1,6 +1,10 @@
 @extends('Admin.layouts.master')
-@section('title') @endsection
-@section('content')
+@section('title')
+
+@endsection
+
+@section('main')
+
 
 
 @endsection

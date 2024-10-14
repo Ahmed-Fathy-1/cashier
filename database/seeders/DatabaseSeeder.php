@@ -3,11 +3,16 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\SuperAdmin\FAQ;
 use Database\Seeders\landlord\CreateAdminUserSeeder;
+use Database\Seeders\landlord\FAQSeeder;
+use Database\Seeders\landlord\FeedBackSeeder;
 use Database\Seeders\landlord\PackageDetailsSeeder;
 use Database\Seeders\landlord\PackageSeeder;
 use Database\Seeders\landlord\PaymentMethodsSeeder;
 use Database\Seeders\landlord\SettingSeeder;
+use Database\Seeders\landlord\HomeCoverSeeder;
+use Database\Seeders\landlord\TechnologySeed;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -34,6 +39,10 @@ class DatabaseSeeder extends Seeder
         $this->call(PaymentMethodsSeeder::class);
         $this->call(PackageSeeder::class);
         $this->call(PackageDetailsSeeder::class);
+        $this->call(HomeCoverSeeder::class);
+        $this->call(FeedBackSeeder::class);
+        $this->call(TechnologySeed::class);
+        $this->call(FAQSeeder::class);
 
 
 
