@@ -64,8 +64,14 @@ foreach (config('tenancy.central_domains') as $domain) {
 
                 // packages
                 Route::resource('packages', PackageController::class);
+
                 
+
             });
+
+
+
+
     });
 }
 
