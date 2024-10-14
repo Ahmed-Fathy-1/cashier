@@ -58,7 +58,6 @@ if (!function_exists('jsonResponse')) {
     }
 }
 
-
 if (!function_exists('errorResponse')) {
     /**
      * Error Json Response

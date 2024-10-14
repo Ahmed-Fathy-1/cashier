@@ -28,7 +28,7 @@ trait ApiResponseTrait
      * @param  int  $statusCode
      * @return \Illuminate\Http\JsonResponse
      */
-    public function errorResponse($message, $statusCode)
+    public function errorResponse($message, $statusCode = 500)
     {
         return response()->json([
             'success' => false,

@@ -3,7 +3,7 @@
 namespace Database\Seeders\landlord;
 
 use Carbon\Carbon;
-use App\Models\User;
+use App\Models\SuperAdmin\User;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
@@ -33,13 +33,11 @@ class CreateAdminUserSeeder extends Seeder
     public function run()
     {
         // Create permissions
-
         foreach ($this->permissions as $permission) {
-            Permission::firstOrCreate(['name' => $permission]);
+            Permission::firstOrCreate(['name' => $permission, 'guard_name' => 'web']);
         }
-
+    
         // Create admin user
-
         $user = User::create([
             "name" => "Ahmed Fathy",
             "email" => "SuperAdmin@admin.com",
@@ -49,18 +47,16 @@ class CreateAdminUserSeeder extends Seeder
             "phone_verified_at" => Carbon::now(),
             "image" => "feed-back-1.jpg",
         ]);
-
+    
         // Create admin role
-
         $role = Role::firstOrCreate(['guard_name' => 'web', 'name' => 'Super Admin']);
-
+    
         // Assign all permissions to the role
-
         $permissions = Permission::pluck('id')->toArray();
         $role->syncPermissions($permissions);
-
+    
         // Assign the role to the user
-
         $user->assignRole($role);
     }
+    
 }
