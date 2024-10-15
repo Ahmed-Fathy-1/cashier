@@ -85,6 +85,16 @@
                                 @endcan --}}
 
 
+                                <div class="my-3 mx-4 h-px bg-slate-100 dark:bg-navy-500"></div>
+                                
+                                <ul class="flex flex-1 flex-col px-4 font-inter">
+                                    <li>
+                                        <a href="{{route('home_cover',1)}}" class="">
+                                            <span>Home Cover</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <div class="my-3 mx-4 h-px bg-slate-100 dark:bg-navy-500"></div>
 
                                 <ul class="flex flex-1 flex-col px-4 font-inter">
                                     <li>
@@ -112,7 +122,32 @@
                                     </li>
                                 </ul>
                                 <div class="my-3 mx-4 h-px bg-slate-100 dark:bg-navy-500"></div>
+                                <ul class="flex flex-1 flex-col px-4 font-inter">
+                                    <li>
+                                        <a href="{{route('feedbacks.index')}}" class="">
+                                            <span>Feedbacks</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <div class="my-3 mx-4 h-px bg-slate-100 dark:bg-navy-500"></div>
 
+                                <ul class="flex flex-1 flex-col px-4 font-inter">
+                                    <li>
+                                        <a href="{{route('technologies.index')}}" class="">
+                                            <span>Technologies</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <div class="my-3 mx-4 h-px bg-slate-100 dark:bg-navy-500"></div>
+
+                                <ul class="flex flex-1 flex-col px-4 font-inter">
+                                    <li>
+                                        <a href="{{route('faqs.index')}}" class="">
+                                            <span>FAQs</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <div class="my-3 mx-4 h-px bg-slate-100 dark:bg-navy-500"></div>
 
 
                                 {{-- <ul class="flex flex-1 flex-col px-4 font-inter">
@@ -201,6 +236,15 @@
 
                                 <ul class="flex flex-1 flex-col px-4 font-inter">
                                     <li>
+                                        <a href="{{ url('/contact-us') }}" class="">
+                                            <span>Contact Us</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <div class="my-3 mx-4 h-px bg-slate-100 dark:bg-navy-500"></div>
+
+                                <ul class="flex flex-1 flex-col px-4 font-inter">
+                                    <li>
                                         <a href="{{ route('users.index') }}#" class="">
                                             <span>Users</span>
                                         </a>
@@ -277,15 +321,9 @@
                                                     </div>
                                                 </a>
                                             </li>
-
-
                                         </ul>
                                     </li>
-
                                 </ul>
-
-
-
                             </div>
                         </div>
                     </div>

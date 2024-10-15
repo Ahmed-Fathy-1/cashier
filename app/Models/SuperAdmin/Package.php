@@ -12,7 +12,7 @@ class Package extends Model
 
     protected $guarded = ['id'] ;
 
-    public function packagDetails()
+    public function packageDetails()
     {
         return $this->hasOne(PackageDetails::class , 'package_id');
     }

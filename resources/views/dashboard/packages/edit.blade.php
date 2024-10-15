@@ -9,7 +9,7 @@
 
     <main class="main-content w-full px-[var(--margin-x)] pb-8">
         <div class="flex items-center space-x-4 py-5 lg:py-6">
-           <h2 class="text-xl font-medium text-slate-800 dark:text-navy-50 lg:text-2xl">
+            <h2 class="text-xl font-medium text-slate-800 dark:text-navy-50 lg:text-2xl">
                 AiTech
             </h2>
             <div class="hidden h-full py-1 sm:flex">
@@ -60,7 +60,7 @@
                         <label class="block">
                             <span>title</span>
 
-                            <input name="title" value={{$packages->title}}
+                            <input name="title" value="{{ $packages->title }}"
                                 class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
                                 placeholder="Enter title" type="text">
                         </label>
@@ -68,16 +68,20 @@
                             <span class="text-tiny+ text-error">{{ $message }}</span>
                         @enderror
 
-                        <label class="block">
-                            <span>description</span>
 
-                            <input name="description" value={{$packages->description}}
-                                class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
-                                placeholder="Enter description" type="text">
+                        <label class="block pt-4">
+                            <span class="font-medium text-slate-600 dark:text-navy-100">Description</span>
                         </label>
+
+                        <div class="w-full">
+                            <div id="editor1" class="h-48"></div>
+                        </div>
+                        <textarea id="descOne" name="description" style="display: none;"></textarea>
+
                         @error('description')
                             <span class="text-tiny+ text-error">{{ $message }}</span>
                         @enderror
+
 
                         <label class="block">
                             <span>What type of event is stutas?</span>
@@ -89,18 +93,33 @@
 
                             </select>
                         </label>
-                        @error('status')
+                        @error('active')
                             <span class="text-tiny+ text-error">{{ $message }}</span>
                         @enderror
 
+
                         <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
 
+                        <div class="flex gap-3">
+
+                            <div class="flex-1">
+                                <label class="block">
+                                    <span>Price_monthly</span>
+
+                                    <input name="Price_monthly" value="{{ $packages->packageDetails->Price_monthly }}"
+                                        class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
+                                        placeholder="Enter Price_monthly" type="text">
+                                </label>
+                                @error('Price_monthly')
+                                    <span class="text-tiny+ text-error">{{ $message }}</span>
+                                @enderror
+                            </div>
 
                             <div class="flex-1">
                                 <label class="block">
                                     <span>Price_annually</span>
 
-                                    <input name="Price_annually" value="{{$packages->storage_monthly}}"
+                                    <input name="Price_annually" value="{{ $packages->packageDetails->Price_annually }}"
                                         class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
                                         placeholder="Enter Price_annually" type="text">
                                 </label>
@@ -108,111 +127,148 @@
                                     <span class="text-tiny+ text-error">{{ $message }}</span>
                                 @enderror
                             </div>
+
+                        </div>
+
                         <div class="flex gap-3">
 
                             <div class="flex-1">
+
                                 <label class="block">
                                     <span>storage_monthly</span>
 
-                                    <input name="storage_monthly"  value="{{$packages->storage_monthly}}"
+                                    <input name="storage_monthly" value="{{ $packages->packageDetails->storage_monthly }}"
                                         class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
                                         placeholder="Enter storage_monthly" type="text">
                                 </label>
                                 @error('storage_monthly')
                                     <span class="text-tiny+ text-error">{{ $message }}</span>
                                 @enderror
+
+                            </div>
+
+                            <div class="flex-1">
+
+                                <label class="block">
+                                    <span>storage_annually</span>
+
+                                    <input name="storage_annually" value="{{ $packages->packageDetails->storage_annually }}"
+                                        class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
+                                        placeholder="Enter storage_annually" type="text">
+                                </label>
+                                @error('storage_annually')
+                                    <span class="text-tiny+ text-error">{{ $message }}</span>
+                                @enderror
+
+
+                            </div>
+
+                        </div>
+
+
+
+                        <div class="flex gap-3">
+
+                            <div class="flex-1">
+
+                                <label class="block">
+                                    <span>interactive_archives</span>
+
+                                    <input name="interactive_archives" value="{{ $packages->packageDetails->interactive_archives }}"
+                                        class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
+                                        placeholder="Enter interactive_archives" type="text">
+                                </label>
+                                @error('interactive_archives')
+                                    <span class="text-tiny+ text-error">{{ $message }}</span>
+                                @enderror
                             </div>
                             <div class="flex-1">
-                            <label class="block">
-                                <span>storage_annually</span>
 
-                                <input name="storage_annually" value="{{$packages->storage_annually}}"
-                                    class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
-                                    placeholder="Enter storage_annually" type="text">
-                            </label>
-                            @error('storage_annually')
-                                <span class="text-tiny+ text-error">{{ $message }}</span>
-                            @enderror
+                                <label class="block">
+                                    <span>custom_branding</span>
+
+                                    <input name="custom_branding" value="{{ $packages->packageDetails->custom_branding }}"
+                                        class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
+                                        placeholder="Enter custom_branding" type="text">
+                                </label>
+                                @error('custom_branding')
+                                    <span class="text-tiny+ text-error">{{ $message }}</span>
+                                @enderror
+
+                            </div>
+
                         </div>
+
+
+                        <div class="flex gap-3">
+
+                            <div class="flex-1">
+
+
+                                <label class="block">
+                                    <span>messages</span>
+
+                                    <input name="messages" value="{{ $packages->packageDetails->messages }}"
+                                        class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
+                                        placeholder="Enter messages" type="text">
+                                </label>
+                                @error('messages')
+                                    <span class="text-tiny+ text-error">{{ $message }}</span>
+                                @enderror
+
+                            </div>
+                            <div class="flex-1">
+                                <label class="block">
+                                    <span>notifications</span>
+
+                                    <input name="notifications" value="{{ $packages->packageDetails->notifications }}"
+                                        class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
+                                        placeholder="Enter notifications" type="text">
+                                </label>
+                                @error('notifications')
+                                    <span class="text-tiny+ text-error">{{ $message }}</span>
+                                @enderror
+
+
+                            </div>
+
                         </div>
 
+                        <div class="flex gap-3">
+
+                            <div class="flex-1">
+                                <label class="block">
+                                    <span>main_show</span>
+
+                                    <input name="main_show" value="{{ $packages->packageDetails->main_show }}"
+                                        class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
+                                        placeholder="Enter main_show" type="text">
+                                </label>
+                                @error('main_show')
+                                    <span class="text-tiny+ text-error">{{ $message }}</span>
+                                @enderror
+                            </div>
+                            <div class="flex-1">
+                                <label class="block">
+                                    <span>main_search</span>
+
+                                    <input name="main_search" value="{{ $packages->packageDetails->main_search }}"
+                                        class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
+                                        placeholder="Enter main_search" type="text">
+                                </label>
+                                @error('main_search')
+                                    <span class="text-tiny+ text-error">{{ $message }}</span>
+                                @enderror
 
 
+                            </div>
 
-
-                        <label class="block">
-                            <span>interactive_archives</span>
-
-                            <input name="interactive_archives" value="{{$packages->interactive_archives}}"
-                                class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
-                                placeholder="Enter interactive_archives" type="text">
-                        </label>
-                        @error('interactive_archives')
-                            <span class="text-tiny+ text-error">{{ $message }}</span>
-                        @enderror
-
-
-                        <label class="block">
-                            <span>custom_branding</span>
-
-                            <input name="custom_branding" value="{{$packages->custom_branding}}"
-                                class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
-                                placeholder="Enter custom_branding" type="text">
-                        </label>
-                        @error('custom_branding')
-                            <span class="text-tiny+ text-error">{{ $message }}</span>
-                        @enderror
-
-
-                        <label class="block">
-                            <span>messages</span>
-
-                            <input name="messages" value="{{$packages->messages}}"
-                                class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
-                                placeholder="Enter messages" type="text">
-                        </label>
-                        @error('messages')
-                            <span class="text-tiny+ text-error">{{ $message }}</span>
-                        @enderror
-
-
-                        <label class="block">
-                            <span>notifications</span>
-
-                            <input name="notifications" value="{{$packages->notifications}}"
-                                class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
-                                placeholder="Enter notifications" type="text">
-                        </label>
-                        @error('notifications')
-                            <span class="text-tiny+ text-error">{{ $message }}</span>
-                        @enderror
-
-                        <label class="block">
-                            <span>main_show</span>
-
-                            <input name="main_show" value="{{$packages->main_show}}"
-                                class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
-                                placeholder="Enter main_show" type="text">
-                        </label>
-                        @error('main_show')
-                            <span class="text-tiny+ text-error">{{ $message }}</span>
-                        @enderror
-
-                        <label class="block">
-                            <span>main_search</span>
-
-                            <input name="main_search" value="{{$packages->main_search}}"
-                                class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
-                                placeholder="Enter main_search" type="text">
-                        </label>
-                        @error('main_search')
-                            <span class="text-tiny+ text-error">{{ $message }}</span>
-                        @enderror
+                        </div>
 
                         <label class="block">
                             <span>statics</span>
 
-                            <input name="statics" value="{{$packages->statics}}"
+                            <input name="statics" value="{{ $packages->packageDetails->statics }}"
                                 class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
                                 placeholder="Enter statics" type="text">
                         </label>
@@ -221,20 +277,105 @@
                         @enderror
 
 
-                    <div class="flex justify-end space-x-2">
-                        <button type="submit"
-                            class="btn space-x-2 bg-success font-medium text-white hover:bg-success-focus focus:bg-success-focus active:bg-success-focus/90 dark:bg-accent dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90">
-                            <span>Update</span>
-                        </button>
+
+                        <label class="block">
+                            <span>priority</span>
+
+                            <input name="priority" value="{{ $packages->packageDetails->priority }}"
+                                class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
+                                placeholder="Enter priority" type="text">
+                        </label>
+                        @error('priority')
+                            <span class="text-tiny+ text-error">{{ $message }}</span>
+                        @enderror
+
+
+                        <div class="flex justify-end space-x-2">
+                            <button type="submit"
+                                class="btn space-x-2 bg-success font-medium text-white hover:bg-success-focus focus:bg-success-focus active:bg-success-focus/90 dark:bg-accent dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90">
+                                <span>Update</span>
+                            </button>
+                        </div>
                     </div>
+                </form>
             </div>
-            </form>
-        </div>
         </div>
 
     </main>
 @endsection
 
 @push('scripts')
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
 
+    <script>
+        // Configuration for editor 2
+        const config1 = {
+            modules: {
+                toolbar: [
+                    ["bold", "italic", "underline", "strike"], // toggled buttons
+                    ["blockquote", "code-block"],
+                    [{
+                        header: 1
+                    }, {
+                        header: 2
+                    }], // custom button values
+                    [{
+                        list: "ordered"
+                    }, {
+                        list: "bullet"
+                    }],
+                    [{
+                        script: "sub"
+                    }, {
+                        script: "super"
+                    }], // superscript/subscript
+                    [{
+                        indent: "-1"
+                    }, {
+                        indent: "+1"
+                    }], // outdent/indent
+                    [{
+                        direction: "rtl"
+                    }], // text direction
+                    [{
+                        size: ["small", false, "large", "huge"]
+                    }], // custom dropdown
+                    [{
+                        header: [1, 2, 3, 4, 5, 6, false]
+                    }],
+                    [{
+                        color: []
+                    }, {
+                        background: []
+                    }], // dropdown with defaults from theme
+                    [{
+                        font: []
+                    }],
+                    [{
+                        align: []
+                    }],
+                    ["clean"], // remove formatting button
+                ],
+
+            },
+            placeholder: "Enter your content...",
+            theme: "snow",
+
+
+        };
+
+        const editor1 = document.querySelector("#editor1");
+        const quill1 = new Quill(editor1, config1);
+
+        // Get the value you want to set in the editor
+        const descOne = {!! json_encode($packages->description) !!};
+
+        // Set the value of the editor
+        quill1.root.innerHTML = descOne;
+
+        // Attach event listener and update hidden input
+        quill1.on("text-change", function() {
+            document.getElementById("descOne").value = quill1.root.innerHTML;
+        });
+    </script>
 @endpush
