@@ -8,6 +8,7 @@ use App\Http\Controllers\Api\SuperAdmin\FAQController;
 use App\Http\Controllers\Api\SuperAdmin\FeedBacksController;
 use App\Http\Controllers\Api\SuperAdmin\TechnologyController;
 use App\Http\Controllers\Api\SuperAdmin\HomeCoverController;
+use App\Http\Controllers\Api\SuperAdmin\ContactUsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,9 +47,10 @@ Route::middleware('auth:sanctum')->get('/auth', function (Request $request) {
 Route::group(['middleware' => 'auth:sanctum'],function (){
     Route::group(['prefix' => "auth"],function (){
         Route::post('logout',[AuthController::class,'logout']);
-    });
+      });
 });
 
+Route::post('/contact-us', [ContactUsController::class, 'store']);
 
 
 

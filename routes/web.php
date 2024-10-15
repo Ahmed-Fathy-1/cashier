@@ -99,6 +99,7 @@ foreach (config('tenancy.central_domains') as $domain) {
                 
                 // contact us
                 Route::resource('contact-us', ContactUsController::class);
+                Route::post('/contact-us', [ContactUsController::class, 'store'])->name('contact_us.store');
 
                 
                 
@@ -106,12 +107,6 @@ foreach (config('tenancy.central_domains') as $domain) {
             });
     });
 }
-
-
-
-
-
-
 
 
 
