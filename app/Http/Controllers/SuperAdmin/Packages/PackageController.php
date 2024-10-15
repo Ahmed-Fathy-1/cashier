@@ -44,6 +44,8 @@ class PackageController extends Controller
         $packages = Package::find($id);
         return view('dashboard.packages.show',compact('packages'));
     }
+
+
     public function edit($id)
     {
         $packages = Package::find($id);
@@ -57,11 +59,12 @@ class PackageController extends Controller
         return redirect()->route('packages.index')->with('success','Package updated successfully');
     }
 
+    
     public function destroy($id)
     {
         Package::find($id)->delete();
         return redirect()->route('packages.index') ->with('success','Package deleted successfully');
     }
 
-    
+
 }

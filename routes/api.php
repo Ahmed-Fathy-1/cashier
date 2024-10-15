@@ -21,12 +21,7 @@ use App\Http\Controllers\Api\SuperAdmin\ContactUsController;
 |
 */
 
-Route::get('/homecover/{id}', [HomeCoverController::class, 'show']);
-Route::get('/faqs', [FAQController::class, 'index']);
-Route::get('/feedbacks', [FeedBacksController::class, 'index']);
-Route::get('/feedbacks/deleted', [FeedBacksController::class, 'deletedFeedbacks']);
-Route::get('/technologies', [TechnologyController::class, 'index']);
-Route::get('/technologies/deleted', [TechnologyController::class, 'deletedTechnologies']);
+
 
 
 
@@ -35,14 +30,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 // auth for each sub-doman
-Route::group(['prefix' => "auth"],function (){
-    Route::post('register',[AuthController::class,'register']);
-    Route::post('login',[AuthController::class,'login']);
+Route::group(['prefix' => "auth"], function () {
+    Route::post('register', [AuthController::class, 'register']);
+    Route::post('login', [AuthController::class, 'login']);
 });
 
-Route::middleware('auth:sanctum')->get('/auth', function (Request $request) {
-        Route::post('/logout',[AuthController::class,'logout']);
-});
 
 Route::group(['middleware' => 'auth:sanctum'],function (){
     Route::group(['prefix' => "auth"],function (){
@@ -50,7 +42,6 @@ Route::group(['middleware' => 'auth:sanctum'],function (){
       });
 });
 
-Route::post('/contact-us', [ContactUsController::class, 'store']);
 
 
 
@@ -59,3 +50,17 @@ Route::post('/contact-us', [ContactUsController::class, 'store']);
 
 
 
+Route::group(['middleware' => 'auth:sanctum'], function () {
+
+    Route::group(['prefix' => "auth"], function () {
+        Route::post('logout', [AuthController::class, 'logout']);
+    });
+    Route::post('/contact-us', [ContactUsController::class, 'store']);
+    Route::get('/homecover/{id}', [HomeCoverController::class, 'show']);
+    Route::get('/faqs', [FAQController::class, 'index']);
+    Route::get('/feedbacks', [FeedBacksController::class, 'index']);
+    Route::get('/feedbacks/deleted', [FeedBacksController::class, 'deletedFeedbacks']);
+    Route::get('/technologies', [TechnologyController::class, 'index']);
+    Route::get('/technologies/deleted', [TechnologyController::class, 'deletedTechnologies']);
+    
+});
