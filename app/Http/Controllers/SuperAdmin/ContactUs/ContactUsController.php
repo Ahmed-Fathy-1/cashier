@@ -5,6 +5,8 @@ namespace App\Http\Controllers\SuperAdmin\ContactUs;
 use App\Http\Controllers\Controller;
 use App\Models\SuperAdmin\ContactUs;
 use Illuminate\Http\Request;
+use App\Http\Requests\Api\ContactUs\ContactUsRequest;
+
 
 class ContactUsController extends Controller
 {
@@ -29,10 +31,9 @@ class ContactUsController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreContactUsRequest $request)
+    public function store(ContactUsRequest $request)
     {
         ContactUs::create($request->validated());
-    
         return response()->json(['message' => 'Your message has been sent successfully.'], 201);
     }
 
