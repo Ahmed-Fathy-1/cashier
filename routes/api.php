@@ -8,6 +8,7 @@ use App\Http\Controllers\Api\SuperAdmin\FAQController;
 use App\Http\Controllers\Api\SuperAdmin\FeedBacksController;
 use App\Http\Controllers\Api\SuperAdmin\TechnologyController;
 use App\Http\Controllers\Api\SuperAdmin\HomeCoverController;
+use App\Http\Controllers\Api\SuperAdmin\PackageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -48,4 +49,5 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::get('/technologies', [TechnologyController::class, 'index']);
     Route::get('/technologies/deleted', [TechnologyController::class, 'deletedTechnologies']);
     
+    Route::apiResource('packages' , PackageController::class);
 });
