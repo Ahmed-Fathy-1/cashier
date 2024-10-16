@@ -176,7 +176,9 @@
                                             <div class="flex justify-between items-center space-x-2">
 
                                                 <button data-toggle="modal" data-target="#modal2"
-                                                    class="btn bg-slate-150 font-medium text-slate-800 hover:bg-slate-200 focus:bg-slate-200 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90 h-8 w-8 p-0 text-error hover:bg-error/20 focus:bg-error/20 active:bg-error/25">
+                                                    class="btn bg-primary font-medium text-white hover:bg-primary-focus focus:bg-primary-focus active:bg-primary/90 
+                                                dark:bg-accent dark:text-navy-50 dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90 
+                                                h-8 w-8 p-0">
                                                     <i class="fa fa-undo"></i>
                                                 </button>
 

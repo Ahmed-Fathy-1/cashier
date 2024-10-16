@@ -51,8 +51,8 @@
                             </a>
                             {{-- @endcan --}}
                             <a href="{{ route('packages.archived') }}"
-                               class="mx-2 btn space-x-2 bg-primary font-medium text-white hover:bg-primary-focus focus:bg-primary-focus active:bg-primary-focus/90 dark:bg-accent dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90">
-                                <i class="fa-solid fa-plus"></i>
+                                class="mx-2 btn space-x-2 bg-success font-medium text-white hover:bg-success-focus focus:bg-success-focus active:bg-success/90 dark:bg-secondary dark:hover:bg-secondary-focus dark:focus:bg-secondary-focus dark:active:bg-secondary/90">
+                                <i class="fa-solid fa-box-archive"></i>
                                 <span> archived package </span>
                             </a>
                         </div>
