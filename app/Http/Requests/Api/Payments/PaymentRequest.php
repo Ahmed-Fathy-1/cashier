@@ -23,7 +23,7 @@ class PaymentRequest extends FormRequest
     {
         return [
             'package_id' => ['required', 'integer', 'exists:packages,id'],
-            'price' => ['required', 'numeric', 'min:1'],
+            'package_type' => ['required', 'integer'],
         ];
     }
 

@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Api\SuperAdmin;
 
+use App\Enums\packagePaymentEnum;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\Payments\PaymentRequest;
 use App\Models\Payment;
+use App\Models\SuperAdmin\Package;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Stripe\StripeClient;
@@ -14,9 +16,21 @@ class PaymentController extends Controller
     public function payPackage(PaymentRequest  $request){
         DB::beginTransaction();
         try {
+            $packageId =  $request->package_id;
+            $package = Package::with('packageDetails')->findOrFail($packageId);
+
+            if ($request->package_type == packagePaymentEnum::MONTHLY->value) {
+                $amount = $package->packageDetails->Price_monthly;
+            } else {
+                $amount = $package->packageDetails->Price_annually;
+            }
+
+            if (!$amount) {
+                return response()->json(['error' => 'Invalid package price'], 400);
+            }
             $stripe = new StripeClient(config('services.stripe.secret'));
             $paymentIntent = $stripe->paymentIntents->create([
-                'amount' => $request->price * 100,
+                'amount' => $amount * 100,
                 'currency' => 'egp',
                 'automatic_payment_methods' => [
                     'enabled' => true,
