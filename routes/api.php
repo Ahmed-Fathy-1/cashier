@@ -1,6 +1,7 @@
 <?php
 
 
+use App\Http\Controllers\Api\SuperAdmin\PaymentController;
 use App\Http\Controllers\SuperAdmin\Api\Auth\AuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -60,4 +61,7 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::get('/technologies/deleted', [TechnologyController::class, 'deletedTechnologies']);
 
     Route::apiResource('packages', PackageController::class);
+
+    Route::post('/pay-package', [PaymentController::class, 'payPackage']);
+
 });
