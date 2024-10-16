@@ -10,7 +10,6 @@ use App\Http\Requests\Api\public\Auth\loginRequest;
 
 use App\Models\User;
 use App\services\employeeService;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Symfony\Component\HttpFoundation\Response as ResponseAlias;

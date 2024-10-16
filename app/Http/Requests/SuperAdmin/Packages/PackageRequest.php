@@ -21,16 +21,18 @@ class PackageRequest extends FormRequest
      */
     public function rules(): array
     {
+
+        $packageId = $this->route('package');
         return [
-            'title' => 'required|min:3|max:50|unique:packages,title,'.$this->id,
+            'title' => 'required|min:3|max:50|unique:packages,title,' . $packageId,
             'description' => 'required|min:3|max:255',
             'Price_monthly' => 'required|min:2|integer',
             'Price_annually' => 'required|min:2|integer',
             'storage_monthly' => 'required|min:2|numeric',
             'storage_annually' => 'required|min:2|numeric',
-          //  'interactive_archives' => 'required|in:Limited,Included',
-          //  'custom_branding' => 'required|in:Included,Not Included',
-           // 'messages' => 'required|in:Included,Not Included',
+            //  'interactive_archives' => 'required|in:Limited,Included',
+            //  'custom_branding' => 'required|in:Included,Not Included',
+            // 'messages' => 'required|in:Included,Not Included',
             'notifications' => 'required|in:1,0',
             "main_show" => 'required|in:1,0',
             "main_search" => "required|in:1,0",

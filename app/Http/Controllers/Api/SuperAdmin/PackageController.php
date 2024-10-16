@@ -1,47 +1,34 @@
 <?php
 
-namespace App\Http\Controllers\SuperAdmin\Packages;
+namespace App\Http\Controllers\Api\SuperAdmin;
 
-use Illuminate\Http\Request;
-use App\Models\SuperAdmin\Package;
 use App\Http\Controllers\Controller;
-use App\Http\Traits\Utils\UploadFileTrait;
 use App\Http\Requests\SuperAdmin\Packages\PackageRequest;
+use App\Http\Traits\Utils\ApiResponseTrait;
+use App\Models\SuperAdmin\Package;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class PackageController extends Controller
 {
-    use UploadFileTrait;
 
-    protected $filePath = 'images/packages';
-
-    function __construct()
-    {
-        // $this->middleware(['can:Package-list'], ['only' => ['index', 'show']]);
-        // $this->middleware(['can:Package-create'], ['only' => ['create', 'store']]);
-        // $this->middleware(['can:Package-edit'], ['only' => ['edit', 'update']]);
-        // $this->middleware(['can:Package-delete'], ['only' => ['destroy']]);
-    }
+    use ApiResponseTrait;
 
     public function index(Request $request)
     {
         $packages = Package::with('packageDetails')->latest()->get();
-        return view('dashboard.packages.index', compact('packages'));
-    }
-
-    public function create()
-    {
-        return view('dashboard.packages.create');
+        return $this->successResponse($packages, 'Package retrieved successfully.');
     }
 
     public function store(PackageRequest $request)
     {
         DB::transaction(function () use ($request) {
             $package = Package::create([
+                'user_id' => auth()->id(),
                 'title' => $request->title,
                 'description' => $request->description,
                 'active' => $request->active ?? true,
-                'user_id' => auth()->id(),
+
             ]);
 
             $package->packageDetails()->create([
@@ -61,12 +48,6 @@ class PackageController extends Controller
         });
 
         return redirect()->route('packages.index')->with('success', 'Package created successfully');
-    }
-
-    public function edit($id)
-    {
-        $packages  = Package::with('packageDetails')->findOrFail($id);
-        return view('dashboard.packages.edit', compact('packages'));
     }
 
     public function update(PackageRequest $request, $id)
@@ -97,12 +78,12 @@ class PackageController extends Controller
             ]);
         });
 
-        return redirect()->route('packages.index')->with('success', 'Package updated successfully');
+        return $this->successResponse(null, 'Package created successfully.');
     }
 
     public function destroy($id)
     {
         Package::find($id)->delete();
-        return redirect()->route('packages.index')->with('success', 'Package deleted successfully');
+        return $this->successResponse(null, 'Package retrieved successfully.');
     }
 }
