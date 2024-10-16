@@ -92,7 +92,10 @@
                                         </a>
                                     </li>
                                 </ul>
-                                
+                                <div class="my-3 mx-4 h-px bg-slate-100 dark:bg-navy-500"></div>
+
+                                <ul class="flex flex-1 flex-col px-4 font-inter">
+                                    <li>
                                         <a href="{{route('home_cover',1)}}" class="">
                                             <span>Home Cover</span>
                                         </a>
@@ -246,7 +249,14 @@
                                     </li>
                                 </ul>
                                 <div class="my-3 mx-4 h-px bg-slate-100 dark:bg-navy-500"></div>
-
+                                <ul class="flex flex-1 flex-col px-4 font-inter">
+                                    <li>
+                                        <a href="{{ route('features.edit', 1) }}"
+                                            <span>Features</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <div class="my-3 mx-4 h-px bg-slate-100 dark:bg-navy-500"></div>
 
                                 {{-- <ul class="flex flex-1 flex-col px-4 font-inter">
                                     <li>

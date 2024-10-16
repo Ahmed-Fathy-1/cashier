@@ -6,6 +6,7 @@ namespace Database\Seeders;
 use App\Models\SuperAdmin\FAQ;
 use Database\Seeders\landlord\CreateAdminUserSeeder;
 use Database\Seeders\landlord\FAQSeeder;
+use Database\Seeders\landlord\FeatureSeeder;
 use Database\Seeders\landlord\FeedBackSeeder;
 use Database\Seeders\landlord\PackageDetailsSeeder;
 use Database\Seeders\landlord\PackageSeeder;
@@ -31,9 +32,6 @@ class DatabaseSeeder extends Seeder
         // $this->call(SettingDBSeeder::class);
         // $this->call(HomePageMetaDBSeed::class);
 
-
-
-
 // ------------------------------------------------------------------------------------------------
 // landlord
         $this->call(CreateAdminUserSeeder::class);
@@ -46,11 +44,7 @@ class DatabaseSeeder extends Seeder
         $this->call(FeedBackSeeder::class);
         $this->call(TechnologySeed::class);
         $this->call(FAQSeeder::class);
-
-
-
-
-
+        $this->call(FeatureSeeder::class);
 
 
 // --------------------------------------------------------------------------------------------

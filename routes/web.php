@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\SuperAdmin\FAQs\FAQController;
+use App\Http\Controllers\SuperAdmin\Features\FeatureController;
 use App\Http\Controllers\SuperAdmin\FeedBacks\FeedBacksController;
 use App\Http\Controllers\SuperAdmin\Technologies\TechnologyController;
 use Illuminate\Support\Facades\Route;
@@ -61,6 +62,9 @@ foreach (config('tenancy.central_domains') as $domain) {
 
             // settings
             Route::resource('settings', SettingController::class);
+
+            // features
+            Route::resource('features', FeatureController::class);
 
             // tenants
             Route::resource('tenants', TenantController::class);
