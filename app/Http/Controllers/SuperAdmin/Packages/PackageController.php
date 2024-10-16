@@ -62,12 +62,6 @@ class PackageController extends Controller
 
         return redirect()->route('packages.index')->with('success', 'Package created successfully');
     }
-    public function show($id)
-    {
-        $packages  = Package::with('packageDetails')->findOrFail($id);
-        return view('dashboard.packages.show', compact('packages'));
-    }
-
 
     public function edit($id)
     {

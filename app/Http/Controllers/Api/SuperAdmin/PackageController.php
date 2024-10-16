@@ -13,14 +13,10 @@ class PackageController extends Controller
 {
 
     use ApiResponseTrait;
-    public function __construct()
-    {
-        $this->middleware('auth:api');
-    }
 
     public function index(Request $request)
     {
-        $packages = Package::latest()->paginate(5);
+        $packages = Package::with('packageDetails')->latest()->get();
         return $this->successResponse($packages, 'Package retrieved successfully.');
     }
 
@@ -53,12 +49,6 @@ class PackageController extends Controller
 
         return redirect()->route('packages.index')->with('success', 'Package created successfully');
     }
-    public function show($id)
-    {
-        $packages  = Package::with('packageDetails')->findOrFail($id);
-        return $this->successResponse($packages, 'Package retrieved successfully.');
-    }
-
 
     public function update(PackageRequest $request, $id)
     {
