@@ -32,11 +32,7 @@ class AuthController extends Controller
 
         $token = $user->createToken('auth_token')->plainTextToken;
 
-<<<<<<< HEAD
-        return redirect()->route('homePage');
-=======
-        return redirect()->route('homePage');        
->>>>>>> 3252cb2b83975af1062e5e4a6b7ef46d9a7da255
+
 
     }
 
