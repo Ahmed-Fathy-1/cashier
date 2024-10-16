@@ -44,12 +44,6 @@ Route::group(['middleware' => 'auth:sanctum'],function (){
 
 
 
-
-
-
-
-
-
 Route::group(['middleware' => 'auth:sanctum'], function () {
 
     Route::group(['prefix' => "auth"], function () {
