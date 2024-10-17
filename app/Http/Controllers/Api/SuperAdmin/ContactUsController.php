@@ -13,10 +13,10 @@ class ContactUsController extends Controller
     public function store(ContactUsRequest $request)
     {
         $validated = $request->validated();
-        
+
         ContactUs::create($validated);
 
-        Mail::to('awaffs4@gmail.com')->send(new ContactUsMail($validated));
+        Mail::to(env('MAIL_USERNAME'))->send(new ContactUsMail($validated));
 
         return response()->json(['message' => 'Your message has been sent successfully.'], 201);
     }

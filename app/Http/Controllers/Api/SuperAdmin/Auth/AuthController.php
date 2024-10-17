@@ -1,17 +1,15 @@
 <?php
 
-namespace App\Http\Controllers\SuperAdmin\Api\Auth;
+namespace App\Http\Controllers\Api\SuperAdmin\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Helper\ResponseHelper;
-use App\Http\Requests\Api\public\Auth\ChangePasswordRequest;
 use App\Http\Requests\Api\public\Auth\loginRequest;
 use App\Http\Requests\Api\public\Auth\RegisterRequest;
 use App\Http\Resources\Auth\UserAuthResource;
 use App\Models\SuperAdmin\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-
 class AuthController extends Controller
 {
 

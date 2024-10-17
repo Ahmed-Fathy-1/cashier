@@ -1,14 +1,19 @@
 <?php
 
 
+<<<<<<< HEAD
+use App\Http\Controllers\Api\SuperAdmin\Auth\AuthController;
+use App\Http\Controllers\Api\SuperAdmin\FAQController;
+use App\Http\Controllers\Api\SuperAdmin\Features\FeatureController;
+use App\Http\Controllers\Api\SuperAdmin\FeedBacksController;
+use App\Http\Controllers\Api\SuperAdmin\HomeCoverController;
+use App\Http\Controllers\Api\SuperAdmin\TechnologyController;
+=======
 use App\Http\Controllers\Api\SuperAdmin\PaymentController;
 use App\Http\Controllers\SuperAdmin\Api\Auth\AuthController;
+>>>>>>> c23cfe3c016d13d1bb04bc0b841aa60fa427bbd6
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Api\SuperAdmin\FAQController;
-use App\Http\Controllers\Api\SuperAdmin\FeedBacksController;
-use App\Http\Controllers\Api\SuperAdmin\TechnologyController;
-use App\Http\Controllers\Api\SuperAdmin\HomeCoverController;
 use App\Http\Controllers\Api\SuperAdmin\PackageController;
 use App\Http\Controllers\Api\SuperAdmin\ContactUsController;
 
@@ -42,6 +47,9 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::group(['prefix' => "auth"], function () {
         Route::post('logout', [AuthController::class, 'logout']);
     });
+
+    Route::get('/homecovers', [HomeCoverController::class, 'index']);
+
     Route::post('/contact-us', [ContactUsController::class, 'store']);
     Route::get('/homecover/{id}', [HomeCoverController::class, 'show']);
     Route::get('/faqs', [FAQController::class, 'index']);
@@ -50,7 +58,13 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::get('/technologies', [TechnologyController::class, 'index']);
     Route::get('/technologies/deleted', [TechnologyController::class, 'deletedTechnologies']);
     Route::apiResource('packages', PackageController::class);
+<<<<<<< HEAD
+    Route::apiResource('features', FeatureController::class);
+=======
 
     Route::post('/pay-package', [PaymentController::class, 'payPackage']);
+>>>>>>> c23cfe3c016d13d1bb04bc0b841aa60fa427bbd6
 
 });
+
+
