@@ -24,7 +24,15 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
                     </svg>
                 </li>
-                <li>packages list</li>
+                <li class="flex items-center space-x-2">
+                    <a class="text-primary transition-colors hover:text-primary-focus dark:text-accent-light dark:hover:text-accent"
+                        href="{{ route('packages.index') }}">package List</a>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                    </svg>
+                </li>
+                <li>Archive package</li>
             </ul>
         </div>
 
@@ -39,23 +47,8 @@
                 <div class="ac js-enabled" id="ac-4">
                     <div class="flex items-center justify-between">
                         <h2 class="text-base font-medium tracking-wide text-slate-700 line-clamp-1 dark:text-navy-100">
-                            Cards Of packages
+                            Cards Of archived packages
                         </h2>
-                        <div class="flex">
-                            {{-- @can('package-create') --}}
-
-                            <a href="{{ route('packages.create') }}"
-                                class="mx-2 btn space-x-2 bg-primary font-medium text-white hover:bg-primary-focus focus:bg-primary-focus active:bg-primary-focus/90 dark:bg-accent dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90">
-                                <i class="fa-solid fa-plus"></i>
-                                <span> Add package </span>
-                            </a>
-                            {{-- @endcan --}}
-                            <a href="{{ route('packages.archived') }}"
-                                class="mx-2 btn space-x-2 bg-success font-medium text-white hover:bg-success-focus focus:bg-success-focus active:bg-success/90 dark:bg-secondary dark:hover:bg-secondary-focus dark:focus:bg-secondary-focus dark:active:bg-secondary/90">
-                                <i class="fa-solid fa-box-archive"></i>
-                                <span> archived package </span>
-                            </a>
-                        </div>
                     </div>
 
                     {{-- ------------------------------start of cards --}}
@@ -182,11 +175,14 @@
                                         <span>
                                             <div class="flex justify-between items-center space-x-2">
 
-                                                <a href="{{ route('packages.edit', $package->id) }}"
-                                                    onclick="$notification({ text: 'Item edit action', variant: 'info' })"
-                                                    class="btn h-8 w-8 p-0 text-info hover:bg-info/20 focus:bg-info/20 active:bg-info/25">
-                                                    <i class="fa fa-edit"></i>
-                                                </a>
+                                                <button data-toggle="modal" data-target="#modal2"
+                                                    class="btn bg-primary font-medium text-white hover:bg-primary-focus focus:bg-primary-focus active:bg-primary/90 
+                                                dark:bg-accent dark:text-navy-50 dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90 
+                                                h-8 w-8 p-0">
+                                                    <i class="fa fa-undo"></i>
+                                                </button>
+
+
 
                                                 {{-- Button positioned on the right --}}
                                                 <button data-toggle="modal" data-target="#modal1"
@@ -212,8 +208,9 @@
                                                                 Confirmed Delete</h2>
                                                             <p class="mt-2">Are you sure you want to delete this item?
                                                             </p>
-                                                            <form action="{{ route('packages.destroy', $package->id) }}"
-                                                                method="post">
+                                                            <form
+                                                                action="{{ route('packages.forceDelete', $package->id) }}"
+                                                                method="POST">
                                                                 @method('delete')
                                                                 @csrf
                                                                 <button data-close-modal=""
@@ -224,9 +221,39 @@
                                                         </div>
                                                     </div>
                                                 </div>
+                                                <div class="modal fixed inset-0 z-[100] flex flex-col items-center justify-center overflow-hidden px-4 py-6 sm:px-5"
+                                                    id="modal2" role="dialog">
+                                                    <div class="modal-overlay absolute inset-0 bg-slate-900/60"></div>
+                                                    <div
+                                                        class="modal-content scrollbar-sm relative flex max-w-lg flex-col items-center overflow-y-auto rounded-lg bg-white px-4 py-10 text-center dark:bg-navy-700 sm:px-5">
+                                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                                            class="inline h-28 w-28 shrink-0 text-success" fill="none"
+                                                            viewBox="0 0 24 24" stroke="currentColor">
+                                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                                stroke-width="2"
+                                                                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                                        </svg>
+
+                                                        <div class="mt-4">
+                                                            <h2 class="text-2xl text-slate-700 dark:text-navy-100">
+                                                                Confirmed Restore</h2>
+                                                            <p class="mt-2">Are you sure you want to delete this item?
+                                                            </p>
+                                                            <form action="{{ route('packages.restore', $package->id) }}"
+                                                                method="POST">
+                                                                @csrf
+                                                                <button data-close-modal=""
+                                                                    class="btn mt-6 bg-success font-medium text-white hover:bg-success-focus focus:bg-success-focus active:bg-success-focus/90">
+                                                                    Restore
+                                                                </button>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </span>
                                     </div>
+
 
                                 </div>
                             @endforeach

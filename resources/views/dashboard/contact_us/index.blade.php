@@ -27,7 +27,6 @@
                 <li>Contact Us Entries</li>
             </ul>
         </div>
-
         <div>
             @include('dashboard.partials._session')
         </div>
@@ -81,15 +80,14 @@
                                                     <a href="{{ route('contact-us.show', $contact->id) }}" class="btn h-8 w-8 p-0 text-success hover:bg-success/20 focus:bg-success/20 active:bg-success/25">
                                                         <i class="fa-regular fa-eye"></i>
                                                     </a>
+                                                    <button type="submit" data-toggle="modal" data-target="#modal1"
+                                                    class="mx-2 btn bg-slate-150 font-medium text-slate-800 hover:bg-slate-200 focus:bg-slate-200 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90 btn h-8 w-8 p-0 text-error hover:bg-error/20 focus:bg-error/20 active:bg-error/25">
+                                                    <i class="fa fa-trash-alt"></i></button>
 
                                                     <!-- Delete Button -->
-                                                    <form action="{{ route('contact-us.destroy', $contact->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this contact?');">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button type="submit" class="btn h-8 w-8 p-0 text-error hover:bg-error/20 focus:bg-error/20 active:bg-error/25">
-                                                            <i class="fa fa-trash-alt"></i>
-                                                        </button>
-                                                    </form>
+
+                                                    @component('dashboard.layouts.deletemodal', ['route' => route('contact-us.destroy', $contact->id)])
+                                                    @endcomponent
                                                 </div>
                                             </td>
                                         </tr>

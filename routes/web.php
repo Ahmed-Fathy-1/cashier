@@ -1,5 +1,8 @@
 <?php
 
+
+use App\Http\Controllers\SuperAdmin\AboutUS\AboutUsController;
+
 use App\Http\Controllers\SuperAdmin\FAQs\FAQController;
 use App\Http\Controllers\SuperAdmin\FeedBacks\FeedBacksController;
 use App\Http\Controllers\SuperAdmin\Technologies\TechnologyController;
@@ -62,6 +65,16 @@ foreach (config('tenancy.central_domains') as $domain) {
             // settings
             Route::resource('settings', SettingController::class);
 
+            // About Us
+            // Route::get('about-us/edit/{id}', [AboutUsController::class, 'edit'])->name('about-us.edit');
+            // Route::post('about-us/update/{id}', [AboutUsController::class, 'update'])->name('about-us.update');
+            // Route::put('about-us/update/{id}', [AboutUsController::class, 'update'])->name('about-us.update');
+            Route::get('/about-us/{id}/edit', [AboutUsController::class, 'edit'])->name('about_us.edit');
+            //                Route::put('/about-us/{id}', [AboutUsController::class, 'update'])->name('about_us.update');
+            Route::put('/about-us/{id}/update', [AboutUsController::class, 'update'])->name('about_us.update');
+
+            // tenants
+            Route::resource('tenants', TenantController::class);
             // tenants
             Route::resource('tenants', TenantController::class);
 
@@ -94,30 +107,16 @@ foreach (config('tenancy.central_domains') as $domain) {
             Route::resource('faqs', FAQController::class);
 
 
-                // packages
-                Route::resource('packages', PackageController::class);
+            // packages
+            Route::resource('packages', PackageController::class);
+            Route::get('archived/packages', [PackageController::class, 'archivedPackages'])->name('packages.archived');
+            Route::post('packages/{id}/restore', [PackageController::class, 'restore'])->name('packages.restore');
+            Route::delete('packages/{id}/force-delete', [PackageController::class, 'forceDelete'])->name('packages.forceDelete');
 
 
-                // contact us
-                Route::resource('contact-us', ContactUsController::class);
-
-
-
-
-                
-            });
-
-
-
-
+            // contact us
+            Route::resource('contact-us', ContactUsController::class);
+            Route::post('/contact-us', [ContactUsController::class, 'store'])->name('contact_us.store');
+        });
     });
 }
-
-
-
-
-
-
-
-
-

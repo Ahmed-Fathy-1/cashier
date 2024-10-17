@@ -18,7 +18,7 @@
         "spatie/laravel-permission": "^6.9",
         "spatie/laravel-sitemap": "^7.2",
         "stancl/tenancy": "^3.8",
-        "stripe/stripe-php": "^13.10",
+        "stripe/stripe-php": "*",
         "tymon/jwt-auth": "^2.0",
         "yoeunes/toastr": "^2.3"
     },

@@ -60,7 +60,7 @@
                         <label class="block">
                             <span>title</span>
 
-                            <input name="title" value={{ $packages->title }}
+                            <input name="title" value="{{ $packages->title }}"
                                 class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
                                 placeholder="Enter title" type="text">
                         </label>
@@ -106,7 +106,7 @@
                                 <label class="block">
                                     <span>Price_monthly</span>
 
-                                    <input name="Price_monthly" value="{{ $packages->storage_monthly }}"
+                                    <input name="Price_monthly" value="{{ $packages->packageDetails->Price_monthly }}"
                                         class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
                                         placeholder="Enter Price_monthly" type="text">
                                 </label>
@@ -119,7 +119,7 @@
                                 <label class="block">
                                     <span>Price_annually</span>
 
-                                    <input name="Price_annually" value="{{ $packages->Price_annually }}"
+                                    <input name="Price_annually" value="{{ $packages->packageDetails->Price_annually }}"
                                         class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
                                         placeholder="Enter Price_annually" type="text">
                                 </label>
@@ -137,7 +137,7 @@
                                 <label class="block">
                                     <span>storage_monthly</span>
 
-                                    <input name="storage_monthly" value="{{ $packages->storage_monthly }}"
+                                    <input name="storage_monthly" value="{{ $packages->packageDetails->storage_monthly }}"
                                         class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
                                         placeholder="Enter storage_monthly" type="text">
                                 </label>
@@ -152,7 +152,7 @@
                                 <label class="block">
                                     <span>storage_annually</span>
 
-                                    <input name="storage_annually" value="{{ $packages->storage_annually }}"
+                                    <input name="storage_annually" value="{{ $packages->packageDetails->storage_annually }}"
                                         class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
                                         placeholder="Enter storage_annually" type="text">
                                 </label>
@@ -174,7 +174,7 @@
                                 <label class="block">
                                     <span>interactive_archives</span>
 
-                                    <input name="interactive_archives" value="{{ $packages->interactive_archives }}"
+                                    <input name="interactive_archives" value="{{ $packages->packageDetails->interactive_archives }}"
                                         class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
                                         placeholder="Enter interactive_archives" type="text">
                                 </label>
@@ -187,7 +187,7 @@
                                 <label class="block">
                                     <span>custom_branding</span>
 
-                                    <input name="custom_branding" value="{{ $packages->custom_branding }}"
+                                    <input name="custom_branding" value="{{ $packages->packageDetails->custom_branding }}"
                                         class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
                                         placeholder="Enter custom_branding" type="text">
                                 </label>
@@ -208,7 +208,7 @@
                                 <label class="block">
                                     <span>messages</span>
 
-                                    <input name="messages" value="{{ $packages->messages }}"
+                                    <input name="messages" value="{{ $packages->packageDetails->messages }}"
                                         class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
                                         placeholder="Enter messages" type="text">
                                 </label>
@@ -221,9 +221,9 @@
                                 <label class="block">
                                     <span>notifications</span>
 
-                                    <input name="notifications" value="{{ $packages->notifications }}"
+                                    <input name="notifications" value="{{ $packages->packageDetails->notifications }}"
                                         class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
-                                        placeholder="Enter notifications" type="text">
+                                        placeholder="Enter notifications" type="number">
                                 </label>
                                 @error('notifications')
                                     <span class="text-tiny+ text-error">{{ $message }}</span>
@@ -240,9 +240,9 @@
                                 <label class="block">
                                     <span>main_show</span>
 
-                                    <input name="main_show" value="{{ $packages->main_show }}"
+                                    <input name="main_show" value="{{ $packages->packageDetails->main_show }}"
                                         class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
-                                        placeholder="Enter main_show" type="text">
+                                        placeholder="Enter main_show" type="number">
                                 </label>
                                 @error('main_show')
                                     <span class="text-tiny+ text-error">{{ $message }}</span>
@@ -252,9 +252,9 @@
                                 <label class="block">
                                     <span>main_search</span>
 
-                                    <input name="main_search" value="{{ $packages->main_search }}"
+                                    <input name="main_search" value="{{ $packages->packageDetails->main_search }}"
                                         class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
-                                        placeholder="Enter main_search" type="text">
+                                        placeholder="Enter main_search" type="number">
                                 </label>
                                 @error('main_search')
                                     <span class="text-tiny+ text-error">{{ $message }}</span>
@@ -268,9 +268,9 @@
                         <label class="block">
                             <span>statics</span>
 
-                            <input name="statics" value="{{ $packages->statics }}"
+                            <input name="statics" value="{{ $packages->packageDetails->statics }}"
                                 class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
-                                placeholder="Enter statics" type="text">
+                                placeholder="Enter statics" type="number">
                         </label>
                         @error('statics')
                             <span class="text-tiny+ text-error">{{ $message }}</span>
@@ -281,9 +281,9 @@
                         <label class="block">
                             <span>priority</span>
 
-                            <input name="priority" value="{{ $packages->priority }}"
+                            <input name="priority" value="{{ $packages->packageDetails->priority }}"
                                 class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
-                                placeholder="Enter priority" type="text">
+                                placeholder="Enter priority" type="number">
                         </label>
                         @error('priority')
                             <span class="text-tiny+ text-error">{{ $message }}</span>
@@ -305,9 +305,7 @@
 @endsection
 
 @push('scripts')
-
-
-<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
 
     <script>
         // Configuration for editor 2
@@ -380,6 +378,4 @@
             document.getElementById("descOne").value = quill1.root.innerHTML;
         });
     </script>
-
-
 @endpush
