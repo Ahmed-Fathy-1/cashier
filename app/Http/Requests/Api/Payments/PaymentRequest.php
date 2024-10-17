@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Requests\SuperAdmin\FAQs;
+namespace App\Http\Requests\Api\Payments;
+
 use Illuminate\Foundation\Http\FormRequest;
 
-class FAQRequest extends FormRequest
+class PaymentRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -21,8 +22,9 @@ class FAQRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'question'=>'required',
-            'answer'=>'required',
+            'package_id' => ['required', 'integer', 'exists:packages,id'],
+            'package_type' => ['required', 'integer'],
         ];
     }
+
 }

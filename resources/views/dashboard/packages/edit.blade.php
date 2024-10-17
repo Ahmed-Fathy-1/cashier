@@ -223,7 +223,7 @@
 
                                     <input name="notifications" value="{{ $packages->packageDetails->notifications }}"
                                         class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
-                                        placeholder="Enter notifications" type="text">
+                                        placeholder="Enter notifications" type="number">
                                 </label>
                                 @error('notifications')
                                     <span class="text-tiny+ text-error">{{ $message }}</span>
@@ -242,7 +242,7 @@
 
                                     <input name="main_show" value="{{ $packages->packageDetails->main_show }}"
                                         class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
-                                        placeholder="Enter main_show" type="text">
+                                        placeholder="Enter main_show" type="number">
                                 </label>
                                 @error('main_show')
                                     <span class="text-tiny+ text-error">{{ $message }}</span>
@@ -254,7 +254,7 @@
 
                                     <input name="main_search" value="{{ $packages->packageDetails->main_search }}"
                                         class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
-                                        placeholder="Enter main_search" type="text">
+                                        placeholder="Enter main_search" type="number">
                                 </label>
                                 @error('main_search')
                                     <span class="text-tiny+ text-error">{{ $message }}</span>
@@ -270,7 +270,7 @@
 
                             <input name="statics" value="{{ $packages->packageDetails->statics }}"
                                 class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
-                                placeholder="Enter statics" type="text">
+                                placeholder="Enter statics" type="number">
                         </label>
                         @error('statics')
                             <span class="text-tiny+ text-error">{{ $message }}</span>
@@ -283,7 +283,7 @@
 
                             <input name="priority" value="{{ $packages->packageDetails->priority }}"
                                 class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
-                                placeholder="Enter priority" type="text">
+                                placeholder="Enter priority" type="number">
                         </label>
                         @error('priority')
                             <span class="text-tiny+ text-error">{{ $message }}</span>

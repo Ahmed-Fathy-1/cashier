@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5c781ac558f07076dca2f7a4f81a060b",
+    "content-hash": "6ea922e3b478744359043db2c8c3ad33",
     "packages": [
         {
             "name": "axlon/laravel-postal-code-validation",
@@ -5208,16 +5208,16 @@
         },
         {
             "name": "stripe/stripe-php",
-            "version": "v13.18.0",
+            "version": "v16.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/stripe/stripe-php.git",
-                "reference": "02abb043b103766f4ed920642ae56ffdc58c7467"
+                "reference": "47c55a5a8414d1d7584e6bbfb3e8179f3c43d83a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/stripe/stripe-php/zipball/02abb043b103766f4ed920642ae56ffdc58c7467",
-                "reference": "02abb043b103766f4ed920642ae56ffdc58c7467",
+                "url": "https://api.github.com/repos/stripe/stripe-php/zipball/47c55a5a8414d1d7584e6bbfb3e8179f3c43d83a",
+                "reference": "47c55a5a8414d1d7584e6bbfb3e8179f3c43d83a",
                 "shasum": ""
             },
             "require": {
@@ -5261,9 +5261,9 @@
             ],
             "support": {
                 "issues": "https://github.com/stripe/stripe-php/issues",
-                "source": "https://github.com/stripe/stripe-php/tree/v13.18.0"
+                "source": "https://github.com/stripe/stripe-php/tree/v16.1.0"
             },
-            "time": "2024-04-09T21:08:04+00:00"
+            "time": "2024-10-03T22:48:28+00:00"
         },
         {
             "name": "symfony/console",
@@ -10412,5 +10412,5 @@
         "php": "^8.1"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.6.0"
+    "plugin-api-version": "2.3.0"
 }

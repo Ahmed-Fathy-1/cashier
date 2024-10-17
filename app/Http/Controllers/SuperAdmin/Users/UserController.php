@@ -113,4 +113,26 @@ class UserController extends Controller
         return redirect()->route('users.index')
                         ->with('success','User deleted successfully');
     }
+    
+    public function trashed()
+    {
+        $users = User::onlyTrashed()->paginate(10);
+        return view('dashboard.users.deleted', compact('users'));
+    }
+
+    // Restore a soft-deleted user
+    public function restore($id)
+    {
+        $user = User::withTrashed()->findOrFail($id);
+        $user->restore();
+        return redirect()->route('users.trashed')->with('success', 'User restored successfully.');
+    }
+
+    // Permanently delete a user
+    public function forceDelete($id)
+    {
+        $user = User::withTrashed()->findOrFail($id);
+        $user->forceDelete();
+        return redirect()->route('users.trashed')->with('success', 'User permanently deleted.');
+    }
 }

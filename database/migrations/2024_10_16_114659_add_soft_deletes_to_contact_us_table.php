@@ -11,13 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('packages', function (Blueprint $table) {
-            $table->id();
-            $table->string('title');
-            $table->text('description');
-            $table->boolean('active')->default(true);
-            $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
-            $table->timestamps();
+        Schema::table('contact_us', function (Blueprint $table) {
             $table->softDeletes();
         });
     }
@@ -27,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('packages');
+        Schema::table('contact_us', function (Blueprint $table) {
+            $table->dropSoftDeletes();
+        });
     }
 };

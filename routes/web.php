@@ -57,16 +57,21 @@ foreach (config('tenancy.central_domains') as $domain) {
 
             // users
             Route::resource('users', UserController::class);
-
+            Route::get('/users/trashed', [UserController::class, 'trashed'])->name('users.trashed');
+            Route::put('/users/{id}/restore', [UserController::class, 'restore'])->name('users.restore');
+            Route::delete('/users/{id}/force-delete', [UserController::class, 'forceDelete'])->name('users.forceDelete');
             // Roles
             // Route::resource('roles', RoleController::class);
 
             // settings
             Route::resource('settings', SettingController::class);
 
+<<<<<<< HEAD
             // features
             Route::resource('features', FeatureController::class);
 
+=======
+>>>>>>> c23cfe3c016d13d1bb04bc0b841aa60fa427bbd6
                 // About Us
                 // Route::get('about-us/edit/{id}', [AboutUsController::class, 'edit'])->name('about-us.edit');
                 // Route::post('about-us/update/{id}', [AboutUsController::class, 'update'])->name('about-us.update');
@@ -77,7 +82,10 @@ foreach (config('tenancy.central_domains') as $domain) {
 
                 // tenants
                 Route::resource('tenants', TenantController::class);
+<<<<<<< HEAD
 
+=======
+>>>>>>> c23cfe3c016d13d1bb04bc0b841aa60fa427bbd6
             // tenants
             Route::resource('tenants', TenantController::class);
 
@@ -107,7 +115,9 @@ foreach (config('tenancy.central_domains') as $domain) {
             Route::delete('/faqs/{id}/permdelete', [FAQController::class, 'forceDelete'])->name('faqs.permdelete');
             Route::get('/faqs/deleted', [FAQController::class, 'trashedFaqs'])->name('faqs.trashedFaqs');
             Route::put('/faqs/{faq}/restore', [FAQController::class, 'restore'])->name('faqs.restore');
+
             Route::resource('faqs', FAQController::class);
+<<<<<<< HEAD
 
 
                 // packages
@@ -120,12 +130,20 @@ foreach (config('tenancy.central_domains') as $domain) {
 
 
             });
+=======
+>>>>>>> c23cfe3c016d13d1bb04bc0b841aa60fa427bbd6
 
 
+            // packages
+            Route::resource('packages', PackageController::class);
+            Route::get('archived/packages', [PackageController::class, 'archivedPackages'])->name('packages.archived');
+            Route::post('packages/{id}/restore', [PackageController::class, 'restore'])->name('packages.restore');
+            Route::delete('packages/{id}/force-delete', [PackageController::class, 'forceDelete'])->name('packages.forceDelete');
 
 
+            // contact us
+            Route::resource('contact-us', ContactUsController::class);
+            Route::post('/contact-us', [ContactUsController::class, 'store'])->name('contact_us.store');
+        });
     });
 }
-
-
-

@@ -15,9 +15,10 @@ class ContactUsController extends Controller
      */
     public function index()
     {
-        $contacts = ContactUs::paginate(10);
+        $contacts = ContactUs::paginate(10);    
         return view('dashboard.contact_us.index', compact('contacts'));
     }
+    
     
 
     /**
@@ -69,9 +70,28 @@ class ContactUsController extends Controller
     public function destroy(string $id)
     {
         $contact = ContactUs::findOrFail($id);
-    $contact->delete();
-
-    return redirect()->route('contact-us.index')->with('success', 'Contact entry deleted successfully.');
-
+        $contact->delete();
+        return redirect()->route('contact-us.index')->with('success', 'Contact entry deleted successfully.');
     }
+    public function trashed()
+    {
+        $contacts = ContactUs::onlyTrashed()->paginate(10);
+        return view('dashboard.contact_us.deleted', compact('contacts'));
+    }
+
+    public function restore($id)
+    {
+        $contact = ContactUs::withTrashed()->findOrFail($id);
+        $contact->restore();
+        return redirect()->route('contact-us.trashed')->with('success', 'Contact entry restored successfully.');
+    }
+    
+    public function forceDelete($id)
+    {
+        $contact = ContactUs::withTrashed()->findOrFail($id);
+        $contact->forceDelete();
+        return redirect()->route('contact-us.trashed')->with('success', 'Contact entry permanently deleted.');
+    }
+
+
 }
