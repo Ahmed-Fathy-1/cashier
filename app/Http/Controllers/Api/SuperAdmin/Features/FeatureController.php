@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\Api\SuperAdmin\Features;
 
 use App\Http\Controllers\Controller;
+use App\Http\Helper\ResponseHelper;
 use App\Http\Requests\SuperAdmin\Features\FeatureRequest;
+use App\Http\Resources\Api\Features\FeatureResource;
 use App\Http\Traits\Utils\UploadFileTrait;
-use App\Models\SuperAdmin\Feature;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
+use App\Models\SuperAdmin\Features\Feature;
 
 class FeatureController extends Controller
 {
@@ -15,14 +15,24 @@ class FeatureController extends Controller
     use UploadFileTrait;
 
     protected $filePath = 'images/features';
+    public function __construct()
+    {
+        $this->middleware('auth:api');
+    }
 
+    public function index()
+    {
+        $features = Feature::get();
+        return ResponseHelper::sendResponseSuccess([
+            'features' => FeatureResource::collection($features),
+        ]);
+    }
     /**
      * Show the form for editing the specified resource.
      */
     public function edit(string $id)
     {
-        $features = Feature::findOrFail($id);
-        return view('dashboard.features.edit', compact('features'));
+         //
     }
 
     /**
@@ -44,8 +54,9 @@ class FeatureController extends Controller
         // Fill and save feature data
         $feature->fill($data)->save();
 
-        return redirect()->route('features.edit', $id)->with('success', 'Feature updated successfully!');
-    }
+        return ResponseHelper::sendResponseSuccess([
+            'feature' => new FeatureResource($feature),
+        ]);}
 
     /**
      * Remove the specified resource from storage.

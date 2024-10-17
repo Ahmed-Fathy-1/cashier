@@ -20,9 +20,5 @@ class TechnologyController extends Controller
         return $this->successResponse($techs, 'Technologies retrieved successfully');
     }
 
-    public function deletedTechnologies()
-    {
-        $techs = Technology::onlyTrashed()->get();
-        return $this->successResponse($techs, 'Deleted technologies retrieved successfully');
-    }
+
 }

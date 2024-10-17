@@ -3,11 +3,14 @@
 
 use App\Http\Controllers\Api\SuperAdmin\Auth\AuthController;
 use App\Http\Controllers\Api\SuperAdmin\FAQController;
+use App\Http\Controllers\Api\SuperAdmin\Features\FeatureController;
 use App\Http\Controllers\Api\SuperAdmin\FeedBacksController;
 use App\Http\Controllers\Api\SuperAdmin\HomeCoverController;
 use App\Http\Controllers\Api\SuperAdmin\TechnologyController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\SuperAdmin\PackageController;
+use App\Http\Controllers\Api\SuperAdmin\ContactUsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,14 +39,23 @@ Route::group(['prefix' => "auth"], function () {
 
 
 Route::group(['middleware' => 'auth:sanctum'], function () {
+    Route::group(['prefix' => "auth"], function () {
+        Route::post('logout', [AuthController::class, 'logout']);
+    });
+});
+
+
+
+
+Route::group(['middleware' => 'auth:sanctum'], function () {
 
     Route::group(['prefix' => "auth"], function () {
         Route::post('logout', [AuthController::class, 'logout']);
     });
 
-
     Route::get('/homecovers', [HomeCoverController::class, 'index']);
 
+    Route::post('/contact-us', [ContactUsController::class, 'store']);
     Route::get('/homecover/{id}', [HomeCoverController::class, 'show']);
     Route::get('/faqs', [FAQController::class, 'index']);
     Route::get('/feedbacks', [FeedBacksController::class, 'index']);
@@ -51,4 +63,9 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::get('/technologies', [TechnologyController::class, 'index']);
     Route::get('/technologies/deleted', [TechnologyController::class, 'deletedTechnologies']);
 
+    Route::apiResource('packages', PackageController::class);
+    Route::apiResource('features', FeatureController::class);
+
 });
+
+

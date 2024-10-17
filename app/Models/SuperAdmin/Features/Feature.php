@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\SuperAdmin;
+namespace App\Models\SuperAdmin\Features;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;

@@ -85,8 +85,11 @@
                                 @endcan --}}
 
 
+                                <div class="my-3 mx-4 h-px bg-slate-100 dark:bg-navy-500"></div>
+
                                 <ul class="flex flex-1 flex-col px-4 font-inter">
                                     <li>
+
                                         <a href="{{ url('/contact-us') }}" class="">
                                             <span>ContactUs</span>
                                         </a>
@@ -96,6 +99,7 @@
 
                                 <ul class="flex flex-1 flex-col px-4 font-inter">
                                     <li>
+
                                         <a href="{{route('home_cover',1)}}" class="">
                                             <span>Home Cover</span>
                                         </a>
@@ -243,16 +247,36 @@
 
                                 <ul class="flex flex-1 flex-col px-4 font-inter">
                                     <li>
+                                        <a href="{{ url('/contact-us') }}" class="">
+                                            <span>Contact Us</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <div class="my-3 mx-4 h-px bg-slate-100 dark:bg-navy-500"></div>
+
+                                <ul class="flex flex-1 flex-col px-4 font-inter">
+                                    <li>
                                         <a href="{{ route('users.index') }}#" class="">
                                             <span>Users</span>
                                         </a>
                                     </li>
                                 </ul>
                                 <div class="my-3 mx-4 h-px bg-slate-100 dark:bg-navy-500"></div>
+
                                 <ul class="flex flex-1 flex-col px-4 font-inter">
                                     <li>
                                         <a href="{{ route('features.edit', 1) }}"
+                                            class="">
                                             <span>Features</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <div class="my-3 mx-4 h-px bg-slate-100 dark:bg-navy-500"></div>
+
+                                <ul class="flex flex-1 flex-col px-4 font-inter">
+                                    <li>
+                                        <a href="{{ route('about_us.edit', 1) }}" class="">
+                                            <span>About Us</span>
                                         </a>
                                     </li>
                                 </ul>
@@ -317,15 +341,9 @@
                                                     </div>
                                                 </a>
                                             </li>
-
-
                                         </ul>
                                     </li>
-
                                 </ul>
-
-
-
                             </div>
                         </div>
                     </div>

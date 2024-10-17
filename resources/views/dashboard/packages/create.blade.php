@@ -68,6 +68,14 @@
                             <span class="text-tiny+ text-error">{{ $message }}</span>
                         @enderror
 
+                        {{-- <label class="block">
+                            <span>Description</span>
+
+                            <input name="description"
+                                   class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
+                                   placeholder="Enter description" type="text">
+                        </label> --}}
+
                         <label class="block pt-4">
                             <span class="font-medium text-slate-600 dark:text-navy-100">Description</span>
                         </label>
@@ -80,6 +88,22 @@
                         @error('description')
                             <span class="text-tiny+ text-error">{{ $message }}</span>
                         @enderror
+
+
+
+
+                        {{--                        <label class="block pt-4"> --}}
+                        {{--                            <span class="font-medium text-slate-600 dark:text-navy-100">Description</span> --}}
+                        {{--                        </label> --}}
+
+                        {{--                        <div class="w-full"> --}}
+                        {{--                            <div id="editor1" class="h-48"></div> --}}
+                        {{--                        </div> --}}
+                        {{--                        <textarea id="descOne" name="description" style="display: none;"></textarea> --}}
+
+                        {{-- @error('description')
+                            <span class="text-tiny+ text-error">{{ $message }}</span>
+                        @enderror --}}
 
                         <label class="block">
                             <span>What type of event is stutas?</span>
@@ -270,5 +294,72 @@
 @endsection
 
 @push('scripts')
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
 
+    <script>
+        // Configuration for editor 2
+        const config1 = {
+            modules: {
+                toolbar: [
+                    ["bold", "italic", "underline", "strike"], // toggled buttons
+                    ["blockquote", "code-block"],
+                    [{
+                        header: 1
+                    }, {
+                        header: 2
+                    }], // custom button values
+                    [{
+                        list: "ordered"
+                    }, {
+                        list: "bullet"
+                    }],
+                    [{
+                        script: "sub"
+                    }, {
+                        script: "super"
+                    }], // superscript/subscript
+                    [{
+                        indent: "-1"
+                    }, {
+                        indent: "+1"
+                    }], // outdent/indent
+                    [{
+                        direction: "rtl"
+                    }], // text direction
+                    [{
+                        size: ["small", false, "large", "huge"]
+                    }], // custom dropdown
+                    [{
+                        header: [1, 2, 3, 4, 5, 6, false]
+                    }],
+                    [{
+                        color: []
+                    }, {
+                        background: []
+                    }], // dropdown with defaults from theme
+                    [{
+                        font: []
+                    }],
+                    [{
+                        align: []
+                    }],
+                    ["clean"], // remove formatting button
+                ],
+
+            },
+            placeholder: "Enter your content...",
+            theme: "snow",
+
+
+        };
+
+        const editor1 = document.querySelector("#editor1");
+        const quill1 = new Quill(editor1, config1);
+
+
+        // Attach event listener and update hidden input
+        quill1.on("text-change", function() {
+            document.getElementById("descOne").value = quill1.root.innerHTML;
+        });
+    </script>
 @endpush

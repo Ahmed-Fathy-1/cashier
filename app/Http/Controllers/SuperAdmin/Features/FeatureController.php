@@ -5,9 +5,8 @@ namespace App\Http\Controllers\SuperAdmin\Features;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SuperAdmin\Features\FeatureRequest;
 use App\Http\Traits\Utils\UploadFileTrait;
-use App\Models\SuperAdmin\Feature;
+use App\Models\SuperAdmin\Features\Feature;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 
 class FeatureController extends Controller
 {
@@ -61,45 +60,22 @@ class FeatureController extends Controller
      */
     public function update(FeatureRequest $request, $id)
     {
+        $data = $request->validated(); // Get validated data
         $feature = Feature::findOrFail($id);
 
-        $data = $request->validated(); // Validate and get request data
+        // Update images or retain existing ones
+        foreach (range(1, 3) as $num) {
+            $key = "feature_{$num}_image";
+            $data[$key] = isset($data[$key])
+                ? $this->updateFile($data[$key], $feature->$key, $this->filePath)
+                : $feature->$key;
+        }
 
-        // Handle feature 1 image update
-        $data['feature_1_image'] = isset($data['feature_1_image'])
-            ? $this->updateFile($data['feature_1_image'], $feature->feature_1_image, $this->filePath)
-            : $feature->feature_1_image;
+        // Fill and save feature data
+        $feature->fill($data)->save();
 
-        // Handle feature 2 image update
-        $data['feature_2_image'] = isset($data['feature_2_image'])
-            ? $this->updateFile($data['feature_2_image'], $feature->feature_2_image, $this->filePath)
-            : $feature->feature_2_image;
-
-        // Handle feature 3 image update
-        $data['feature_3_image'] = isset($data['feature_3_image'])
-            ? $this->updateFile($data['feature_3_image'], $feature->feature_3_image, $this->filePath)
-            : $feature->feature_3_image;
-
-        // Update the feature fields
-        $feature->main_title = $request->main_title;
-        $feature->main_description = $request->main_description;
-        $feature->feature_1_title = $request->feature_1_title;
-        $feature->feature_1_image = $data['feature_1_image'];
-        $feature->feature_1_description = $request->feature_1_description;
-        $feature->feature_2_title = $request->feature_2_title;
-        $feature->feature_2_image = $data['feature_2_image'];
-        $feature->feature_2_description = $request->feature_2_description;
-        $feature->feature_3_title = $request->feature_3_title;
-        $feature->feature_3_image = $data['feature_3_image'];
-        $feature->feature_3_description = $request->feature_3_description;
-
-        // Save the updated feature
-        $feature->save();
-
-        // Redirect back with a success message
         return redirect()->route('features.edit', $id)->with('success', 'Feature updated successfully!');
     }
-
     /**
      * Remove the specified resource from storage.
      */
