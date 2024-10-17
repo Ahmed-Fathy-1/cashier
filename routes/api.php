@@ -47,5 +47,5 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::get('/feedbacks/deleted', [FeedBacksController::class, 'deletedFeedbacks']);
     Route::get('/technologies', [TechnologyController::class, 'index']);
     Route::get('/technologies/deleted', [TechnologyController::class, 'deletedTechnologies']);
-    
+
 });

@@ -59,7 +59,7 @@ class PackageController extends Controller
         return redirect()->route('packages.index')->with('success','Package updated successfully');
     }
 
-    
+
     public function destroy($id)
     {
         Package::find($id)->delete();
