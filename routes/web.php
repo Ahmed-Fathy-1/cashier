@@ -110,14 +110,14 @@ foreach (config('tenancy.central_domains') as $domain) {
 
             // packages
             Route::resource('packages', PackageController::class);
+            Route::get('archived/packages', [PackageController::class, 'archivedPackages'])->name('packages.archived');
+            Route::post('packages/{id}/restore', [PackageController::class, 'restore'])->name('packages.restore');
+            Route::delete('packages/{id}/force-delete', [PackageController::class, 'forceDelete'])->name('packages.forceDelete');
 
 
             // contact us
             Route::resource('contact-us', ContactUsController::class);
             Route::post('/contact-us', [ContactUsController::class, 'store'])->name('contact_us.store');
-            Route::get('/contact-us-deleted', [ContactUsController::class, 'trashed'])->name('contact-us.trashed');
-            Route::patch('/contact-us/{id}/restore', [ContactUsController::class, 'restore'])->name('contact-us.restore');
-            Route::delete('/contact-us/{id}/force-delete', [ContactUsController::class, 'forceDelete'])->name('contact-us.forceDelete');
-            });
+        });
     });
-}       
+}

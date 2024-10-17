@@ -31,8 +31,8 @@ class AuthController extends Controller
         $user = User::where('email', $request->email)->first();
 
         $token = $user->createToken('auth_token')->plainTextToken;
-        return redirect()->route('homePage')->with('success', 'Login Successfully');
 
+        return redirect()->route('homePage');
 
     }
 
