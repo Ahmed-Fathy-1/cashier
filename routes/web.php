@@ -80,7 +80,9 @@ foreach (config('tenancy.central_domains') as $domain) {
 
             // payment methods
             Route::resource('payment-methods', PaymentMethodController::class);
-
+            Route::delete('/payment-methods/{id}/permdelete', [PaymentMethodController::class, 'forceDelete'])->name('payments.permdelete');
+            Route::get('/payment-method/deleted', [PaymentMethodController::class, 'trashedPaymethod'])->name('payments.trashedPaymethod');
+            Route::get('/payment-methods/{id}/restore', [PaymentMethodController::class, 'restore'])->name('payments.restore');
             // packages
             Route::resource('packages', PackageController::class);
 
@@ -91,20 +93,19 @@ foreach (config('tenancy.central_domains') as $domain) {
             // Feedbacks
             Route::delete('/feedbacks/{id}/permdelete', [FeedBacksController::class, 'forceDelete'])->name('feedbacks.permdelete');
             Route::get('/feedbacks/deleted', [FeedBacksController::class, 'trashedFeedbacks'])->name('feedbacks.trashedFeedbacks');
-            Route::put('/feedbacks/{feedback}/restore', [FeedBacksController::class, 'restore'])->name('feedbacks.restore');
+            Route::get('/feedbacks/{feedback}/restore', [FeedBacksController::class, 'restore'])->name('feedbacks.restore');
             Route::resource('feedbacks', FeedBacksController::class);
 
             // Technologies
             Route::delete('/technologies/{id}/permdelete', [TechnologyController::class, 'forceDelete'])->name('technologies.permdelete');
             Route::get('/technologies/deleted', [TechnologyController::class, 'trashedTechnologies'])->name('technologies.trashedTechnologies');
-            Route::put('/technologies/{technology}/restore', [TechnologyController::class, 'restore'])->name('technologies.restore');
+            Route::get('/technologies/{technology}/restore', [TechnologyController::class, 'restore'])->name('technologies.restore');
             Route::resource('technologies', TechnologyController::class);
 
             // FAQs
             Route::delete('/faqs/{id}/permdelete', [FAQController::class, 'forceDelete'])->name('faqs.permdelete');
             Route::get('/faqs/deleted', [FAQController::class, 'trashedFaqs'])->name('faqs.trashedFaqs');
-            Route::put('/faqs/{faq}/restore', [FAQController::class, 'restore'])->name('faqs.restore');
-
+            Route::get('/faqs/{faq}/restore', [FAQController::class, 'restore'])->name('faqs.restore');
             Route::resource('faqs', FAQController::class);
 
 
@@ -118,6 +119,14 @@ foreach (config('tenancy.central_domains') as $domain) {
             // contact us
             Route::resource('contact-us', ContactUsController::class);
             Route::post('/contact-us', [ContactUsController::class, 'store'])->name('contact_us.store');
-        });
+            Route::get('/contact-us-deleted', [ContactUsController::class, 'trashed'])->name('contact-us.trashed');
+            Route::get('/contact-us/{id}/restore', [ContactUsController::class, 'restore'])->name('contact-us.restore');
+            Route::delete('/contact-us/{id}/force-delete', [ContactUsController::class, 'forceDelete'])->name('contact-us.forceDelete');
+            });
+
+
+
+
     });
-}
+}       
+  

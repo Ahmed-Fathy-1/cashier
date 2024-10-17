@@ -15,10 +15,14 @@
                 <li>
                     <a href="{{ route('homePage') }}"
                         class="text-primary transition-colors hover:text-primary-focus dark:text-accent-light dark:hover:text-accent">
-                        Home
+                        Home >
                     </a>
+                    <a>
+                    Technologies
+                     </a>
                 </li>
-            </ul>
+
+            </ul>      
         </div>
 
         <div class="card">
@@ -26,6 +30,10 @@
                 <h4 class="text-lg font-medium text-slate-700 dark:text-navy-100">
                     Technology List
                 </h4>
+                <a class="btn bg-primary text-white hover:bg-primary-focus focus:bg-primary-focus dark:bg-primary dark:hover:bg-primary-focus dark:focus:bg-primary-focus mt-4"
+                href="{{ route('technologies.create') }}">Create New Technology</a>
+            <a class="btn bg-error text-white hover:bg-error-focus focus:bg-error-focus dark:bg-error dark:hover:bg-error-focus dark:focus:bg-error-focus mt-4"
+                href="{{ route('technologies.trashedTechnologies') }}">View Deleted Technologies</a>
             </div>
 
             <div class="p-4 sm:p-5">
@@ -60,26 +68,24 @@
 
 
                                     <a href="{{ route('technologies.edit', $tech->id) }}"
-                                        class="mx-2 btn bg-slate-150 font-medium text-slate-800 hover:bg-slate-200 focus:bg-slate-200 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90 btn h-8 w-8 p-0 text-error hover:bg-error/20 focus:bg-error/20 active:bg-error/25">
+                                        class="mx-2 btn bg-slate-150 font-medium text-slate-800 hover:bg-slate-200 focus:bg-slate-203 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90 btn h-8 w-8 p-0 text-info hover:bg-info/20 focus:bg-error/20 active:bg-info/25">
                                         <i class="fa fa-edit"></i>
                                     </a>
-
-                                    <button type="submit" data-toggle="modal" data-target="#modal1"
+                                    <form action="{{ route('technologies.destroy', $tech->id) }}" method="POST"
+                                        onsubmit="return confirm('Are you sure you want to delete this Technology?');">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit"  
                                         class="mx-2 btn bg-slate-150 font-medium text-slate-800 hover:bg-slate-200 focus:bg-slate-200 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90 btn h-8 w-8 p-0 text-error hover:bg-error/20 focus:bg-error/20 active:bg-error/25">
-                                        <i class="fa fa-trash-alt"></i></button>
+                                            <i class="fa fa-trash-alt"></i></button>
 
-                                    @component('dashboard.layouts.deletemodal', ['route' => route('technologies.destroy', $tech->id)])
-                                    @endcomponent
+                                    </form> 
                                 </td>
                             </tr>
                         @endforeach
                     </tbody>
                 </table>
             </div>
-            <a class="btn bg-primary text-white hover:bg-primary-focus focus:bg-primary-focus dark:bg-primary dark:hover:bg-primary-focus dark:focus:bg-primary-focus mt-4"
-                href="{{ route('technologies.create') }}">Create New Technology</a>
-            <a class="btn bg-error text-white hover:bg-error-focus focus:bg-error-focus dark:bg-error dark:hover:bg-error-focus dark:focus:bg-error-focus mt-4"
-                href="{{ route('technologies.trashedTechnologies') }}">View Deleted Technologies</a>
         </div>
     </main>
 @endsection

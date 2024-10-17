@@ -74,4 +74,20 @@ class PaymentMethodController extends Controller
         PaymentMethod::find($id)->delete();
         return redirect()->route('payment-methods.index') ->with('success','Payment Method deleted successfully');
     }
+
+    public function trashedPaymethod()
+    {
+        $paymentMethods = PaymentMethod::onlyTrashed()->get();
+        return view('dashboard.paymentMethods.deleted', compact('paymentMethods'));
+    }
+    public function forceDelete($id)
+    {
+        PaymentMethod::withTrashed()->where('id', $id)->forceDelete();
+        return redirect()->route('payments.trashedPaymethod')->with('success', 'Payment Method Permanently Deleted Successfully');
+    }
+    public function restore($id)
+    {
+        PaymentMethod::withTrashed()->where('id', $id)->restore();
+        return redirect()->route('payments.trashedPaymethod')->with('success', 'Payment Method Restored Successfully');
+    }
 }

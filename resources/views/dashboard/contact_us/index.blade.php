@@ -61,9 +61,9 @@
                         </tr>
                     </thead>
                     <tbody class="bg-white divide-y divide-slate-200 dark:bg-navy-700 dark:divide-navy-600">
-                        @foreach ($contacts as $index => $contact)
+                        @foreach ($contacts as $contact)
                             <tr>
-                                <td class="px-6 py-4 text-sm font-medium text-slate-900 dark:text-navy-50">{{ ($contacts->currentPage() - 1) * $contacts->perPage() + $index + 1 }}</td>
+                                <td class="px-6 py-4 text-sm font-medium text-slate-900 dark:text-navy-50">{{ ($contacts->currentPage() - 1) * $contacts->perPage() + $loop->iteration }}</td>
                                 <td class="px-6 py-4 text-sm text-slate-500 dark:text-navy-100">{{ $contact->name }}</td>
                                 <td class="px-6 py-4 text-sm text-slate-500 dark:text-navy-100">{{ $contact->email }}</td>
                                 <td class="px-6 py-4 text-sm text-slate-500 dark:text-navy-100">{{ $contact->phone ?? 'N/A' }}</td>
@@ -74,21 +74,30 @@
                                     </a>
 
                                     <!-- Delete Button with data-route attribute -->
-                                    <button type="button" data-toggle="modal" data-target="#modal1" data-route="{{ route('contact-us.destroy', $contact->id) }}" onclick="setDeleteRoute(this)"
-                                        class="mx-2 btn bg-slate-150 font-medium text-slate-800 hover:bg-slate-200 focus:bg-slate-200 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90 btn h-8 w-8 p-0 text-error hover:bg-error/20 focus:bg-error/20 active:bg-error/25">
-                                        <i class="fa fa-trash-alt"></i>
-                                    </button>
 
-                                    <!-- Modal Component -->
-                                    @component('dashboard.layouts.deletemodal', ['route' => route('contact-us.destroy', $contact->id)])
-                                    @endcomponent
+
+
+
+
+                                    <form action="{{ route('contact-us.destroy', $contact->id) }}" method="POST"
+                                        onsubmit="return confirm('Are you sure you want to delete this feedback?');">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit"  
+                                        class="mx-2 btn bg-slate-150 font-medium text-slate-800 hover:bg-slate-200 focus:bg-slate-200 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90 btn h-8 w-8 p-0 text-error hover:bg-error/20 focus:bg-error/20 active:bg-error/25">
+                                            <i class="fa fa-trash-alt"></i></button>
+                                    </form>
+
+
+
+
                                 </td>
-                            </tr>
+                            </tr>  
                         @endforeach
+                    </div>                          
                     </tbody>
                 </table>
             </div>
-
             <div class="flex flex-col justify-between space-y-4 px-4 py-4 sm:flex-row sm:items-center sm:space-y-0 sm:px-5">
                 <ol class="pagination space-x-1.5">
                     {{ $contacts->links() }}
@@ -96,12 +105,5 @@
             </div>
         </div>
     </main>
-
-    <script>
-        function setDeleteRoute(button) {
-            const route = button.getAttribute('data-route');
-            const deleteForm = document.querySelector('#modal1 form');
-            deleteForm.action = route;
-        }
-    </script>
 @endsection
+

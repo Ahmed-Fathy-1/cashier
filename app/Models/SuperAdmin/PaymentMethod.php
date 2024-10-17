@@ -3,6 +3,7 @@
 namespace App\Models\SuperAdmin;
 
 use App\Models\SuperAdmin\User;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Model;
 use App\Http\Traits\Utils\UploadFileTrait;
 use Illuminate\Database\Eloquent\Casts\Attribute;
@@ -10,7 +11,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class PaymentMethod extends Model
 {
-    use HasFactory, UploadFileTrait;
+    use HasFactory, UploadFileTrait , SoftDeletes;
 
     protected $fillable = [
         'user_id',
