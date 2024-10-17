@@ -25,12 +25,11 @@ use App\Http\Controllers\Api\SuperAdmin\ContactUsController;
 
 
 
-
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-// auth for each sub-doman
+//auth for each sub-doman
 Route::group(['prefix' => "auth"], function () {
     Route::post('register', [AuthController::class, 'register']);
     Route::post('login', [AuthController::class, 'login']);
@@ -49,6 +48,5 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::get('/feedbacks/deleted', [FeedBacksController::class, 'deletedFeedbacks']);
     Route::get('/technologies', [TechnologyController::class, 'index']);
     Route::get('/technologies/deleted', [TechnologyController::class, 'deletedTechnologies']);
-
     Route::apiResource('packages', PackageController::class);
 });

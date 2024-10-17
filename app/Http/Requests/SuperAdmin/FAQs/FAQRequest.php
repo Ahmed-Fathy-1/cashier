@@ -1,7 +1,6 @@
 <?php
 
-namespace App\Http\Requests\SuperAdmin;
-
+namespace App\Http\Requests\SuperAdmin\FAQs;
 use Illuminate\Foundation\Http\FormRequest;
 
 class FAQRequest extends FormRequest
@@ -11,7 +10,7 @@ class FAQRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**

@@ -12,9 +12,10 @@ class FeedBacksController extends Controller
     
     public function index()
     {
-        $feedbacks = FeedBack::all();
-        return view('dashboard.feedbacks.index', data: ['feedbacks' => $feedbacks]);
+        $feedbacks = Feedback::paginate(10);
+        return view('dashboard.feedbacks.index', compact('feedbacks'));
     }
+    
 
     public function create(FeedbackRequest $request)
     {

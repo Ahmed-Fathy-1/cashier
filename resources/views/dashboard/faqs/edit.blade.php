@@ -31,7 +31,7 @@
             <div class="p-4 sm:p-5">
                 <form action="{{ route('faqs.update', $faq->id) }}" method="POST">
                     @csrf
-                    @method('PUT')
+                    @method('PATCH')
 
                     <div class="mb-4">
                         <label for="question" class="block text-sm font-medium text-slate-700 dark:text-navy-100">Question</label>

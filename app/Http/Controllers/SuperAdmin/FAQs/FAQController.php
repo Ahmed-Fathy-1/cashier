@@ -4,7 +4,7 @@ namespace App\Http\Controllers\SuperAdmin\FAQs;
 
 use App\Http\Controllers\Controller;
 use App\Models\SuperAdmin\FAQ;
-use App\Http\Requests\SuperAdmin\FAQRequest;
+use App\Http\Requests\SuperAdmin\FAQs\FAQRequest;
 
 class FAQController extends Controller
 {
@@ -40,10 +40,9 @@ class FAQController extends Controller
             ->with('success', 'FAQ updated successfully');
     }
 
-    public function destroy(FAQ $faq)
+    public function destroy($id)
     {
-        $faq->delete();
-
+        Faq::find($id)->delete();
         return redirect()->route('faqs.index')
             ->with('success', 'FAQ deleted successfully');
     }

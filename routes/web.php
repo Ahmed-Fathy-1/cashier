@@ -1,12 +1,9 @@
 <?php
 
-<<<<<<< HEAD
 use App\Http\Controllers\SuperAdmin\AboutUS\AboutUsController;
-=======
 use App\Http\Controllers\SuperAdmin\FAQs\FAQController;
 use App\Http\Controllers\SuperAdmin\FeedBacks\FeedBacksController;
 use App\Http\Controllers\SuperAdmin\Technologies\TechnologyController;
->>>>>>> f96dd2dedd6e5dde12888da8318888d2f556e7f1
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\SuperAdmin\Auth\AuthController;
@@ -59,14 +56,15 @@ foreach (config('tenancy.central_domains') as $domain) {
 
             // users
             Route::resource('users', UserController::class);
-
+            Route::get('/users/trashed', [UserController::class, 'trashed'])->name('users.trashed');
+            Route::put('/users/{id}/restore', [UserController::class, 'restore'])->name('users.restore');
+            Route::delete('/users/{id}/force-delete', [UserController::class, 'forceDelete'])->name('users.forceDelete');
             // Roles
             // Route::resource('roles', RoleController::class);
 
             // settings
             Route::resource('settings', SettingController::class);
 
-<<<<<<< HEAD
                 // About Us
                 // Route::get('about-us/edit/{id}', [AboutUsController::class, 'edit'])->name('about-us.edit');
                 // Route::post('about-us/update/{id}', [AboutUsController::class, 'update'])->name('about-us.update');
@@ -77,7 +75,6 @@ foreach (config('tenancy.central_domains') as $domain) {
 
                 // tenants
                 Route::resource('tenants', TenantController::class);
-=======
             // tenants
             Route::resource('tenants', TenantController::class);
 
@@ -107,31 +104,20 @@ foreach (config('tenancy.central_domains') as $domain) {
             Route::delete('/faqs/{id}/permdelete', [FAQController::class, 'forceDelete'])->name('faqs.permdelete');
             Route::get('/faqs/deleted', [FAQController::class, 'trashedFaqs'])->name('faqs.trashedFaqs');
             Route::put('/faqs/{faq}/restore', [FAQController::class, 'restore'])->name('faqs.restore');
+
             Route::resource('faqs', FAQController::class);
->>>>>>> f96dd2dedd6e5dde12888da8318888d2f556e7f1
 
 
-                // packages
-                Route::resource('packages', PackageController::class);
-
-<<<<<<< HEAD
-=======
-
-                // contact us
-                Route::resource('contact-us', ContactUsController::class);
-                Route::post('/contact-us', [ContactUsController::class, 'store'])->name('contact_us.store');
+            // packages
+            Route::resource('packages', PackageController::class);
 
 
-
-
->>>>>>> f96dd2dedd6e5dde12888da8318888d2f556e7f1
+            // contact us
+            Route::resource('contact-us', ContactUsController::class);
+            Route::post('/contact-us', [ContactUsController::class, 'store'])->name('contact_us.store');
+            Route::get('/contact-us-deleted', [ContactUsController::class, 'trashed'])->name('contact-us.trashed');
+            Route::patch('/contact-us/{id}/restore', [ContactUsController::class, 'restore'])->name('contact-us.restore');
+            Route::delete('/contact-us/{id}/force-delete', [ContactUsController::class, 'forceDelete'])->name('contact-us.forceDelete');
             });
-
-
-
-
     });
-}
-
-
-
+}       
