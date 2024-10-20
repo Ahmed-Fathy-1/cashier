@@ -1,9 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\SuperAdmin\AboutUs;
+namespace App\Http\Controllers\Api\SuperAdmin\aboutUs;
 
 use App\Http\Controllers\Controller;
+use App\Http\Helper\ResponseHelper;
 use App\Http\Requests\SuperAdmin\AboutUs\AboutUsRequest;
+use App\Http\Resources\Api\aboutUs\AboutUsResource;
 use App\Http\Traits\Utils\UploadFileTrait;
 use App\Models\SuperAdmin\AboutUs;
 use Illuminate\Http\Request;
@@ -12,29 +14,52 @@ class AboutUsController extends Controller
 {
     use UploadFileTrait;
 
+    /**
+     * @var string
+     */
     protected $filePath = '/about_us';
 
-    /**
-     * @param string $id
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Foundation\Application
-     */
-    public function edit(string $id)
+    public function __construct()
     {
-        $aboutUs = AboutUs::findOrFail($id);
-        return view('dashboard.about_us.edit', compact('aboutUs'));
+        $this->middleware('auth:api');
     }
 
     /**
-     * @param AboutUsRequest $request
-     * @param string $id
-     * @return \Illuminate\Http\RedirectResponse
+     * Display a listing of the resource.
      */
-    public function update(AboutUsRequest $request, string $id)
+    public function index()
     {
-        // dd($request->all());
+        $aboutUs = AboutUs::firstOrFail();
+        return ResponseHelper::sendResponseSuccess([
+            'aboutUs' => new AboutUsResource($aboutUs),
+        ]);
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(Request $request)
+    {
+        //
+    }
+
+    /**
+     * Display the specified resource.
+     */
+    public function show(string $id)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(AboutUsRequest  $request, string $id)
+    {
         $aboutUs = AboutUs::findOrFail($id);
         $data = $request->validated();
 
+        // Handle images
         $data['workflow_download_image'] = $request->hasFile('workflow_download_image')
             ? $this->updateFile($request->file('workflow_download_image'), $aboutUs->workflow_download_image, $this->filePath)
             : $aboutUs->workflow_download_image;
@@ -47,8 +72,20 @@ class AboutUsController extends Controller
             ? $this->updateFile($request->file('workflow_edit_image'), $aboutUs->workflow_edit_image, $this->filePath)
             : $aboutUs->workflow_edit_image;
 
+        // Update the model with validated data
         $aboutUs->update($data);
 
-        return redirect()->back()->with('success', 'About Us updated successfully.');
+        // Return a successful response with the updated resource
+        return ResponseHelper::sendResponseSuccess([
+            'about_us' => new AboutUsResource($aboutUs),
+        ]);
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(string $id)
+    {
+        //
     }
 }

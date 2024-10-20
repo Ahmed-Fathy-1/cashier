@@ -1,6 +1,7 @@
 <?php
 
 
+use App\Http\Controllers\Api\SuperAdmin\aboutUs\AboutUsController;
 use App\Http\Controllers\Api\SuperAdmin\FAQController;
 use App\Http\Controllers\Api\SuperAdmin\Features\FeatureController;
 use App\Http\Controllers\Api\SuperAdmin\FeedBacksController;
@@ -59,6 +60,10 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::apiResource('features', FeatureController::class);
     Route::apiResource('main_needs', MainNeedController::class);
     Route::apiResource('sub_needs', SubNeedsController::class);
+
+    Route::apiResource('about-us', AboutUsController::class)
+        ->only(['index', 'update']);
+
 
     Route::post('/pay-package', [PaymentController::class, 'payPackage']);
 

@@ -7,6 +7,7 @@ namespace Database\Seeders;
 use Database\Seeders\landlord\AboutUsSeeder;
 
 
+
 // use Database\Seeders\landlord\AboutUsSeeder;
 
 use App\Models\SuperAdmin\FAQ;
