@@ -12,12 +12,22 @@
                 <div class="h-full w-px bg-slate-300 dark:bg-navy-600"></div>
             </div>
             <ul class="hidden flex-wrap items-center space-x-2 sm:flex">
-                <li>
-                    <a href="{{ route('technologies.index') }}"
-                        class="text-primary transition-colors hover:text-primary-focus dark:text-accent-light dark:hover:text-accent">
-                        Technologies
-                    </a>
+                <li class="flex items-center space-x-2">
+                    <a class="text-primary transition-colors hover:text-primary-focus dark:text-accent-light dark:hover:text-accent"
+                        href="{{ route('homePage') }}">Home</a>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                    </svg>
                 </li>
+                <a class="text-primary transition-colors hover:text-primary-focus dark:text-accent-light dark:hover:text-accent"
+                href="{{ route('technologies.index') }}">Technology List</a>
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+            </svg>
+        </li>
+                <li>Deleted Technologies List</li>
             </ul>
         </div>
 
@@ -59,25 +69,24 @@
                                 
                                 <td class="px-6 py-4 text-sm text-slate-500 dark:text-navy-100 flex flex-row">
                                     <a href="{{ route('technologies.restore', $tech->id) }}"
-                                        class="mx-2 btn bg-slate-150 font-medium text-slate-800 hover:bg-slate-200 focus:bg-slate-200 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90 btn h-8 w-8 p-0 text-error hover:bg-error/20 focus:bg-error/20 active:bg-error/25">
+                                        class="btn h-8 w-8 p-0 text-info hover:bg-info/20 focus:bg-info/20 active:bg-info/25">
                                         <i class="fa fa-refresh"></i>
                                     </a>
-
-                                    <button type="submit" data-toggle="modal" data-target="#modal1"
+                                    <form action="{{ route('technologies.permdelete', $tech->id) }}" method="POST"
+                                    onsubmit="return confirm('Are you sure you want to delete this Technology?');">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit"  
                                     class="mx-2 btn bg-slate-150 font-medium text-slate-800 hover:bg-slate-200 focus:bg-slate-200 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90 btn h-8 w-8 p-0 text-error hover:bg-error/20 focus:bg-error/20 active:bg-error/25">
-                                                            <i class="fa fa-trash-alt"></i></button>
+                                        <i class="fa fa-trash-alt"></i></button>
 
-
-                                @component('dashboard.layouts.deletemodal', ['route' => route('technologies.permdelete', $tech->id)])
-                                @endcomponent
+                                </form> 
                                 </td>
                             </tr>
                         @endforeach
                     </tbody>
                 </table>
             </div>
-            <a class="btn bg-primary text-white hover:bg-primary-focus focus:bg-primary-focus dark:bg-primary dark:hover:bg-primary-focus dark:focus:bg-primary-focus mt-4"
-               href="{{ route('technologies.index') }}">Back to Technologies</a>
         </div>
     </main>
 @endsection

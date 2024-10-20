@@ -18,6 +18,7 @@ return new class extends Migration
         $table->string('image')->nullable();
         $table->enum('status', ['1', '0'])->default('0');
         $table->foreignId('user_id')->constrained('users','id')->cascadeOnDelete();
+        $table->softDeletes();
         $table->timestamps();
         });
     }

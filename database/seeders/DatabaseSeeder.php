@@ -6,6 +6,9 @@ namespace Database\Seeders;
 
 use Database\Seeders\landlord\AboutUsSeeder;
 
+
+// use Database\Seeders\landlord\AboutUsSeeder;
+
 use App\Models\SuperAdmin\FAQ;
 use Database\Seeders\landlord\CreateAdminUserSeeder;
 use Database\Seeders\landlord\FAQSeeder;
@@ -48,7 +51,6 @@ class DatabaseSeeder extends Seeder
 
 
 
-        $this->call(AboutUsSeeder::class);
 
 
 
@@ -58,9 +60,6 @@ class DatabaseSeeder extends Seeder
         $this->call(TechnologySeed::class);
         $this->call(FAQSeeder::class);
         $this->call(FeatureSeeder::class);
-        $this->call(MainNeedsSeeder::class);
-        $this->call(SubNeedsSeeder::class);
-
 
 
 

@@ -33,26 +33,21 @@
         </div>
 
         <div class="grid grid-cols-1 gap-4 sm:gap-5 lg:gap-6">
-
-            <!-- Table With Filter -->
-            <div id="table-filter">
-                <div class="ac js-enabled" id="ac-4">
-                    <div class="flex items-center justify-between">
-                        <h2 class="text-base font-medium tracking-wide text-slate-700 line-clamp-1 dark:text-navy-100">
-                            Table With tenants
-                        </h2>
-                        <div class="flex">
-                            {{-- @can('tenant-create') --}}
-
-                            <a href="{{ route('tenants.create') }}"
-                            class="btn space-x-2 bg-primary font-medium text-white hover:bg-primary-focus focus:bg-primary-focus active:bg-primary-focus/90 dark:bg-accent dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90">
-                            <i class="fa-solid fa-plus"></i>
-                            <span> Add tenant </span>
-                        </a>
-                        {{-- @endcan --}}
-
-                        </div>
-                    </div>
+            <!-- Title Section -->
+            <div>
+                <h2 class="text-xl font-semibold text-slate-700 dark:text-navy-100">
+                    Table with Tenants
+                </h2>
+            </div>
+            <div>
+                <a href="{{ route('tenants.create') }}"
+                   class="inline-flex items-center px-5 py-2 mt-2 rounded-lg bg-primary font-semibold text-white hover:bg-primary-focus focus:bg-primary-focus active:bg-primary-focus/90 dark:bg-accent dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90 transition duration-150 ease-in-out shadow-md">
+                    <i class="fa-solid fa-plus mr-2"></i>
+                    <span>Add Tenant</span>
+                </a>
+            </div>
+        </div>
+        
                     <div class="card mt-3">
                         <div class="is-scrollbar-hidden min-w-full overflow-x-auto">
                             <table class="is-hoverable w-full text-left">
@@ -122,7 +117,6 @@
                                                                         d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z">
                                                                     </path>
                                                                 </svg>
-
                                                                 <div class="mt-4">
                                                                     <h2 class="text-2xl text-slate-700 dark:text-navy-100">
                                                                         Confirmed Delete
@@ -139,7 +133,6 @@
                                                                             submit
                                                                         </button>
                                                                     </form>
-
                                                                 </div>
                                                             </div>
                                                         </div>

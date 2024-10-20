@@ -13,11 +13,23 @@
             </div>
             <ul class="hidden flex-wrap items-center space-x-2 sm:flex">
                 <li>
-                    <a href="{{ route('faqs.index') }}"
+                    <a href="{{ route('homePage') }}"
                         class="text-primary transition-colors hover:text-primary-focus dark:text-accent-light dark:hover:text-accent">
-                        FAQs
+                        Home > 
                     </a>
                 </li>
+                <li>
+                    <a href="{{ route('faqs.index') }}"
+                    class="text-primary transition-colors hover:text-primary-focus dark:text-accent-light dark:hover:text-accent">
+                        FAQs >
+                    </a>
+                </li>
+                <li>
+                    <a>
+                        FAQs Deleted List 
+                    </a>
+                </li>
+
             </ul>
         </div>
 
@@ -38,29 +50,26 @@
                             <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider dark:text-navy-200">Actions</th>
                         </tr>
                     </thead>
-                    <tbody class="bg-white divide-y divide-slate-200 dark:divide-navy-700">
+                    <tbody class="bg-white divide-y divide-slate-200 dark:bg-navy-700 dark:divide-navy-600">
                         @foreach ($faqs as $faq)
                             <tr>
                                 <td class="px-6 py-4 text-sm font-medium text-slate-900 dark:text-navy-50">{{ $faq->id }}</td>
                                 <td class="px-6 py-4 text-sm text-slate-500 dark:text-navy-100">{{ $faq->question }}</td>
                                 <td class="px-6 py-4 text-sm text-slate-500 dark:text-navy-100">{{ $faq->answer }}</td>
-                                <td class="px-6 py-4 text-sm text-slate-500 dark:text-navy-100 flex space-x-2">
-                                    <!-- Restore Button -->
-                                    <form action="{{ route('faqs.restore', $faq->id) }}" method="POST" class="inline">
-                                        @csrf
-                                        @method('PUT')
-                                        <button type="submit" class="btn h-8 w-8 p-0 text-blue-600 hover:bg-blue-200 dark:hover:bg-blue-800">
-                                            <i class="fa fa-refresh"></i>
-                                        </button>
-                                    </form>
+                                <td class="px-6 py-4 text-sm text-slate-500 dark:text-navy-100 flex flex-row">
+                                    <a href="{{ route('faqs.restore', $faq->id) }}"
+                                        class="btn h-8 w-8 p-0 text-info hover:bg-info/20 focus:bg-info/20 active:bg-info/25">
+                                        <i class="fa fa-refresh"></i>
+                                    </a>
 
-                                    <!-- Permanent Delete Button -->
-                                    <form action="{{ route('faqs.permdelete', $faq->id) }}" method="POST" class="inline" onsubmit="return confirm('Are you sure you want to permanently delete this item?');">
+                                    <form action="{{ route('faqs.permdelete', $faq->id) }}" method="POST"
+                                        onsubmit="return confirm('Are you sure you want to delete this FAQs ?');">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn h-8 w-8 p-0 text-red-600 hover:bg-red-200 dark:hover:bg-red-800">
-                                            <i class="fa fa-trash-alt"></i>
-                                        </button>
+                                        <button type="submit"  
+                                        class="mx-2 btn bg-slate-150 font-medium text-slate-800 hover:bg-slate-200 focus:bg-slate-200 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90 btn h-8 w-8 p-0 text-error hover:bg-error/20 focus:bg-error/20 active:bg-error/25">
+                                            <i class="fa fa-trash-alt"></i></button>
+
                                     </form>
                                 </td>
                             </tr>
@@ -68,8 +77,6 @@
                     </tbody>
                 </table>
             </div>
-            <a class="btn bg-gray-500 text-white hover:bg-gray-600 focus:bg-gray-600 dark:bg-gray-700 dark:hover:bg-gray-800 dark:focus:bg-gray-800"
-                href="{{ route('faqs.index') }}">Back to FAQs</a>
         </div>
     </main>
 @endsection
