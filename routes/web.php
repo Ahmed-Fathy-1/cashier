@@ -19,7 +19,6 @@ use App\Http\Controllers\SuperAdmin\PaymentMethods\PaymentMethodController;
 use App\Http\Controllers\SuperAdmin\ContactUs\ContactUsController;
 
 use App\Http\Controllers\SuperAdmin\HomeCovers\HomeCoverController;
-use App\Http\Controllers\SuperAdmin\FAQs\FAQAPIController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -34,11 +33,6 @@ use App\Http\Controllers\SuperAdmin\FAQs\FAQAPIController;
 foreach (config('tenancy.central_domains') as $domain) {
     Route::domain($domain)->group(function () {
         // your actual routes
-
-        // Route::get('/', function () {
-        //     return view('welcome');
-        // });
-
         Route::get('/', fn () => redirect()->route('homePage'));
 
         // Authentication Routes
@@ -68,43 +62,22 @@ foreach (config('tenancy.central_domains') as $domain) {
                 'feedbacks' => FeedBacksController::class,
                 'technologies' => TechnologyController::class,
                 'faqs' => FAQController::class,
+                'main_needs' => MainNeedController::class,
+                'sub_needs' => SubNeedsController::class,
+                'payments' => PaymentController::class,
+
             ]);
 
             // settings
-            Route::resource('settings', SettingController::class);
-
-                // About Us
-                // Route::get('about-us/edit/{id}', [AboutUsController::class, 'edit'])->name('about-us.edit');
-                // Route::post('about-us/update/{id}', [AboutUsController::class, 'update'])->name('about-us.update');
-                // Route::put('about-us/update/{id}', [AboutUsController::class, 'update'])->name('about-us.update');
-                Route::get('/about-us/{id}/edit', [AboutUsController::class, 'edit'])->name('about_us.edit');
-//                Route::put('/about-us/{id}', [AboutUsController::class, 'update'])->name('about_us.update');
-                Route::put('/about-us/{id}/update',[AboutUsController::class, 'update'])->name('about_us.update');
-
-                // tenants
-                Route::resource('tenants', TenantController::class);
-
-            // tenants
-            Route::resource('tenants', TenantController::class);
-
-
+            Route::get('/about-us/{id}/edit', [AboutUsController::class, 'edit'])->name('about_us.edit');
+            Route::put('/about-us/{id}/update',[AboutUsController::class, 'update'])->name('about_us.update');
 
             // payment methods
-            Route::resource('payment-methods', PaymentMethodController::class);
             Route::delete('/payment-methods/{id}/permdelete', [PaymentMethodController::class, 'forceDelete'])->name('payments.permdelete');
             Route::get('/payment-method/deleted', [PaymentMethodController::class, 'trashedPaymethod'])->name('payments.trashedPaymethod');
             Route::get('/payment-methods/{id}/restore', [PaymentMethodController::class, 'restore'])->name('payments.restore');
             // packages
-            Route::resource('packages', PackageController::class);
 
-
-            Route::resource('features', FeatureController::class);
-
-            Route::resource('main_needs', MainNeedController::class);
-
-            Route::resource('sub_needs', SubNeedsController::class);
-
-            Route::resource('payments', PaymentController::class);
 
             // Home Cover
             Route::get('homecover/{id}', [HomeCoverController::class, 'edit'])->name('home_cover');
@@ -127,28 +100,18 @@ foreach (config('tenancy.central_domains') as $domain) {
             Route::get('/faqs/deleted', [FAQController::class, 'trashedFaqs'])->name('faqs.trashedFaqs');
             Route::get('/faqs/{faq}/restore', [FAQController::class, 'restore'])->name('faqs.restore');
             Route::resource('faqs', FAQController::class);
-
-
-
                 // packages
                 Route::resource('packages', PackageController::class);
-
-
                 // contact us
                 Route::resource('contact-us', ContactUsController::class);
                 Route::post('/contact-us', [ContactUsController::class, 'store'])->name('contact_us.store');
 
-
             });
 
-
-
             // packages
-            Route::resource('packages', PackageController::class);
             Route::get('archived/packages', [PackageController::class, 'archivedPackages'])->name('packages.archived');
             Route::post('packages/{id}/restore', [PackageController::class, 'restore'])->name('packages.restore');
             Route::delete('packages/{id}/force-delete', [PackageController::class, 'forceDelete'])->name('packages.forceDelete');
-
 
             // contact us
             Route::resource('contact-us', ContactUsController::class);
@@ -168,13 +131,6 @@ foreach (config('tenancy.central_domains') as $domain) {
                 Route::get('/deleted', [PaymentMethodController::class, 'trashedPaymethod'])->name('trashedPaymethod');
                 Route::delete('/{id}/permdelete', [PaymentMethodController::class, 'forceDelete'])->name('permdelete');
                 Route::get('/{id}/restore', [PaymentMethodController::class, 'restore'])->name('restore');
-            });
-
-            // Package Additional Routes
-            Route::prefix('packages')->name('packages.')->group(function () {
-                Route::get('archived', [PackageController::class, 'archivedPackages'])->name('archived');
-                Route::post('/{id}/restore', [PackageController::class, 'restore'])->name('restore');
-                Route::delete('/{id}/force-delete', [PackageController::class, 'forceDelete'])->name('forceDelete');
             });
 
             // Home Cover Routes
@@ -211,11 +167,6 @@ foreach (config('tenancy.central_domains') as $domain) {
                 Route::delete('/{id}/force-delete', [ContactUsController::class, 'forceDelete'])->name('forceDelete');
             });
 
-            // About Us Routes
-            Route::prefix('about-us')->name('about_us.')->group(function () {
-                Route::get('/{id}/edit', [AboutUsController::class, 'edit'])->name('edit');
-                Route::put('/{id}/update', [AboutUsController::class, 'update'])->name('update');
-            });
 
         });
 

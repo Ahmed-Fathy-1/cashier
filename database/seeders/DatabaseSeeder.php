@@ -34,13 +34,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // tenant
-        // $this->call(PermessionDBSeed::class);
-        // $this->call(RoleDBSeed::class);
-        // $this->call(AdminstratorDBSeed::class);
-        // $this->call(SettingDBSeeder::class);
-        // $this->call(HomePageMetaDBSeed::class);
-
 // ------------------------------------------------------------------------------------------------
 // landlord
         $this->call(CreateAdminUserSeeder::class);
@@ -50,11 +43,6 @@ class DatabaseSeeder extends Seeder
         $this->call(PackageDetailsSeeder::class);
         $this->call(AboutUsSeeder::class);
 
-
-
-
-
-
         $this->call(ContactUsSeeder::class);
         $this->call(HomeCoverSeeder::class);
         $this->call(FeedBackSeeder::class);
@@ -62,21 +50,5 @@ class DatabaseSeeder extends Seeder
         $this->call(FAQSeeder::class);
         $this->call(FeatureSeeder::class);
 
-
-
-
-
-
-
-// --------------------------------------------------------------------------------------------
-     /*   $this->call(UsersDBSeed::class);
-        $this->call(CustomerDBSeed::class);
-        $this->call(CategoryDBSeed::class);
-        $this->call(bannerDBSeed::class);
-        $this->call(UnitDBSeed::class);
-        $this->call(ProductDBSeed::class);
-        $this->call(CouponDBSeed::class);
-        $this->call(CategoryMetaDBSeed::class);
-        $this->call(OrderDBSeed::class);*/
     }
 }
