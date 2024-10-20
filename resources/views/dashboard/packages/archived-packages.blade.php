@@ -96,28 +96,28 @@
                                             <div
                                                 class="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary dark:bg-accent/10 dark:text-accent-light">
                                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-4.5 w-4.5"
-                                                    viewBox="0 0 20 20" fill="currentColor">
-                                                    <path fill-rule="evenodd"
-                                                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                                                        clip-rule="evenodd"></path>
+                                                    viewBox="0 0 24 24" fill="currentColor">
+                                                    <path
+                                                        d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zm0-12H5V6h14v2z" />
                                                 </svg>
                                             </div>
                                             <span class="font-medium">Monthly Storage:
                                                 {{ $package->packageDetails->storage_monthly }}</span>
                                         </div>
+
                                         <div class="flex items-start space-x-3 yearly-details">
                                             <div
                                                 class="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary dark:bg-accent/10 dark:text-accent-light">
                                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-4.5 w-4.5"
-                                                    viewBox="0 0 20 20" fill="currentColor">
-                                                    <path fill-rule="evenodd"
-                                                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                                                        clip-rule="evenodd"></path>
+                                                    viewBox="0 0 24 24" fill="currentColor">
+                                                    <path
+                                                        d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5 11h-6V7h2v4h4v2z" />
                                                 </svg>
                                             </div>
-                                            <span class="font-medium"> Annual Storage:
+                                            <span class="font-medium">Annual Storage:
                                                 {{ $package->packageDetails->storage_annually }}</span>
                                         </div>
+
                                         <div class="flex items-start space-x-3">
                                             <div
                                                 class="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-warning/10 text-warning">
