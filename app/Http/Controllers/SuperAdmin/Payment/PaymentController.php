@@ -55,13 +55,10 @@ class PaymentController extends Controller
                 'currency' => 'required|string|size:3',
                 'methods' => 'required|string|exists:payment_methods,id',
             ]) + ['user_id' => auth()->id()]);
-
-
         return redirect()->route('payments.index')->with('success', 'Payment updated successfully.');
     }
 
      public function destroy(Request $request, $id){
-         return $request ;
          $payment = Payment::findOrFail($id);
          $payment->delete();
          return redirect()->route('payments.index');
