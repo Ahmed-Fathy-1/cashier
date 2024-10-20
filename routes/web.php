@@ -66,12 +66,10 @@ foreach (config('tenancy.central_domains') as $domain) {
             // settings
             Route::resource('settings', SettingController::class);
 
-<<<<<<< HEAD
             // features
             Route::resource('features', FeatureController::class);
 
-=======
->>>>>>> c23cfe3c016d13d1bb04bc0b841aa60fa427bbd6
+
                 // About Us
                 // Route::get('about-us/edit/{id}', [AboutUsController::class, 'edit'])->name('about-us.edit');
                 // Route::post('about-us/update/{id}', [AboutUsController::class, 'update'])->name('about-us.update');
@@ -82,10 +80,7 @@ foreach (config('tenancy.central_domains') as $domain) {
 
                 // tenants
                 Route::resource('tenants', TenantController::class);
-<<<<<<< HEAD
 
-=======
->>>>>>> c23cfe3c016d13d1bb04bc0b841aa60fa427bbd6
             // tenants
             Route::resource('tenants', TenantController::class);
 
@@ -118,7 +113,7 @@ foreach (config('tenancy.central_domains') as $domain) {
             Route::get('/faqs/deleted', [FAQController::class, 'trashedFaqs'])->name('faqs.trashedFaqs');
             Route::get('/faqs/{faq}/restore', [FAQController::class, 'restore'])->name('faqs.restore');
             Route::resource('faqs', FAQController::class);
-<<<<<<< HEAD
+
 
 
                 // packages
@@ -131,8 +126,7 @@ foreach (config('tenancy.central_domains') as $domain) {
 
 
             });
-=======
->>>>>>> c23cfe3c016d13d1bb04bc0b841aa60fa427bbd6
+
 
 
             // packages
@@ -153,6 +147,7 @@ foreach (config('tenancy.central_domains') as $domain) {
 
 
 
-    });
+
+
 }       
   
