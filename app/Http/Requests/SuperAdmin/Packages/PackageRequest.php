@@ -26,6 +26,8 @@ class PackageRequest extends FormRequest
         return [
             'title' => 'required|min:3|max:50|unique:packages,title,' . $packageId,
             'description' => 'required|min:3|max:255',
+            'free' => 'nullable|boolean',
+            'free_period' => 'nullable|integer|min:0',
             'Price_monthly' => 'required|min:2|integer',
             'Price_annually' => 'required|min:2|integer',
             'storage_monthly' => 'required|min:2|numeric',
