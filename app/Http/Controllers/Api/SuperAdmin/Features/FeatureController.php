@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Api\SuperAdmin\Features;
 
 use App\Http\Controllers\Controller;
 use App\Http\Helper\ResponseHelper;
-use App\Http\Requests\SuperAdmin\Features\FeatureRequest;
-use App\Http\Resources\Api\Features\FeatureResource;
+use App\Http\Requests\SuperAdmin\Features\MainNeedResource;
+use App\Http\Resources\Api\Features\MainNeedResource;
 use App\Http\Traits\Utils\UploadFileTrait;
 use App\Models\SuperAdmin\Features\Feature;
 
@@ -24,7 +24,7 @@ class FeatureController extends Controller
     {
         $features = Feature::get();
         return ResponseHelper::sendResponseSuccess([
-            'features' => FeatureResource::collection($features),
+            'features' => MainNeedResource::collection($features),
         ]);
     }
     /**
@@ -38,7 +38,7 @@ class FeatureController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(FeatureRequest $request, $id)
+    public function update(MainNeedResource $request, $id)
     {
         $data = $request->validated(); // Get validated data
         $feature = Feature::findOrFail($id);
@@ -55,7 +55,7 @@ class FeatureController extends Controller
         $feature->fill($data)->save();
 
         return ResponseHelper::sendResponseSuccess([
-            'feature' => new FeatureResource($feature),
+            'feature' => new MainNeedResource($feature),
         ]);}
 
     /**

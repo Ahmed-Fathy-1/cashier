@@ -22,6 +22,7 @@ return new class extends Migration
             $table->enum('status',['pending','completed','failed','cancelled'])->default('pending');
             $table->string('transaction_id')->nullable();
             $table->json('transaction_data')->nullable();
+            $table->softDeletes(); // Adds 'deleted_at' column
             $table->timestamps();
         });
     }

@@ -4,6 +4,9 @@ use App\Http\Controllers\SuperAdmin\AboutUS\AboutUsController;
 use App\Http\Controllers\SuperAdmin\FAQs\FAQController;
 use App\Http\Controllers\SuperAdmin\Features\FeatureController;
 use App\Http\Controllers\SuperAdmin\FeedBacks\FeedBacksController;
+use App\Http\Controllers\SuperAdmin\Needs\MainNeedController;
+use App\Http\Controllers\SuperAdmin\Needs\SubNeedsController;
+use App\Http\Controllers\SuperAdmin\Payment\PaymentController;
 use App\Http\Controllers\SuperAdmin\Technologies\TechnologyController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
@@ -66,12 +69,6 @@ foreach (config('tenancy.central_domains') as $domain) {
             // settings
             Route::resource('settings', SettingController::class);
 
-<<<<<<< HEAD
-            // features
-            Route::resource('features', FeatureController::class);
-
-=======
->>>>>>> c23cfe3c016d13d1bb04bc0b841aa60fa427bbd6
                 // About Us
                 // Route::get('about-us/edit/{id}', [AboutUsController::class, 'edit'])->name('about-us.edit');
                 // Route::post('about-us/update/{id}', [AboutUsController::class, 'update'])->name('about-us.update');
@@ -82,12 +79,8 @@ foreach (config('tenancy.central_domains') as $domain) {
 
                 // tenants
                 Route::resource('tenants', TenantController::class);
-<<<<<<< HEAD
 
-=======
->>>>>>> c23cfe3c016d13d1bb04bc0b841aa60fa427bbd6
-            // tenants
-            Route::resource('tenants', TenantController::class);
+
 
             // payment methods
             Route::resource('payment-methods', PaymentMethodController::class);
@@ -95,6 +88,18 @@ foreach (config('tenancy.central_domains') as $domain) {
             // packages
             Route::resource('packages', PackageController::class);
 
+
+            Route::resource('features', FeatureController::class);
+
+            Route::resource('main_needs', MainNeedController::class);
+
+            Route::resource('sub_needs', SubNeedsController::class);
+
+            Route::resource('payments', PaymentController::class);
+            Route::delete('', [PaymentController::class , 'destroy'])->name('payment.destroy');
+            Route::delete('payments-destroy/{id}', function ($id) {
+                return $id ;
+            })->name('payment.destroy');
             // Home Cover
             Route::get('homecover/{id}', [HomeCoverController::class, 'edit'])->name('home_cover');
             Route::put('homecover/{id}', [HomeCoverController::class, 'update'])->name('update_home_cover');
@@ -117,21 +122,6 @@ foreach (config('tenancy.central_domains') as $domain) {
             Route::put('/faqs/{faq}/restore', [FAQController::class, 'restore'])->name('faqs.restore');
 
             Route::resource('faqs', FAQController::class);
-<<<<<<< HEAD
-
-
-                // packages
-                Route::resource('packages', PackageController::class);
-
-
-                // contact us
-                Route::resource('contact-us', ContactUsController::class);
-                Route::post('/contact-us', [ContactUsController::class, 'store'])->name('contact_us.store');
-
-
-            });
-=======
->>>>>>> c23cfe3c016d13d1bb04bc0b841aa60fa427bbd6
 
 
             // packages

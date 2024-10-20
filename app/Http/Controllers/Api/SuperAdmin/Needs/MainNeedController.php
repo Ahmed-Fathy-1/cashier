@@ -1,8 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\SuperAdmin\Needs;
+namespace App\Http\Controllers\Api\SuperAdmin\Needs;
 
 use App\Http\Controllers\Controller;
+use App\Http\Helper\ResponseHelper;
+use App\Http\Resources\Api\MainNeeds\MainNeedResource;
 use App\Http\Traits\Utils\UploadFileTrait;
 use App\Models\SuperAdmin\Needes\MainNeed;
 use Illuminate\Http\Request;
@@ -24,7 +26,10 @@ class MainNeedController extends Controller
      */
     public function index()
     {
-        //
+        $mainNeeds = MainNeed::PAGINATE(5);
+        return ResponseHelper::sendResponseSuccess([
+            'main_needs' => MainNeedResource::collection($mainNeeds),
+        ]);
     }
 
     /**

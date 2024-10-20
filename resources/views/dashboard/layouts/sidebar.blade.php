@@ -282,6 +282,69 @@
                                 </ul>
                                 <div class="my-3 mx-4 h-px bg-slate-100 dark:bg-navy-500"></div>
 
+
+                                <ul class="flex flex-1 flex-col px-4 font-inter">
+                                    <li>
+                                        <a href="{{ route('payments.index') }}" class="">
+                                            <span>Payments</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <div class="my-3 mx-4 h-px bg-slate-100 dark:bg-navy-500"></div>
+
+                                <ul class="flex flex-1 flex-col px-4 font-inter">
+                                    <li class="ac nav-parent [&amp;.is-active_svg]:rotate-90 [&amp;.is-active_.ac-trigger]:font-semibold [&amp;.is-active_.ac-trigger]:text-slate-800 dark:[&amp;.is-active_.ac-trigger]:text-navy-50 js-enabled"
+                                        data-nav-parent-index="8" id="ac-8">
+                                        <button
+                                            class="ac-trigger flex w-full items-center justify-between py-2 text-xs+ tracking-wide text-slate-600 outline-none transition-[color,padding-left] duration-300 ease-in-out hover:text-slate-800 dark:text-navy-200 dark:hover:text-navy-50"
+                                            id="ac-trigger-8" role="button" aria-controls="ac-panel-8"
+                                            aria-disabled="false" aria-expanded="false">
+                                            <span>Needs</span>
+                                            <svg xmlns="http://www.w3.org/2000/svg"
+                                                 class="h-4 w-4 text-slate-400 transition-transform ease-in-out"
+                                                 fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                      d="M9 5l7 7-7 7"></path>
+                                            </svg>
+                                        </button>
+                                        <ul class="ac-panel" id="ac-panel-8" role="region"
+                                            aria-labelledby="ac-trigger-8"
+                                            style="transition-duration: 200ms; height: 0px;">
+
+
+                                            <li>
+                                                <a href="{{ route('main_needs.edit', 1) }}"
+                                                   class="nav-link flex items-center justify-between p-2 text-xs+ tracking-wide outline-none transition-[color,padding-left] duration-300 ease-in-out hover:pl-4 text-slate-600 hover:text-slate-800 dark:text-navy-200 dark:hover:text-navy-50"
+                                                   data-default-class="text-slate-600 hover:text-slate-800 dark:text-navy-200 dark:hover:text-navy-50"
+                                                   data-active-class="font-medium text-primary dark:text-accent-light">
+                                                    <div class="flex items-center space-x-2">
+                                                        <div
+                                                            class="h-1.5 w-1.5 rounded-full border border-current opacity-40">
+                                                        </div>
+                                                        <span>Main Needs</span>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="{{ route('sub_needs.index') }}"
+                                                   class="nav-link flex items-center justify-between p-2 text-xs+ tracking-wide outline-none transition-[color,padding-left] duration-300 ease-in-out hover:pl-4 text-slate-600 hover:text-slate-800 dark:text-navy-200 dark:hover:text-navy-50"
+                                                   data-default-class="text-slate-600 hover:text-slate-800 dark:text-navy-200 dark:hover:text-navy-50"
+                                                   data-active-class="font-medium text-primary dark:text-accent-light">
+                                                    <div class="flex items-center space-x-2">
+                                                        <div
+                                                            class="h-1.5 w-1.5 rounded-full border border-current opacity-40">
+                                                        </div>
+                                                        <span>Sub Needs</span>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+
+
+
+                                <div class="my-3 mx-4 h-px bg-slate-100 dark:bg-navy-500"></div>
                                 {{-- <ul class="flex flex-1 flex-col px-4 font-inter">
                                     <li>
                                         <a href="{{ route('roles.index') }}" class="">

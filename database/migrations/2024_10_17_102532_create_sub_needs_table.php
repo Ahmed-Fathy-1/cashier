@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('title')->nullable();
             $table->string('image')->nullable();
             $table->text('desc')->nullable();
-            $table->foreignId('main_needs_id')->constrained('main_needs')->cascadeOnDelete();
+            $table->foreignId('main_need_id')->constrained('main_needs')->cascadeOnDelete();
             $table->timestamps();
         });
     }
