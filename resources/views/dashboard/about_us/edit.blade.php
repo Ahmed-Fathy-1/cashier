@@ -45,163 +45,314 @@
 
                     </div>
                 </div>
-                <form action="{{ route('about_us.update', $aboutUs->id) }}" method="POST" enctype="multipart/form-data" id="about-form">
+                <form action="{{ route('about_us.update', $aboutUs->id) }}" method="POST" enctype="multipart/form-data"
+                      id="about-form">
                     @csrf
                     @method('PUT')
                     <div class="space-y-4 p-4 sm:p-5">
 
-                        <label class="block pt-4">
-                            <span class="font-medium text-slate-600 dark:text-navy-100">Sub Title</span>
+                        <label class="block">
+                            <span>Intro Title</span>
+
+                            <input name="intro_title"
+                                   class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
+                                   placeholder="Enter Title" type="text" value="{{ $aboutUs->intro_title }}">
                         </label>
-                        <textarea id="sub_title" name="sub_title" class="w-full h-48 border border-gray-300 rounded" placeholder="Enter subtitle">{{ $aboutUs->sub_title }}</textarea>
-                        @error('sub_title')
+                        @error('intro_title')
                         <span class="text-tiny+ text-error">{{ $message }}</span>
                         @enderror
 
                         <label class="block pt-4">
-                            <span class="font-medium text-slate-600 dark:text-navy-100">Description</span>
+                            <span class="font-medium text-slate-600 dark:text-navy-100">Intro Description</span>
                         </label>
-                        <textarea id="description" name="description" class="w-full h-48 border border-gray-300 rounded" placeholder="Enter description">{{ $aboutUs->description }}</textarea>
-                        @error('description')
+                        <div class="w-full">
+                            <div id="editor1" class="h-48"></div>
+                        </div>
+                        <textarea id="descOne" name="intro_desc" style="display: none;">{{ $aboutUs->intro_desc }}</textarea>
+
+                        @error('intro_desc')
                         <span class="text-tiny+ text-error">{{ $message }}</span>
                         @enderror
 
-                        <label class="block pt-4">
-                            <span class="font-medium text-slate-600 dark:text-navy-100">Service Image</span>
+                        <label class="block">
+                            <span>Numbers Client Title</span>
+
+                            <input name="numbers_clients_title"
+                                   class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
+                                   placeholder="Enter Title" type="text" value="{{ $aboutUs->numbers_clients_title }}">
                         </label>
+                        @error('numbers_clients_title')
+                        <span class="text-tiny+ text-error">{{ $message }}</span>
+                        @enderror
+
+                        <label class="block">
+                            <span>Numbers Client Count</span>
+
+                            <input name="numbers_clients_count"
+                                   class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
+                                   placeholder="Enter Title" type="text" value="{{ $aboutUs->numbers_clients_count }}">
+                        </label>
+                        @error('numbers_clients_count')
+                        <span class="text-tiny+ text-error">{{ $message }}</span>
+                        @enderror
+
+                        <label class="block">
+                            <span>Numbers Downloads Title</span>
+
+                            <input name="numbers_downloads_title"
+                                   class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
+                                   placeholder="Enter Title" type="text" value="{{ $aboutUs->numbers_downloads_title }}">
+                        </label>
+                        @error('numbers_downloads_title')
+                        <span class="text-tiny+ text-error">{{ $message }}</span>
+                        @enderror
+
+                        <label class="block">
+                            <span>Numbers Downloads Count</span>
+
+                            <input name="numbers_downloads_count"
+                                   class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
+                                   placeholder="Enter Title" type="text" value="{{ $aboutUs->numbers_downloads_count }}">
+                        </label>
+                        @error('numbers_downloads_count')
+                        <span class="text-tiny+ text-error">{{ $message }}</span>
+                        @enderror
+
+                        <label class="block">
+                            <span>Numbers Projects Title</span>
+
+                            <input name="numbers_projects_title"
+                                   class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
+                                   placeholder="Enter Title" type="text" value="{{ $aboutUs->numbers_projects_title }}">
+                        </label>
+                        @error('numbers_projects_title')
+                        <span class="text-tiny+ text-error">{{ $message }}</span>
+                        @enderror
+
+                        <label class="block">
+                            <span>Numbers Projects Count</span>
+
+                            <input name="numbers_projects_count"
+                                   class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
+                                   placeholder="Enter Title" type="text" value="{{ $aboutUs->numbers_projects_count }}">
+                        </label>
+                        @error('numbers_projects_count')
+                        <span class="text-tiny+ text-error">{{ $message }}</span>
+                        @enderror
+
+                        <label class="block">
+                            <span>Workflow Title</span>
+
+                            <input name="workflow_title"
+                                   class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
+                                   placeholder="Enter Title" type="text" value="{{ $aboutUs->workflow_title }}">
+                        </label>
+                        @error('workflow_title')
+                        <span class="text-tiny+ text-error">{{ $message }}</span>
+                        @enderror
+
+                        {{-- Worflow Descriptions --}}
+                        <label class="block pt-4">
+                            <span class="font-medium text-slate-600 dark:text-navy-100">Workflow Description</span>
+                        </label>
+                        <div class="w-full">
+                            <div id="editor2" class="h-48"></div>
+                        </div>
+                        <textarea id="descTwo" name="workflow_desc" style="display: none;">{{ $aboutUs->workflow_desc }}</textarea>
+
+                        @error('workflow_desc')
+                        <span class="text-tiny+ text-error">{{ $message }}</span>
+                        @enderror
+
+                        <label class="block">
+                            <span>Workflow Downloads Title</span>
+
+                            <input name="workflow_download_title"
+                                   class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
+                                   placeholder="Enter Title" type="text" value="{{ $aboutUs->workflow_download_title }}">
+                        </label>
+                        @error('workflow_download_title')
+                        <span class="text-tiny+ text-error">{{ $message }}</span>
+                        @enderror
+
+                        {{-- Workflow Downloads Description --}}
+                        <label class="block pt-4">
+                            <span class="font-medium text-slate-600 dark:text-navy-100">Workflow Downloads Description</span>
+                        </label>
+                        <div class="w-full">
+                            <div id="editor3" class="h-48"></div>
+                        </div>
+                        <textarea id="descThree" name="workflow_download_desc" style="display: none;">{{ $aboutUs->workflow_download_desc }}</textarea>
+
+                        @error('workflow_download_desc')
+                        <span class="text-tiny+ text-error">{{ $message }}</span>
+                        @enderror
+
+                        <label class="block">
+                            <span>Workflow Downloads Number</span>
+
+                            <input name="workflow_download_number"
+                                   class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
+                                   placeholder="Enter Title" type="text" value="{{ $aboutUs->workflow_download_number }}">
+                        </label>
+                        @error('workflow_download_number')
+                        <span class="text-tiny+ text-error">{{ $message }}</span>
+                        @enderror
+
+                        <!-- Workflow Download Image Label -->
+                        <label class="block pt-4">
+                            <span class="font-medium text-slate-600 dark:text-navy-100">Workflow Download Image</span>
+                        </label>
+
+                        <!-- File Upload Button -->
+                        <label class="btn bg-slate-150 font-medium text-slate-800 hover:bg-slate-200 focus:bg-slate-200 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90">
+                            <input
+                                onchange="previewImage(this)"
+                                tabindex="-1"
+                                type="file"
+                                name="workflow_download_image"
+                                class="pointer-events-none absolute inset-0 h-full w-full opacity-0"
+                            />
+                            <div class="flex items-center space-x-2">
+                                <!-- Upload Icon -->
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
+                                </svg>
+                                <span>Choose File</span>
+                            </div>
+                        </label>
+
+                        <!-- Image Preview -->
+                        <div>
+                            <img
+                                id="imagePreview"
+                                src="{{ asset('storage/uploads/about_us/'.$aboutUs->workflow_download_image) }}"
+                                alt="Current Image"
+                                style="max-width: 150px;"
+                            >
+                        </div>
+
+                        <!-- Error Message -->
+                        @error('workflow_download_image')
+                        <span class="text-tiny+ text-error">{{ $message }}</span>
+                        @enderror
+
+
+                        <label class="block">
+                            <span>Workflow Manage Title</span>
+
+                            <input name="workflow_manage_title"
+                                   class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
+                                   placeholder="Enter Title" type="text" value="{{ $aboutUs->workflow_manage_title	 }}">
+                        </label>
+                        @error('workflow_manage_title')
+                        <span class="text-tiny+ text-error">{{ $message }}</span>
+                        @enderror
+
+                        <!-- Workflow Manage Image Label -->
+                        <label class="block pt-4">
+                            <span class="font-medium text-slate-600 dark:text-navy-100">Workflow Manage Image</span>
+                        </label>
+
+                        <!-- File Upload Button -->
                         <label
                             class="btn bg-slate-150 font-medium text-slate-800 hover:bg-slate-200 focus:bg-slate-200 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90">
-                            <input onchange="previewImage(this, 'services_image-image-preview')" tabindex="-1" type="file" name="services_image"
+                            <input onchange="previewImage(this)" tabindex="-1" type="file" name="workflow_manage_image"
                                    class="pointer-events-none absolute inset-0 h-full w-full opacity-0" />
                             <div class="flex items-center space-x-2">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
-                                     viewBox="0 0 24 24" stroke="currentColor">
+                                <!-- Upload Icon -->
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                           d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
                                 </svg>
                                 <span>Choose File</span>
                             </div>
                         </label>
-                        @error('services_image')
+
+                        <!-- Image Preview -->
+                        <div>
+                            <img id="imagePreview" src="{{ asset('storage/uploads/about_us/'.$aboutUs->workflow_manage_image) }}" alt="Current Image"
+                                 style="max-width: 150px;">
+                        </div>
+
+                        <!-- Error Message -->
+                        @error('workflow_manage_image')
+                        <span class="text-tiny+ text-error">{{ $message }}</span>
+                        @enderror
+
+
+
+                        <label class="block">
+                            <span>Workflow Edit Title</span>
+
+                            <input name="workflow_edit_title	"
+                                   class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
+                                   placeholder="Enter Title" type="text" value="{{ $aboutUs->workflow_edit_title	 }}">
+                        </label>
+                        @error('workflow_edit_title	')
                         <span class="text-tiny+ text-error">{{ $message }}</span>
                         @enderror
 
                         <label class="block pt-4">
-                            <span class="font-medium text-slate-600 dark:text-navy-100">Service Description 1</span>
+                            <span class="font-medium text-slate-600 dark:text-navy-100">Workflow Edit Description</span>
                         </label>
-                        <textarea id="service_1_desc" name="service_1_desc" class="w-full h-48 border border-gray-300 rounded" placeholder="Enter service description 1">{{ $aboutUs->service_1_desc }}</textarea>
-                        @error('service_1_desc')
+                        <div class="w-full">
+                            <div id="editor4" class="h-48"></div>
+                        </div>
+                        <textarea id="descFour" name="workflow_edit_desc" style="display: none;">{{ $aboutUs->workflow_edit_desc }}</textarea>
+
+                        @error('workflow_edit_desc')
                         <span class="text-tiny+ text-error">{{ $message }}</span>
                         @enderror
 
-                        <label class="block pt-4">
-                            <span class="font-medium text-slate-600 dark:text-navy-100">Service Description 2</span>
+                        <label class="block">
+                            <span>Workflow Edit Count</span>
+
+                            <input name="workflow_edit_count	"
+                                   class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
+                                   placeholder="Enter Title" type="text" value="{{ $aboutUs->workflow_edit_count	 }}">
                         </label>
-                        <textarea id="service_2_desc" name="service_2_desc" class="w-full h-48 border border-gray-300 rounded" placeholder="Enter service description 2">{{ $aboutUs->service_2_desc }}</textarea>
-                        @error('service_2_desc')
+                        @error('workflow_edit_count	')
                         <span class="text-tiny+ text-error">{{ $message }}</span>
                         @enderror
 
+                        <!-- Workflow Edit Image Label -->
                         <label class="block pt-4">
-                            <span class="font-medium text-slate-600 dark:text-navy-100">Service Description 3</span>
+                            <span class="font-medium text-slate-600 dark:text-navy-100">Workflow Edit Image</span>
                         </label>
-                        <textarea id="service_3_desc" name="service_3_desc" class="w-full h-48 border border-gray-300 rounded" placeholder="Enter service description 3">{{ $aboutUs->service_3_desc }}</textarea>
-                        @error('service_3_desc')
+
+                        <!-- File Upload Button -->
+                        <label
+                            class="btn bg-slate-150 font-medium text-slate-800 hover:bg-slate-200 focus:bg-slate-200 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90">
+                            <input onchange="previewImage(this, 'editImagePreview')" tabindex="-1" type="file" name="workflow_edit_image"
+                                   class="pointer-events-none absolute inset-0 h-full w-full opacity-0" />
+                            <div class="flex items-center space-x-2">
+                                <!-- Upload Icon -->
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                          d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
+                                </svg>
+                                <span>Choose File</span>
+                            </div>
+                        </label>
+
+                        <!-- Image Preview -->
+                        <div>
+                            <img id="editImagePreview" src="{{ asset('storage/uploads/about_us/'.$aboutUs->workflow_edit_image) }}" alt="Current Image"
+                                 style="max-width: 150px;">
+                        </div>
+
+                        <!-- Error Message -->
+                        @error('workflow_edit_image')
                         <span class="text-tiny+ text-error">{{ $message }}</span>
                         @enderror
 
-                        <label class="block pt-4">
-                            <span class="font-medium text-slate-600 dark:text-navy-100">Package Number Description</span>
-                        </label>
-                        <textarea id="packages_numbers_desc" name="packages_numbers_desc" class="w-full h-48 border border-gray-300 rounded" placeholder="Enter service description 3">{{ $aboutUs->packages_numbers_desc }}</textarea>
-                        @error('packages_numbers_desc')
-                        <span class="text-tiny+ text-error">{{ $message }}</span>
-                        @enderror
-
-                        <label class="block pt-4">
-                            <span class="font-medium text-slate-600 dark:text-navy-100">Package Number</span>
-                        </label>
-                        <textarea id="packages_numbers_number" name="packages_numbers_number" class="w-full h-48 border border-gray-300 rounded" placeholder="Enter service description 3">{{ $aboutUs->packages_numbers_number }}</textarea>
-                        @error('packages_numbers_number')
-                        <span class="text-tiny+ text-error">{{ $message }}</span>
-                        @enderror
-
-                        <label class="block pt-4">
-                            <span class="font-medium text-slate-600 dark:text-navy-100">Client Number Description</span>
-                        </label>
-                        <textarea id="clients_numbers_desc" name="clients_numbers_desc" class="w-full h-48 border border-gray-300 rounded" placeholder="Enter service description 3">{{ $aboutUs->clients_numbers_desc }}</textarea>
-                        @error('clients_numbers_desc')
-                        <span class="text-tiny+ text-error">{{ $message }}</span>
-                        @enderror
-
-                        <label class="block pt-4">
-                            <span class="font-medium text-slate-600 dark:text-navy-100">Client Number</span>
-                        </label>
-                        <textarea id="clients_numbers_number" name="clients_numbers_number" class="w-full h-48 border border-gray-300 rounded" placeholder="Enter service description 3">{{ $aboutUs->clients_numbers_number }}</textarea>
-                        @error('clients_numbers_number')
-                        <span class="text-tiny+ text-error">{{ $message }}</span>
-                        @enderror
-
-                        <label class="block pt-4">
-                            <span class="font-medium text-slate-600 dark:text-navy-100">Apps Number Description</span>
-                        </label>
-                        <textarea id="apps_numbers_desc	" name="apps_numbers_desc	" class="w-full h-48 border border-gray-300 rounded" placeholder="Enter service description 3">{{ $aboutUs->apps_numbers_desc	 }}</textarea>
-                        @error('apps_numbers_desc')
-                        <span class="text-tiny+ text-error">{{ $message }}</span>
-                        @enderror
-
-                        <label class="block pt-4">
-                            <span class="font-medium text-slate-600 dark:text-navy-100">Apps Number</span>
-                        </label>
-                        <textarea id="apps_numbers_number" name="apps_numbers_number" class="w-full h-48 border border-gray-300 rounded" placeholder="Enter service description 3">{{ $aboutUs->apps_numbers_number }}</textarea>
-                        @error('apps_numbers_number')
-                        <span class="text-tiny+ text-error">{{ $message }}</span>
-                        @enderror
-
-                        <label class="block pt-4">
-                            <span class="font-medium text-slate-600 dark:text-navy-100">Info 1</span>
-                        </label>
-                        <textarea id="info_1" name="info_1" class="w-full h-48 border border-gray-300 rounded" placeholder="Enter service description 3">{{ $aboutUs->info_1 }}</textarea>
-                        @error('info_1')
-                        <span class="text-tiny+ text-error">{{ $message }}</span>
-                        @enderror
-
-                        <label class="block pt-4">
-                            <span class="font-medium text-slate-600 dark:text-navy-100">Info 2</span>
-                        </label>
-                        <textarea id="info_2" name="info_2" class="w-full h-48 border border-gray-300 rounded" placeholder="Enter service description 3">{{ $aboutUs->info_2 }}</textarea>
-                        @error('info_2')
-                        <span class="text-tiny+ text-error">{{ $message }}</span>
-                        @enderror
-
-                        <label class="block pt-4">
-                            <span class="font-medium text-slate-600 dark:text-navy-100">Completeness</span>
-                        </label>
-                        <textarea id="completeness" name="completeness" class="w-full h-48 border border-gray-300 rounded" placeholder="Enter service description 3">{{ $aboutUs->completeness }}</textarea>
-                        @error('completeness')
-                        <span class="text-tiny+ text-error">{{ $message }}</span>
-                        @enderror
-
-                        <label class="block pt-4">
-                            <span class="font-medium text-slate-600 dark:text-navy-100">Control</span>
-                        </label>
-                        <textarea id="control" name="control" class="w-full h-48 border border-gray-300 rounded" placeholder="Enter service description 3">{{ $aboutUs->control }}</textarea>
-                        @error('control')
-                        <span class="text-tiny+ text-error">{{ $message }}</span>
-                        @enderror
-
-                        <label class="block pt-4">
-                            <span class="font-medium text-slate-600 dark:text-navy-100">Proficiency</span>
-                        </label>
-                        <textarea id="proficiency" name="proficiency" class="w-full h-48 border border-gray-300 rounded" placeholder="Enter service description 3">{{ $aboutUs->proficiency }}</textarea>
-                        @error('proficiency')
-                        <span class="text-tiny+ text-error">{{ $message }}</span>
-                        @enderror
 
                         <!-- Repeat similar blocks for other descriptions -->
 
                         <div class="flex justify-end pt-4">
-                            <button type="submit" class="btn bg-primary text-white hover:bg-primary-focus">Update</button>
+                            <button type="submit"
+                                    class="btn bg-primary text-white hover:bg-primary-focus">Update</button>
                         </div>
                     </div>
                 </form>
@@ -210,3 +361,168 @@
     </main>
 
 @endsection
+
+@push('scripts')
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+
+    <script>
+        // Configuration for editor 2
+        const config2 = {
+            modules: {
+                toolbar: [
+                    ["bold", "italic", "underline", "strike"], // toggled buttons
+                    ["blockquote", "code-block"],
+                    [{
+                        header: 1
+                    }, {
+                        header: 2
+                    }], // custom button values
+                    [{
+                        list: "ordered"
+                    }, {
+                        list: "bullet"
+                    }],
+                    [{
+                        script: "sub"
+                    }, {
+                        script: "super"
+                    }], // superscript/subscript
+                    [{
+                        indent: "-1"
+                    }, {
+                        indent: "+1"
+                    }], // outdent/indent
+                    [{
+                        direction: "rtl"
+                    }], // text direction
+                    [{
+                        size: ["small", false, "large", "huge"]
+                    }], // custom dropdown
+                    [{
+                        header: [1, 2, 3, 4, 5, 6, false]
+                    }],
+                    [{
+                        color: []
+                    }, {
+                        background: []
+                    }], // dropdown with defaults from theme
+                    [{
+                        font: []
+                    }],
+                    [{
+                        align: []
+                    }],
+                    ["clean"], // remove formatting button
+                ],
+
+            },
+            placeholder: "Enter your content...",
+            theme: "snow",
+
+
+        };
+
+        const editor1 = document.querySelector("#editor1");
+        const quill1 = new Quill(editor1, config2);
+
+        const editor2 = document.querySelector("#editor2");
+        const quill2 = new Quill(editor2, config2);
+
+        const editor3 = document.querySelector("#editor3");
+        const quill3 = new Quill(editor3, config2);
+
+        const editor4 = document.querySelector("#editor4");
+        const quill4 = new Quill(editor4, config2);
+
+
+
+        // Get the value you want to set in the editor
+        const descOne = {!! json_encode($aboutUs->intro_desc) !!};
+        const descTwo = {!! json_encode($aboutUs->workflow_desc) !!};
+        const descThree = {!! json_encode($aboutUs->workflow_download_desc) !!};
+        const descFour = {!! json_encode($aboutUs->workflow_edit_desc) !!};
+
+
+        // Set the value of the editor
+        quill1.root.innerHTML = descOne;
+        quill2.root.innerHTML = descTwo;
+        quill3.root.innerHTML = descThree;
+        quill4.root.innerHTML = descFour;
+
+
+        // Attach event listener and update hidden input
+        quill1.on("text-change", function() {
+            document.getElementById("descOne").value = quill1.root.innerHTML;
+        });
+
+        quill2.on("text-change", function() {
+            document.getElementById("descTwo").value = quill2.root.innerHTML;
+        });
+
+        quill3.on("text-change", function() {
+            document.getElementById("descThree").value = quill3.root.innerHTML;
+        });
+
+        quill4.on("text-change", function() {
+            document.getElementById("descFour").value = quill4.root.innerHTML;
+        });
+
+    </script>
+
+    <script>
+        function previewImage(input) {
+            const preview = document.getElementById('imagePreview');
+            const file = input.files[0];
+            const reader = new FileReader();
+
+            reader.onload = function(e) {
+                preview.src = e.target.result;
+            };
+
+            if (file) {
+                reader.readAsDataURL(file);
+            } else {
+                preview.src = "";
+            }
+        }
+    </script>
+
+
+    <script>
+        function previewImage(input, imgId) {
+            const preview = document.getElementById(imgId);
+            const file = input.files[0];
+            const reader = new FileReader();
+
+            reader.onload = function(e) {
+                preview.src = e.target.result;
+            };
+
+            if (file) {
+                reader.readAsDataURL(file);
+            } else {
+                preview.src = "";
+            }
+        }
+    </script>
+
+    <script>
+        function previewImage(input, imgId) {
+            const preview = document.getElementById(imgId);
+            const file = input.files[0];
+            const reader = new FileReader();
+
+            reader.onload = function(e) {
+                preview.src = e.target.result;
+            };
+
+            if (file) {
+                reader.readAsDataURL(file);
+            } else {
+                preview.src = "";
+            }
+        }
+    </script>
+
+
+@endpush

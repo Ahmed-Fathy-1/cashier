@@ -13,23 +13,26 @@ return new class extends Migration
     {
         Schema::create('about_us', function (Blueprint $table) {
             $table->id();
-            $table->string('sub_title');
-            $table->text('description');
-            $table->string('services_image');
-            $table->text('service_1_desc');
-            $table->text('service_2_desc');
-            $table->text('service_3_desc');
-            $table->text('packages_numbers_desc');
-            $table->integer('packages_numbers_number');
-            $table->text('clients_numbers_desc');
-            $table->integer('clients_numbers_number');
-            $table->text('apps_numbers_desc');
-            $table->integer('apps_numbers_number');
-            $table->text('info_1');
-            $table->text('info_2');
-            $table->text('completeness');
-            $table->text('control');
-            $table->text('proficiency');
+            $table->string('intro_title');
+            $table->text('intro_desc');
+            $table->string('numbers_clients_title')->nullable();
+            $table->string('numbers_clients_count')->nullable();
+            $table->string('numbers_downloads_title')->nullable();
+            $table->string('numbers_downloads_count')->nullable();
+            $table->string('numbers_projects_title')->nullable();
+            $table->string('numbers_projects_count')->nullable();
+            $table->string('workflow_title')->nullable();
+            $table->text('workflow_desc')->nullable();
+            $table->string('workflow_download_title')->nullable();
+            $table->text('workflow_download_desc')->nullable();
+            $table->integer('workflow_download_number')->nullable();
+            $table->string('workflow_download_image')->nullable();
+            $table->string('workflow_manage_title')->nullable();
+            $table->string('workflow_manage_image')->nullable();
+            $table->string('workflow_edit_title')->nullable();
+            $table->text('workflow_edit_desc')->nullable();
+            $table->integer('workflow_edit_count')->nullable();
+            $table->string('workflow_edit_image')->nullable();
             $table->timestamps();
         });
     }
