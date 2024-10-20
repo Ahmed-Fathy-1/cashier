@@ -96,10 +96,7 @@ foreach (config('tenancy.central_domains') as $domain) {
             Route::resource('sub_needs', SubNeedsController::class);
 
             Route::resource('payments', PaymentController::class);
-            Route::delete('', [PaymentController::class , 'destroy'])->name('payment.destroy');
-            Route::delete('payments-destroy/{id}', function ($id) {
-                return $id ;
-            })->name('payment.destroy');
+
             // Home Cover
             Route::get('homecover/{id}', [HomeCoverController::class, 'edit'])->name('home_cover');
             Route::put('homecover/{id}', [HomeCoverController::class, 'update'])->name('update_home_cover');
