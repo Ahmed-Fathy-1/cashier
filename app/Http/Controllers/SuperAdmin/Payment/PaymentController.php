@@ -36,6 +36,22 @@ class PaymentController extends Controller
         return redirect()->route('payments.index')->with('success', 'Payment created.');
     }
 
+    public function status(Request $request)
+    {
+        $payment = Payment::findOrFail($request->id);
+        if ($payment->status == "completed"){
+            $payment->update([
+                'status' => "pending",
+            ]);
+        }else{
+            $payment->update([
+                'status' => "completed",
+            ]);
+        }
+
+        return redirect()->route('payments.index')->with('success', 'Payment created.');
+    }
+
      public function edit($id){
          $packages = Package::all();
          $payment = Payment::findOrFail($id);
@@ -54,6 +70,7 @@ class PaymentController extends Controller
     }
 
      public function destroy(Request $request, $id){
+         return $id ;
          $payment = Payment::findOrFail($id);
          $payment->delete();
          return redirect()->route('payments.index');

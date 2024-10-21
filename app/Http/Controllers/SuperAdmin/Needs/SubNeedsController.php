@@ -103,6 +103,7 @@ class SubNeedsController extends Controller
      */
     public function destroy($id)
     {
+        return $id ;
         $subNeeds = SubNeeds::findOrFail($id);
         $subNeeds->delete();
         return to_route('sub_needs.index')->with('success', 'Sub need deleted successfully!');

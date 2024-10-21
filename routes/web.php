@@ -71,6 +71,7 @@ foreach (config('tenancy.central_domains') as $domain) {
             // settings
             Route::get('/about-us/{id}/edit', [AboutUsController::class, 'edit'])->name('about_us.edit');
             Route::put('/about-us/{id}/update',[AboutUsController::class, 'update'])->name('about_us.update');
+            Route::post('/payments-status',[PaymentController::class, 'status'])->name('payments.status');
 
             // payment methods
             Route::delete('/payment-methods/{id}/permdelete', [PaymentMethodController::class, 'forceDelete'])->name('payments.permdelete');

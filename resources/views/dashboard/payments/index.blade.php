@@ -33,7 +33,7 @@
             <!-- Success and Error Messages -->
             <div class="p-4 sm:p-5">
                 @if(session('success'))
-                    <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" style="background-color: #00d570; color: white" role="alert">
+                    <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" style="background-color: #10b981; color: white" role="alert">
                         <strong class="font-bold">Success!</strong>
                         <span class="block sm:inline">{{ session('success') }}</span>
                         <button type="button" class="absolute top-0 bottom-0 right-0 px-4 py-3" aria-label="Close" style="color: white"  onclick="this.parentElement.style.display='none';">
@@ -64,14 +64,34 @@
                     </tr>
                     </thead>
                     <tbody class="bg-white divide-y divide-slate-200 dark:bg-navy-700 dark:divide-navy-600">
+                    @php
+                          $i = 1
+                     @endphp
                         @foreach ($payments as $record)
                             <tr>
-                                <td class="px-6 py-4 text-sm font-medium text-slate-900 dark:text-navy-50">{{ $record->id }}</td>
+                                <td class="px-6 py-4 text-sm font-medium text-slate-900 dark:text-navy-50">{{ $i }}</td>
                                 <td class="px-6 py-4 text-sm text-slate-500 dark:text-navy-100">{{ $record->user->name }}</td>
                                 <td class="px-6 py-4 text-sm text-slate-500 dark:text-navy-100">{{ $record->package->title }}</td>
                                 <td class="px-6 py-4 text-sm text-slate-500 dark:text-navy-100">{{ $record->amount }}</td>
                                 <td class="px-6 py-4 text-sm text-slate-500 dark:text-navy-100">{{ $record->currency }}</td>
-                                <td class="px-6 py-4 text-sm text-slate-500 dark:text-navy-100">{{ $record->status }}</td>
+                                <td class="">
+                                    <form action="{{ route('payments.status') }}"
+                                        method="post">
+                                        @csrf
+                                        <input type="hidden" name="id" value="{{ $record->id }}">
+                                        @if($record->status == 'pending')
+                                            <button data-close-modal=""
+                                                    class="btn m-3 bg-warning font-medium text-white hover:bg-success-focus focus:bg-success-focus active:bg-success-focus/90">
+                                                {{ $record->status }}
+                                            </button>
+                                        @else
+                                            <button data-close-modal=""
+                                                    class="btn m-3 bg-success font-medium text-white hover:bg-success-focus focus:bg-success-focus active:bg-success-focus/90">
+                                                {{ $record->status }}
+                                            </button>
+                                        @endif
+                                    </form>
+                                </td>
                                 <td data-column-id="actions" class="gridjs-td">
                                     <span>
                                         <div class="flex space-x-2">
@@ -84,6 +104,7 @@
                                             </button>
                                             <div class="modal fixed inset-0 z-[100] flex flex-col items-center justify-center overflow-hidden px-4 py-6 sm:px-5"
                                                  id="modal1" role="dialog">
+                                                {{ $record->id }}
                                                 <div class="modal-overlay absolute inset-0 bg-slate-900/60">
                                                 </div>
                                                 <div
@@ -100,7 +121,7 @@
 
                                                     <div class="mt-4">
                                                         <h2 class="text-2xl text-slate-700 dark:text-navy-100">
-                                                            Confirmed Delete
+                                                            {{$record->id}}
                                                         </h2>
                                                         <p class="mt-2">
                                                             Are you sure you want to delete this item?
@@ -124,23 +145,18 @@
                                     </span>
                                 </td>
                             </tr>
+                            @php $i++ @endphp
                         @endforeach
                     </tbody>
                 </table>
             </div>
+            <div
+                class="flex flex-col justify-between space-y-4 px-4 py-4 sm:flex-row sm:items-center sm:space-y-0 sm:px-5">
+                <ol class="pagination space-x-1.5">
+                    {{ $payments->links() }}
+                </ol>
+            </div>
         </div>
 
     </main>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const deleteModal = document.getElementById('deleteModal');
-            deleteModal.addEventListener('show.bs.modal', function (event) {
-                const button = event.relatedTarget; // Button that triggered the modal
-                const id = button.getAttribute('data-id'); // Extract info from data-* attributes
-                const form = document.getElementById('deleteForm');
-                form.action = `/payments/${id}`; // Set the form action to the delete URL
-            });
-        });
-    </script>
 @endsection
