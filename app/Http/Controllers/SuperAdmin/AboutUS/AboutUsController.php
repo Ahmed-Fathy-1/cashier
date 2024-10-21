@@ -1,37 +1,51 @@
 <?php
 
-namespace App\Http\Controllers\SuperAdmin\AboutUS;
+namespace App\Http\Controllers\SuperAdmin\AboutUs;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SuperAdmin\AboutUs\AboutUsRequest;
-use App\Http\Requests\SuperAdmin\AboutUs\AbouttRequest;
 use App\Http\Traits\Utils\UploadFileTrait;
 use App\Models\SuperAdmin\AboutUs;
-use Flasher\Laravel\Http\Request;
+use Illuminate\Http\Request;
 
 class AboutUsController extends Controller
 {
     use UploadFileTrait;
 
-    protected $filePath = 'uploads/about_us';
+    protected $filePath = '/about_us';
 
+    /**
+     * @param string $id
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Foundation\Application
+     */
     public function edit(string $id)
     {
-
         $aboutUs = AboutUs::findOrFail($id);
         return view('dashboard.about_us.edit', compact('aboutUs'));
     }
 
-    public function update(AboutUsRequest $request, $id)
+    /**
+     * @param AboutUsRequest $request
+     * @param string $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function update(AboutUsRequest $request, string $id)
     {
-        //dd($request);
-        // return $request->all();
+        // dd($request->all());
         $aboutUs = AboutUs::findOrFail($id);
         $data = $request->validated();
 
-        if ($request->hasFile('services_image')) {
-            $data['services_image'] = $this->updateFile($data['services_image'], $aboutUs->services_image, $this->filePath);
-        }
+        $data['workflow_download_image'] = $request->hasFile('workflow_download_image')
+            ? $this->updateFile($request->file('workflow_download_image'), $aboutUs->workflow_download_image, $this->filePath)
+            : $aboutUs->workflow_download_image;
+
+        $data['workflow_manage_image'] = $request->hasFile('workflow_manage_image')
+            ? $this->updateFile($request->file('workflow_manage_image'), $aboutUs->workflow_manage_image, $this->filePath)
+            : $aboutUs->workflow_manage_image;
+
+        $data['workflow_edit_image'] = $request->hasFile('workflow_edit_image')
+            ? $this->updateFile($request->file('workflow_edit_image'), $aboutUs->workflow_edit_image, $this->filePath)
+            : $aboutUs->workflow_edit_image;
 
         $aboutUs->update($data);
 

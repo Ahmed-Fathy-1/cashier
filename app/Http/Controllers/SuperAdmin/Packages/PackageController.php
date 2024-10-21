@@ -41,6 +41,8 @@ class PackageController extends Controller
                 'title' => $request->title,
                 'description' => $request->description,
                 'active' => $request->active ?? true,
+                'free' => $request->free ?? false,
+                'free_period' => $request->free_period ?? null,
                 'user_id' => auth()->id(),
             ]);
 
@@ -78,6 +80,9 @@ class PackageController extends Controller
                 'title' => $request->title,
                 'description' => $request->description,
                 'active' => $request->active ?? true,
+                'free' => $request->free ?? false,
+                'free_period' => $request->free_period ?? null,
+
                 'user_id' => auth()->id(),
             ]);
 

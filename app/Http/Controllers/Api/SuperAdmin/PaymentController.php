@@ -7,7 +7,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\Payments\PaymentRequest;
 use App\Models\Payment;
 use App\Models\SuperAdmin\Package;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Stripe\StripeClient;
 

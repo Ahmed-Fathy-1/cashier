@@ -22,4 +22,7 @@ class Package extends Model
         return $this->belongsTo(User::class , 'user_id');
     }
 
+    public function payment(){
+        return $this->hasMany(Payment::class);
+    }
 }

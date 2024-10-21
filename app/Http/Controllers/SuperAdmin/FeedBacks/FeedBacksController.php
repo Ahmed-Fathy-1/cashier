@@ -45,7 +45,7 @@ class FeedBacksController extends Controller
     {
         $product = FeedBack::withTrashed()->find($id);
         $product->restore();
-        return redirect()->route('feedbacks.index')->with('success', 'Feedback restored successfully');
+        return redirect()->route('feedbacks.trashedFeedbacks')->with('success', 'Feedback restored successfully');
     }
 
     public function forceDelete($id)

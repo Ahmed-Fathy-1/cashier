@@ -15,7 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->text('description');
-            $table->boolean('active')->default(true);
+            $table->boolean('active')->default(value: true);
+            $table->boolean('free')->default(false);   
+            $table->integer('free_period')->nullable();
             $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
             $table->timestamps();
             $table->softDeletes();

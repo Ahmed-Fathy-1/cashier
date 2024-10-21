@@ -79,6 +79,6 @@ class TechnologyController extends Controller
     public function restore($id)
     {
         Technology::withTrashed()->where('id', $id)->restore();
-        return redirect()->route('technologies.index')->with('success', 'Technology Restored Successfully');
+        return redirect()->route('technologies.trashedTechnologies')->with('success', 'Technology Restored Successfully');
     }
 }

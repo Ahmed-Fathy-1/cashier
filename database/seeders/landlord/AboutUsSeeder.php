@@ -13,27 +13,28 @@ class AboutUsSeeder extends Seeder
     public function run(): void
     {
         AboutUs::create([
-            'sub_title' => 'Welcome to you in Sass cashier for Ai solves and web application',
-            'description' => 'We are a leading company in providing services.
-            You will find a very high performance and awesome collection from professional web developers and Ai programmers work together
-             You will find a very high performance and awesome collection from professional web developers and Ai programmers work together',
-            'services_image' => 'default-service-image.jpg',
-            'service_1_desc' => 'We provide the best AI techniques by professional team to make your management easier.',
-            'service_2_desc' => 'We provide the best AI techniques by professional team to make your management easier.',
-            'service_3_desc' => 'We provide the best AI techniques by professional team to make your management easier.',
-            'packages_numbers_desc' => 'We have created many packages to use and control several services from one place',
-            'packages_numbers_number' => 5,
-            'clients_numbers_desc' => 'We have clients from different fields as a members in our services and can help them',
-            'clients_numbers_number' => 1000,
-            'apps_numbers_desc' => 'Our apps have a dynamic,logic and scalable features include clients wishes and order',
-            'apps_numbers_number' => 50,
-            'info_1' => 'We are a server reusable programs depend on The News strategy AI solution to help companies for getting the target clients and specifying there clients by providing a bunch of the most helper features they can imagine.',
-            'info_2' => 'Second piece of important information.',
-            'completeness' => 'Our services are complete and reliable.',
-            'control' => 'We maintain complete control over our processes.',
-            'proficiency' => 'We are proficient in what we do.',
+            'intro_title' => 'About Us',
+            'intro_desc' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis aspernatur eum soluta nesciunt vitae. Magni repudiandae quo corrupti optio sunt iusto, doloribus quae debitis modi dolores explicabo eaque alias cum.',
+            'numbers_clients_title' => 'Sart Client',
+            'numbers_clients_count' => '21k',
+            'numbers_downloads_title' => 'Apps Download',
+            'numbers_downloads_count' => '100k',
+            'numbers_projects_title' => 'Sart Client',
+            'numbers_projects_count' => '100k',
+            'workflow_title' => 'How It work',
+            'workflow_desc' => 'Our Kashear Work Flow',
+            'workflow_download_title' => 'Download & Register',
+            'workflow_download_desc' => 'Integer vitae lacus eu magna bibendum pellentesque. In ullamcorper, lacus et consectetur pellentesque, nulla enim.',
+            'workflow_download_number' => 1,
+            'workflow_download_image' => 'flow-1.png',
+            'workflow_manage_title' => 'Manage Projects',
+            'workflow_manage_image' => 'flow-2.png',
+            'workflow_edit_title' => 'Edit Projects',
+            'workflow_edit_desc' => 'Integer vitae lacus eu magna bibendum pellentesque. In ullamcorper, lacus et consectetur pellentesque, nulla enim.',
+            'workflow_edit_count' => 3,
+            'workflow_edit_image' => 'flow-3.png',
             'created_at' => now(),
-            'updated_at' => now()
+            'updated_at' => now(),
         ]);
     }
 }

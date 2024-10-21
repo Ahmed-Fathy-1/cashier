@@ -37,22 +37,31 @@
             <!-- Table With Filter -->
             <div id="table-filter">
                 <div class="ac js-enabled" id="ac-4">
-                    <div class="flex items-center justify-between">
-                        <h2 class="text-base font-medium tracking-wide text-slate-700 line-clamp-1 dark:text-navy-100">
-                            Table With paymentMethods
-                        </h2>
-                        <div class="flex">
-                            {{-- @can('paymentMethod-create') --}}
+                    <div class="card">
+                        <div class="border-b border-slate-200 p-4 dark:border-navy-500 sm:px-5">
+                            <h2 class="text-base font-medium tracking-wide text-slate-700 line-clamp-1 dark:text-navy-100">
+                                Table With paymentMethods
+                            </h2>
+                        </br>
+                            <div class="flex">
+                                {{-- @can('paymentMethod-create') --}}
+    
+                                <a href="{{ route('payment-methods.create') }}"
+                                    class="btn space-x-2 bg-primary font-medium text-white hover:bg-primary-focus focus:bg-primary-focus active:bg-primary-focus/90 dark:bg-accent dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90">
+                                    <i class="fa-solid fa-plus"></i>
+                                    <span> Add paymentMethod </span>
+                                </a>
 
-                            <a href="{{ route('payment-methods.create') }}"
-                                class="btn space-x-2 bg-primary font-medium text-white hover:bg-primary-focus focus:bg-primary-focus active:bg-primary-focus/90 dark:bg-accent dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90">
-                                <i class="fa-solid fa-plus"></i>
-                                <span> Add paymentMethod </span>
-                            </a>
-                            {{-- @endcan --}}
+                                <div class="w-4"></div>
 
+                                <a href="{{ route('payments.trashedPaymethod') }}" class="btn space-x-2 bg-error font-medium text-white hover:bg-error-focus focus:bg-error-focus active:bg-error-focus/90 dark:bg-accent dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90">
+                                      <i class="fa-solid fa-trash"></i>
+                                    <span>  View Deleted paymentMethods </span>
+                                </a>
+                                {{-- @endcan --}}
+    
+                            </div>
                         </div>
-                    </div>
                     <div class="card mt-3">
                         <div class="is-scrollbar-hidden min-w-full overflow-x-auto">
                             <table class="is-hoverable w-full text-left">
@@ -63,14 +72,13 @@
                                             #
                                         </th>
                                         <th
+                                        class="whitespace-nowrap bg-slate-200 px-4 py-3 font-semibold uppercase text-slate-800 dark:bg-navy-800 dark:text-navy-100 lg:px-5">
+                                        name english
+                                    </th>
+                                        <th
                                             class="whitespace-nowrap bg-slate-200 px-4 py-3 font-semibold uppercase text-slate-800 dark:bg-navy-800 dark:text-navy-100 lg:px-5">
                                             name arabic
                                         </th>
-                                        <th
-                                            class="whitespace-nowrap bg-slate-200 px-4 py-3 font-semibold uppercase text-slate-800 dark:bg-navy-800 dark:text-navy-100 lg:px-5">
-                                            name english
-                                        </th>
-
                                         <th
                                             class="whitespace-nowrap bg-slate-200 px-4 py-3 font-semibold uppercase text-slate-800 dark:bg-navy-800 dark:text-navy-100 lg:px-5">
                                             status
@@ -94,8 +102,7 @@
                                     @foreach ($paymentMethods as $paymentMethod)
                                         <tr class="border-y border-transparent border-b-slate-200 dark:border-b-navy-500">
                                             <td class="whitespace-nowrap px-4 py-3 sm:px-5">{{ $loop->iteration }}</td>
-                                            <td
-                                                class="whitespace-nowrap px-4 py-3 font-medium text-slate-700 dark:text-navy-100 sm:px-5">
+                                            <td class="whitespace-nowrap px-4 py-3 font-medium text-slate-700 dark:text-navy-100 sm:px-5">
                                                 {{ $paymentMethod->name_ar }}
                                             </td>
                                             <td
@@ -140,6 +147,37 @@
                                                         {{-- @endcan --}}
                                                         {{-- @can('paymentMethod-delete') --}}
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{{--                                                         
                                                         <button data-toggle="modal" data-target="#modal1"
                                                             class="btn bg-slate-150 font-medium text-slate-800 hover:bg-slate-200 focus:bg-slate-200 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90 btn h-8 w-8 p-0 text-error hover:bg-error/20 focus:bg-error/20 active:bg-error/25">
                                                             <i class="fa fa-trash-alt"></i>
@@ -182,7 +220,37 @@
 
                                                                 </div>
                                                             </div>
-                                                        </div>
+                                                        </div> --}}
+
+
+
+
+
+
+
+
+
+                                                        <form action="{{ route('payment-methods.destroy', $paymentMethod->id) }}" method="POST"
+                                                            onsubmit="return confirm('Are you sure you want to delete this Payment Method?');">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="submit"  
+                                                            class="mx-2 btn bg-slate-150 font-medium text-slate-800 hover:bg-slate-200 focus:bg-slate-200 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90 btn h-8 w-8 p-0 text-error hover:bg-error/20 focus:bg-error/20 active:bg-error/25">
+                                                                <i class="fa fa-trash-alt"></i></button>
+                    
+                                                        </form>
+
+
+
+
+
+
+
+
+
+
+
+
                                                         {{-- @endcan --}}
 
                                                     </div>
@@ -194,7 +262,6 @@
                                 </tbody>
                             </table>
                         </div>
-
                         <div
                             class="flex flex-col justify-between space-y-4 px-4 py-4 sm:flex-row sm:items-center sm:space-y-0 sm:px-5">
                             <ol class="pagination space-x-1.5">
