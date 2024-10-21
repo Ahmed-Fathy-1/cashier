@@ -16,7 +16,7 @@
           $setting = \App\Models\Setting::findOrFail(1);
       @endphp
       <link rel="icon" type="image/png" class="h-11 w-11" src="{{ asset('storage/uploads/images/settings/'.$setting->image) }}" />
-      
+
     {{-- <link rel="stylesheet" href="{{ asset(in_array(app()->getLocale(), ['ar']) ? 'assets/css/app-ar.css' : 'assets/css/app.css') }}">
     <script src="{{ asset(in_array(app()->getLocale(), ['ar']) ? 'assets/js/app-ar.js' : 'assets/js/app.js') }}" defer></script> --}}
 
@@ -64,8 +64,13 @@
       <!-- Main Content Wrapper -->
        @yield('main')
   <!-- Footer Script -->
+
+        <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+                crossorigin="anonymous"></script>
  @include('dashboard.layouts.footer-script')
       @stack('scripts')
+
+
     </div>
   </body>
 </html>

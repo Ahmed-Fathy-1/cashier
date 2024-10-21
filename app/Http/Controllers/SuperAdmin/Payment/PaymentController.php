@@ -70,12 +70,22 @@ class PaymentController extends Controller
     }
 
      public function destroy(Request $request, $id){
-         return $id ;
          $payment = Payment::findOrFail($id);
          $payment->delete();
          return redirect()->route('payments.index');
      }
 
+    public function showDeleted()
+    {
+        $payments = Payment::onlyTrashed()->paginate(10);
+        return view('dashboard.payments.deleted', compact('payments'));
+    }
+
+    public function restore($id)
+    {
+        Payment::withTrashed()->where('id', $id)->restore();
+        return redirect()->route('payments.index')->with('success', 'Payment Restored Successfully');
+    }
 
 
 }

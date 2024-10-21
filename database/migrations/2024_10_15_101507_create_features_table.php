@@ -25,6 +25,7 @@ return new class extends Migration
             $table->string('feature_3_image');
             $table->string('feature_3_description');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

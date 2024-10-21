@@ -187,43 +187,14 @@
                                                     class="btn h-8 w-8 p-0 text-info hover:bg-info/20 focus:bg-info/20 active:bg-info/25">
                                                     <i class="fa fa-edit"></i>
                                                 </a>
+                                                <form class="delete" action="{{ route('packages.destroy', $package->id) }}" method="POST">
+                                                    <input type="hidden" name="_method" value="DELETE">
+                                                    <input type="hidden" name="_token" value="{{ csrf_token() }}" />
+                                                    <button type="submit" class="btn bg-slate-150 font-medium text-slate-800 hover:bg-slate-200 focus:bg-slate-200 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90 btn h-8 w-8 p-0 text-error hover:bg-error/20 focus:bg-error/20 active:bg-error/25">
+                                                         <i class="fa fa-trash-alt"></i>
+                                                    </button>
+                                                </form>
 
-                                                {{-- Button positioned on the right --}}
-                                                <button data-toggle="modal" data-target="#modal1"
-                                                    class="btn bg-slate-150 font-medium text-slate-800 hover:bg-slate-200 focus:bg-slate-200 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90 h-8 w-8 p-0 text-error hover:bg-error/20 focus:bg-error/20 active:bg-error/25">
-                                                    <i class="fa fa-trash-alt"></i>
-                                                </button>
-
-                                                <div class="modal fixed inset-0 z-[100] flex flex-col items-center justify-center overflow-hidden px-4 py-6 sm:px-5"
-                                                    id="modal1" role="dialog">
-                                                    <div class="modal-overlay absolute inset-0 bg-slate-900/60"></div>
-                                                    <div
-                                                        class="modal-content scrollbar-sm relative flex max-w-lg flex-col items-center overflow-y-auto rounded-lg bg-white px-4 py-10 text-center dark:bg-navy-700 sm:px-5">
-                                                        <svg xmlns="http://www.w3.org/2000/svg"
-                                                            class="inline h-28 w-28 shrink-0 text-success" fill="none"
-                                                            viewBox="0 0 24 24" stroke="currentColor">
-                                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                                stroke-width="2"
-                                                                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                                        </svg>
-
-                                                        <div class="mt-4">
-                                                            <h2 class="text-2xl text-slate-700 dark:text-navy-100">
-                                                                Confirmed Delete</h2>
-                                                            <p class="mt-2">Are you sure you want to delete this item?
-                                                            </p>
-                                                            <form action="{{ route('packages.destroy', $package->id) }}"
-                                                                method="post">
-                                                                @method('delete')
-                                                                @csrf
-                                                                <button data-close-modal=""
-                                                                    class="btn mt-6 bg-success font-medium text-white hover:bg-success-focus focus:bg-success-focus active:bg-success-focus/90">
-                                                                    submit
-                                                                </button>
-                                                            </form>
-                                                        </div>
-                                                    </div>
-                                                </div>
                                             </div>
                                         </span>
                                     </div>
@@ -262,6 +233,11 @@
                     $card.find('.monthly-details').show();
                 }
             });
+        });
+    </script>
+    <script>
+        $(".delete").on("submit", function(){
+            return confirm("Do you want to delete this item?");
         });
     </script>
 @endpush

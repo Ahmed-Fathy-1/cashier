@@ -25,11 +25,6 @@
         <div class="card">
             <div class="border-b border-slate-200 p-4 dark:border-navy-500 sm:px-5">
                 <h4 class="text-lg font-medium text-slate-700 dark:text-navy-100">Payments</h4>
-                <a href="{{ route('payments.create') }}" class="btn bg-primary text-white hover:bg-primary-focus mt-4">
-                    Add new Payment
-                </a>
-                <a class="btn bg-error text-white hover:bg-error-focus focus:bg-error-focus dark:bg-error dark:hover:bg-error-focus dark:focus:bg-error-focus mt-4"
-                   href="{{ route('payments.deleted') }}"> Deleted Needs </a>
             </div>
 
             <!-- Success and Error Messages -->
@@ -97,16 +92,13 @@
                                 <td data-column-id="actions" class="gridjs-td">
                                     <span>
                                         <div class="flex space-x-2">
-                                            <a href="{{ route('payments.edit', $record->id) }}" class="btn bg-slate-150 text-slate-800 hover:bg-slate-200 dark:bg-navy-500 dark:text-navy-50 h-8 w-8 p-0">
-                                                <i class="fa fa-edit"></i>
-                                            </a>
-                                             <form class="delete" action="{{ route('payments.destroy', $record->id) }}" method="POST">
-                                                 <input type="hidden" name="_method" value="DELETE">
-                                                 <input type="hidden" name="_token" value="{{ csrf_token() }}" />
-                                                 <button type="submit" class="btn bg-slate-150 font-medium text-slate-800 hover:bg-slate-200 focus:bg-slate-200 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90 btn h-8 w-8 p-0 text-error hover:bg-error/20 focus:bg-error/20 active:bg-error/25">
-                                                     <i class="fa fa-trash-alt"></i>
-                                                 </button>
-                                             </form>
+                                            <form class="RESTORE" action="{{ route('payments.retirieve', $record->id) }}" method="POST">
+                                                <input type="hidden" name="_method" value="">
+                                                <input type="hidden" name="_token" value="{{ csrf_token() }}" />
+                                                <button type="submit" class="btn bg-slate-150 font-medium text-slate-800 hover:bg-slate-200 focus:bg-slate-200 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90 btn h-8 w-8 p-0 text-error hover:bg-error/20 focus:bg-error/20 active:bg-error/25">
+                                                    <i class="fa fa-undo"></i>
+                                                </button>
+                                            </form>
                                             {{-- @endcan --}}
                                         </div>
                                     </span>
@@ -129,8 +121,8 @@
 @endsection
 @push('scripts')
     <script>
-        $(".delete").on("submit", function(){
-            return confirm("Do you want to delete this item?");
+        $(".RESTORE").on("submit", function(){
+            return confirm("Do you want to Restore this item?");
         });
     </script>
 @endpush

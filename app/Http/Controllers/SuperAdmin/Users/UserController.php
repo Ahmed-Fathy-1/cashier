@@ -44,7 +44,7 @@ class UserController extends Controller
             'name' => 'required',
             'email' => 'required|email|unique:users,email',
             'password' => 'required|same:confirm-password',
-            "image"=> 'nullable|image|mimes:jpeg,png,jpg,,svg,gif|max:2048',
+            "image"=> 'nullable|image|mimes:jpeg,png,jpg,svg,gif|max:2048',
             'roles' => 'required'
         ]);
 
@@ -63,7 +63,7 @@ class UserController extends Controller
 
     public function show($id)
     {
-        $users = User::find($id);
+        $users = User::findOrFail($id);
         return view('dashboard.users.show',compact('users'));
     }
 
@@ -113,9 +113,10 @@ class UserController extends Controller
         return redirect()->route('users.index')
                         ->with('success','User deleted successfully');
     }
-    
+
     public function trashed()
     {
+        return 'ssdsd' ;
         $users = User::onlyTrashed()->paginate(10);
         return view('dashboard.users.deleted', compact('users'));
     }

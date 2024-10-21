@@ -50,8 +50,8 @@
                     <div class="col-xs-12 mb-3">
                         <div class="form-group">
                             <strong>Photo:</strong>
-                            <img class="mt-5 h-80 w-100 rounded-lg object-cover object-center"
-                            src="{{ $users->imageWithFullPath }}" alt="image">
+                            <img class="w-20 h-20" src="{{ asset('storage/uploads/images/users/'.$users->image) }}" alt="img">
+
                         </div>
                     </div>
 

@@ -43,14 +43,10 @@
 
 
 
-                        
+
 
 
                     </div>
-                    
-
-
-
                     <div class="flex space-x-2">
                         <a href="{{ route('users.create') }}"
                             class="btn space-x-2 bg-primary font-medium text-white hover:bg-primary-focus focus:bg-primary-focus active:bg-primary-focus/90 dark:bg-accent dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90">
@@ -65,9 +61,6 @@
                             <span>View Deleted Users</span>
                         </a>
                     </div>
-
-
-
                     <!-- User Table -->
                     <div class="card mt-3">
                         <div class="is-scrollbar-hidden min-w-full overflow-x-auto">
@@ -91,7 +84,7 @@
                                             <td class="whitespace-nowrap px-4 py-3 font-medium text-slate-700 dark:text-navy-100 sm:px-5">{{ $user->email }}</td>
                                             <td class="whitespace-nowrap px-4 py-3 sm:px-5">
                                                 <div class="avatar flex h-10 w-10">
-                                                    <img class="mask is-squircle" src="{{ $user->imageWithFullPath }}" alt="avatar">
+                                                    <img class="w-20 h-20" src="{{ asset('storage/uploads/images/users/'.$user->image) }}" alt="img">
                                                 </div>
                                             </td>
                                             <td class="whitespace-nowrap px-4 py-3 font-medium text-slate-700 dark:text-navy-100 sm:px-5">
@@ -119,7 +112,7 @@
                                                             onsubmit="return confirm('Are you sure you want to delete this user?');">
                                                             @csrf
                                                             @method('DELETE')
-                                                            <button type="submit"  
+                                                            <button type="submit"
                                                             class="mx-2 btn bg-slate-150 font-medium text-slate-800 hover:bg-slate-200 focus:bg-slate-200 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90 btn h-8 w-8 p-0 text-error hover:bg-error/20 focus:bg-error/20 active:bg-error/25">
                                                                 <i class="fa fa-trash-alt"></i></button>
                                                         </form>
@@ -128,7 +121,7 @@
 
 
 
-                                                        
+
                                                     </div>
                                                 </span>
                                             </td>

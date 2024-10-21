@@ -18,6 +18,7 @@ return new class extends Migration
             $table->text('desc')->nullable();
             $table->foreignId('main_need_id')->constrained('main_needs')->cascadeOnDelete();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

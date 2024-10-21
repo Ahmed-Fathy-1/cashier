@@ -47,7 +47,7 @@
                 </a>
             </div>
         </div>
-        
+
                     <div class="card mt-3">
                         <div class="is-scrollbar-hidden min-w-full overflow-x-auto">
                             <table class="is-hoverable w-full text-left">
@@ -73,7 +73,7 @@
                                             <td class="whitespace-nowrap px-4 py-3 sm:px-5">{{ $loop->iteration }}</td>
                                             <td
                                                 class="whitespace-nowrap px-4 py-3 font-medium text-slate-700 dark:text-navy-100 sm:px-5">
-                                                {{ $tenant->id }}
+                                                {{ $tenant->tenant_id }}
                                             </td>
 
                                             <td data-column-id="actions" class="gridjs-td">

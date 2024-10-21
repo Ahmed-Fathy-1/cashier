@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Traits\Utils\UploadFileTrait;
 use App\Models\SuperAdmin\Needes\MainNeed;
 use App\Models\SuperAdmin\Needes\SubNeeds;
+use App\Models\SuperAdmin\PaymentMethod;
 use Illuminate\Http\Request;
 
 class SubNeedsController extends Controller
@@ -103,9 +104,20 @@ class SubNeedsController extends Controller
      */
     public function destroy($id)
     {
-        return $id ;
-        $subNeeds = SubNeeds::findOrFail($id);
+        $subNeeds = SubNeeds::withTrashed()->findOrFail($id);
         $subNeeds->delete();
         return to_route('sub_needs.index')->with('success', 'Sub need deleted successfully!');
+    }
+
+    public function showDeleted()
+    {
+        $subNeeds = SubNeeds::onlyTrashed()->get();
+        return view('dashboard.Needs.sub_needs.deleted', compact('subNeeds'));
+    }
+
+    public function restore($id)
+    {
+        SubNeeds::withTrashed()->where('id', $id)->restore();
+        return redirect()->route('sub_needs.index')->with('success', 'Need Restored Successfully');
     }
 }
