@@ -33,7 +33,7 @@
             <!-- Success and Error Messages -->
             <div class="p-4 sm:p-5">
                 @if(session('success'))
-                    <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" style="background-color: #008d4a; color: white" role="alert">
+                    <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" style="background-color: #00d570; color: white" role="alert">
                         <strong class="font-bold">Success!</strong>
                         <span class="block sm:inline">{{ session('success') }}</span>
                         <button type="button" class="absolute top-0 bottom-0 right-0 px-4 py-3" aria-label="Close" style="color: white"  onclick="this.parentElement.style.display='none';">
@@ -59,7 +59,6 @@
                         <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider dark:text-navy-200">Package Name</th>
                         <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider dark:text-navy-200">Amount</th>
                         <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider dark:text-navy-200">Currency</th>
-                        <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider dark:text-navy-200">Method</th>
                         <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider dark:text-navy-200">Status</th>
                         <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider dark:text-navy-200">Actions</th>
                     </tr>
@@ -72,7 +71,6 @@
                                 <td class="px-6 py-4 text-sm text-slate-500 dark:text-navy-100">{{ $record->package->title }}</td>
                                 <td class="px-6 py-4 text-sm text-slate-500 dark:text-navy-100">{{ $record->amount }}</td>
                                 <td class="px-6 py-4 text-sm text-slate-500 dark:text-navy-100">{{ $record->currency }}</td>
-                                <td class="px-6 py-4 text-sm text-slate-500 dark:text-navy-100">{{ $record->methods }}</td>
                                 <td class="px-6 py-4 text-sm text-slate-500 dark:text-navy-100">{{ $record->status }}</td>
                                 <td data-column-id="actions" class="gridjs-td">
                                     <span>

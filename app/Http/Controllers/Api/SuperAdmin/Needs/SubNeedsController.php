@@ -45,7 +45,6 @@ class SubNeedsController extends Controller
                 'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             ]) + ['main_need_id' => MainNeed::findOrFail(1)->id];
 
-
         $data['image'] = $request->file('image')
             ? $this->uploadFile($request->file('image'), $this->filePath)
             : null;

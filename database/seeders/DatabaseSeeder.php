@@ -49,6 +49,8 @@ class DatabaseSeeder extends Seeder
         $this->call(TechnologySeed::class);
         $this->call(FAQSeeder::class);
         $this->call(FeatureSeeder::class);
+        $this->call(MainNeedsSeeder::class);
+        $this->call(SubNeedsSeeder::class);
 
     }
 }

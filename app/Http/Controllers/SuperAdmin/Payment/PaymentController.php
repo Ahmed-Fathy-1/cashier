@@ -22,8 +22,7 @@ class PaymentController extends Controller
 
      public function create(){
          $packages = Package::get();
-         $methods = PaymentMethod::get();
-         return view('dashboard.payments.create',compact('packages' , 'methods'));
+         return view('dashboard.payments.create',compact('packages'));
      }
 
     public function store(Request $request)
@@ -32,18 +31,15 @@ class PaymentController extends Controller
                 'package_id' => 'required|exists:packages,id',
                 'amount' => 'required|numeric|min:0.01',
                 'currency' => 'required|string|size:3',
-                'methods' => 'required|string|exists:payment_methods,id',
             ]) + ['user_id' => auth()->id()]);
 
         return redirect()->route('payments.index')->with('success', 'Payment created.');
     }
 
-
      public function edit($id){
          $packages = Package::all();
          $payment = Payment::findOrFail($id);
-         $methods = PaymentMethod::get();
-         return view('dashboard.payments.edit',compact('payment','packages' , 'methods'));
+         return view('dashboard.payments.edit',compact('payment','packages'));
      }
 
     public function update(Request $request, $id)
@@ -53,7 +49,6 @@ class PaymentController extends Controller
                 'package_id' => 'required|exists:packages,id',
                 'amount' => 'required|numeric|min:0.01',
                 'currency' => 'required|string|size:3',
-                'methods' => 'required|string|exists:payment_methods,id',
             ]) + ['user_id' => auth()->id()]);
         return redirect()->route('payments.index')->with('success', 'Payment updated successfully.');
     }
