@@ -64,6 +64,7 @@ class PackageController extends Controller
 
         return redirect()->route('packages.index')->with('success', 'Package created successfully');
     }
+
     public function edit($id)
     {
         $packages  = Package::with('packageDetails')->findOrFail($id);
@@ -110,17 +111,20 @@ class PackageController extends Controller
         $package->delete(); // Soft delete
         return redirect()->route('packages.index')->with('success', 'Package deleted successfully');
     }
+
     public function archivedPackages()
     {
         $packages = Package::onlyTrashed()->with('packageDetails')->get();
         return view('dashboard.packages.archived-packages', compact('packages'));
     }
+
     public function restore($id)
     {
         $package = Package::withTrashed()->findOrFail($id);
         $package->restore();
         return redirect()->route('packages.index')->with('success', 'Package restored successfully');
     }
+    
     public function forceDelete($id)
     {
         $package = Package::withTrashed()->findOrFail($id);
