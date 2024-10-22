@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\SuperAdmin\PaymentController as SuperAdminPaymentController;
 use App\Http\Controllers\SuperAdmin\AboutUS\AboutUsController;
 use App\Http\Controllers\SuperAdmin\FAQs\FAQController;
 use App\Http\Controllers\SuperAdmin\Features\FeatureController;
@@ -73,9 +74,15 @@ foreach (config('tenancy.central_domains') as $domain) {
             Route::post('/payments-status',[PaymentController::class, 'status'])->name('payments.status');
             Route::get('/payments-deleted', [PaymentController::class, 'showDeleted'])->name('payments.deleted');
             Route::post('/sub-payments/{id}/restore', [PaymentController::class, 'restore'])->name('payments.retirieve');
+            Route::delete('/payments/{id}/forcedeleted', [PaymentController::class, 'forceDelete'])->name('payments.forcedelete');
+
+            
+
 
             Route::get('/sub_needs-deleted', [SubNeedsController::class, 'showDeleted'])->name('sub_needs.deleted');
             Route::post('/sub-needs/{id}/restore', [SubNeedsController::class, 'restore'])->name('sub_needs.restore');
+            Route::delete('/sub-needs/{id}/forcedeleted', [SubNeedsController::class, 'forceDelete'])->name('sub_needs.forcedelete');
+
 
             // payment methods
             Route::delete('/payment-methods/{id}/permdelete', [PaymentMethodController::class, 'forceDelete'])->name('payments.permdelete');

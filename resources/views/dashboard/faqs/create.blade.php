@@ -15,17 +15,21 @@
                 <li class="flex items-center space-x-2">
                     <a class="text-primary transition-colors hover:text-primary-focus dark:text-accent-light dark:hover:text-accent"
                         href="{{ route('homePage') }}">Home</a>
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
-                        stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                    </svg>
                 </li>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+            </svg>
                 <li class="flex items-center space-x-2">
                     <a href="{{ route('faqs.index') }}"
                         class="text-primary transition-colors hover:text-primary-focus dark:text-accent-light dark:hover:text-accent">
                         FAQs
                     </a>
                 </li>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+            </svg>
                 <li>Create New FAQ</li>
             </ul>
         </div>

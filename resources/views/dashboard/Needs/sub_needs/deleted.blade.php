@@ -16,19 +16,28 @@
                 <div class="h-full w-px bg-slate-300 dark:bg-navy-600"></div>
             </div>
             <ul class="hidden flex-wrap items-center space-x-2 sm:flex">
-                <li>
-                    <a href="{{ route('homePage') }}"
-                       class="text-primary transition-colors hover:text-primary-focus dark:text-accent-light dark:hover:text-accent">
-                        Home
-                    </a>
+                <li class="flex items-center space-x-2">
+                    <a class="text-primary transition-colors hover:text-primary-focus dark:text-accent-light dark:hover:text-accent"
+                       href="{{ route('homePage') }}">Home</a>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
+                         stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                    </svg>
                 </li>
+        
+                <a class="text-primary transition-colors hover:text-primary-focus dark:text-accent-light dark:hover:text-accent"
+                href="{{ route('sub_needs.index') }}">Sub-Needs</a>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                </svg>
+                <li>Deleted User Needs</li>
             </ul>
         </div>
 
         <div class="card">
             <div class="border-b border-slate-200 p-4 dark:border-navy-500 sm:px-5">
                 <h4 class="text-lg font-medium text-slate-700 dark:text-navy-100">
-                    User Needs List
+                    Deleted User Needs List
                 </h4>
             </div>
             <!-- Success and error messages -->
@@ -85,17 +94,22 @@
                                <img class="w-20 h-20" src="{{ asset('storage/uploads/images/needs/'.$recod->image) }}" alt="img">
                             </td>
                             <td class="px-6 py-4 text-sm text-slate-500 dark:text-navy-100 flex flex-row">
-                                <a href="{{ route('sub_needs.edit', $recod->id) }}"
-                                   class="mx-2 btn bg-slate-150 font-medium text-slate-800 hover:bg-slate-200 focus:bg-slate-200 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90 btn h-8 w-8 p-0 text-error hover:bg-error/20 focus:bg-error/20 active:bg-error/25">
-                                    <i class="fa fa-edit"></i>
-                                </a>
                                 <form class="RESTORE" action="{{ route('sub_needs.restore', $recod->id) }}" method="POST">
                                     <input type="hidden" name="_method" value="">
                                     <input type="hidden" name="_token" value="{{ csrf_token() }}" />
-                                    <button type="submit" class="btn bg-slate-150 font-medium text-slate-800 hover:bg-slate-200 focus:bg-slate-200 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90 btn h-8 w-8 p-0 text-error hover:bg-error/20 focus:bg-error/20 active:bg-error/25">
+                                    <button type="submit" class="btn bg-slate-150 font-medium text-slate-800 hover:bg-slate-200 focus:bg-slate-200 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90 btn h-8 w-8 p-0 text-info hover:bg-info/20 focus:bg-info/20 active:bg-info/25">
                                         <i class="fa fa-undo"></i>
                                     </button>
                                 </form>
+                                <form action="{{ route('sub_needs.forcedelete', $recod->id) }}" method="POST"
+                                    onsubmit="return confirm('Are you sure you want to delete this User Need?');">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit"  
+                                    class="mx-2 btn bg-slate-150 font-medium text-slate-800 hover:bg-slate-200 focus:bg-slate-200 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90 btn h-8 w-8 p-0 text-error hover:bg-error/20 focus:bg-error/20 active:bg-error/25">
+                                        <i class="fa fa-trash-alt"></i></button>
+
+                                </form> 
                             </td>
                         </tr>
                         @php

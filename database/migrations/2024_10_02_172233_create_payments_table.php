@@ -18,7 +18,7 @@ return new class extends Migration
             $table->float('amount');
             $table->string('receipt')->nullable();
             $table->char('currency',3)->default('EGP');
-            $table->string('methods');
+            $table->string('methods')->nullable();
             $table->enum('status',['pending','completed','failed','cancelled'])->default('pending');
             $table->string('transaction_id')->nullable();
             $table->json('transaction_data')->nullable();

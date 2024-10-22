@@ -81,6 +81,11 @@ class PaymentController extends Controller
         return view('dashboard.payments.deleted', compact('payments'));
     }
 
+    public function forceDelete($id)
+    {
+        Payment::withTrashed()->where('id', $id)->forceDelete();
+        return redirect()->route('payments.deleted')->with('success', 'Payment Method Permanently Deleted Successfully');
+    }
     public function restore($id)
     {
         Payment::withTrashed()->where('id', $id)->restore();

@@ -19,6 +19,11 @@
                         Home
                     </a>
                 </li>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+            </svg>
+                <li>Payments </li>
             </ul>
         </div>
 
@@ -29,7 +34,7 @@
                     Add new Payment
                 </a>
                 <a class="btn bg-error text-white hover:bg-error-focus focus:bg-error-focus dark:bg-error dark:hover:bg-error-focus dark:focus:bg-error-focus mt-4"
-                   href="{{ route('payments.deleted') }}"> Deleted Needs </a>
+                   href="{{ route('payments.deleted') }}"> Deleted Payments </a>
             </div>
 
             <!-- Success and Error Messages -->
@@ -97,7 +102,7 @@
                                 <td data-column-id="actions" class="gridjs-td">
                                     <span>
                                         <div class="flex space-x-2">
-                                            <a href="{{ route('payments.edit', $record->id) }}" class="btn bg-slate-150 text-slate-800 hover:bg-slate-200 dark:bg-navy-500 dark:text-navy-50 h-8 w-8 p-0">
+                                            <a href="{{ route('payments.edit', $record->id) }}" class="mx-2 btn bg-slate-150 font-medium text-slate-800 hover:bg-slate-200 focus:bg-slate-203 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90 btn h-8 w-8 p-0 text-info hover:bg-info/20 focus:bg-info/20 active:bg-info/25">
                                                 <i class="fa fa-edit"></i>
                                             </a>
                                              <form class="delete" action="{{ route('payments.destroy', $record->id) }}" method="POST">

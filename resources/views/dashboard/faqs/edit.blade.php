@@ -35,12 +35,12 @@
 
                     <div class="mb-4">
                         <label for="question" class="block text-sm font-medium text-slate-700 dark:text-navy-100">Question</label>
-                        <input type="text" name="question" id="question" value="{{ old('question', $faq->question) }}" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary dark:bg-navy-700 dark:border-navy-600" required>
+                        <input type="text" name="question" id="question" value="{{ old('question', $faq->question) }}" class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent" required>
                     </div>
 
                     <div class="mb-4">
                         <label for="answer" class="block text-sm font-medium text-slate-700 dark:text-navy-100">Answer</label>
-                        <textarea name="answer" id="answer" rows="3" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary dark:bg-navy-700 dark:border-navy-600" required>{{ old('answer', $faq->answer) }}</textarea>
+                        <textarea name="answer" id="answer" rows="3" class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent" required>{{ old('answer', $faq->answer) }}</textarea>
                     </div>
 
                     <div class="flex items-center justify-end">

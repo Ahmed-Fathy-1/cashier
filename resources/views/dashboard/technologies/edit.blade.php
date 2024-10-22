@@ -37,7 +37,7 @@
 
                     <div class="mb-4">
                         <label for="name" class="block text-sm font-medium text-slate-700 dark:text-navy-100">Technology Name</label>
-                        <input type="text" name="name" id="name" value="{{ $tech->name }}" class="my-2 p-3 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary dark:bg-navy-700 dark:border-navy-600" required placeholder="Enter technology name">
+                        <input type="text" name="name" id="name" value="{{ $tech->name }}" class="mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent" required placeholder="Enter technology name">
                         @error('name')
                         <span class="text-tiny+ text-error">{{ $message }}</span>
                     @enderror
@@ -46,7 +46,7 @@
 
                     <div class="mb-4">
                         <label for="image" class="block text-sm font-medium text-slate-700 dark:text-navy-100">Technology Image</label>
-                        <input type="file" name="image" id="image" class="mt-1 block w-full text-sm text-slate-500 dark:text-navy-100">
+                        <input type="file" name="image" id="image" class="mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent">
                         <small class="text-slate-500 dark:text-navy-100">Leave empty if you do not want to change the image.</small>
                         @if($tech->image)
                             <div class="mt-2">

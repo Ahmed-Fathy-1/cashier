@@ -7,12 +7,13 @@ use App\Http\Traits\Utils\UploadFileTrait;
 use App\Models\SuperAdmin\Needes\MainNeed;
 use App\Models\SuperAdmin\Needes\SubNeeds;
 use App\Models\SuperAdmin\PaymentMethod;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Http\Request;
 
 class SubNeedsController extends Controller
 {
 
-    use UploadFileTrait;
+    use UploadFileTrait,SoftDeletes;
 
     protected $filePath = 'images/needs';
 
@@ -113,6 +114,12 @@ class SubNeedsController extends Controller
     {
         $subNeeds = SubNeeds::onlyTrashed()->get();
         return view('dashboard.Needs.sub_needs.deleted', compact('subNeeds'));
+    }
+
+    public function forceDelete($id)
+    {
+        SubNeeds::withTrashed()->where('id', $id)->forceDelete();
+        return redirect()->route('sub_needs.deleted')->with('success', 'User Need Permanently Deleted Successfully');
     }
 
     public function restore($id)

@@ -7,7 +7,7 @@
             @endphp
 
             <div class="flex justify-center w-full">
-                <a href="https://aitech.net.au/v2/" class="block">
+                <a href="/" class="block">
                     <img width="100" height="50" src="{{ asset('storage/uploads/images/settings/'.$setting->image) }}" alt="logo">
                 </a>
             </div>
@@ -85,18 +85,183 @@
                                 @endcan --}}
 
 
-                                <div class="my-3 mx-4 h-px bg-slate-100 dark:bg-navy-500"></div>
-
-                                <ul class="flex flex-1 flex-col px-4 font-inter">
+                                {{-- <div class="my-3 mx-4 h-px bg-slate-100 dark:bg-navy-500"></div> --}}
+                                    {{-- Main Home Cover --}}
+                                {{-- <ul class="flex flex-1 flex-col px-4 font-inter">
                                     <li>
 
-                                        <a href="{{ url('/contact-us') }}" class="">
-                                            <span>ContactUs</span>
+                                        <a href="{{ route('homePage') }}" class="">
+                                            <span>Home Cover</span>
                                         </a>
                                     </li>
-                                </ul>
-                                <div class="my-3 mx-4 h-px bg-slate-100 dark:bg-navy-500"></div>
+                                </ul> --}}
+                                {{-- <div class="my-3 mx-4 h-px bg-slate-100 dark:bg-navy-500"></div> --}}
+                                <ul class="flex flex-1 flex-col px-4 font-inter">
+                                    <li class="ac nav-parent [&amp;.is-active_svg]:rotate-90 [&amp;.is-active_.ac-trigger]:font-semibold [&amp;.is-active_.ac-trigger]:text-slate-800 dark:[&amp;.is-active_.ac-trigger]:text-navy-50 js-enabled"
+                                        data-nav-parent-index="8" id="ac-8">
+                                        <button
+                                            class="ac-trigger flex w-full items-center justify-between py-2 text-xs+ tracking-wide text-slate-600 outline-none transition-[color,padding-left] duration-300 ease-in-out hover:text-slate-800 dark:text-navy-200 dark:hover:text-navy-50"
+                                            id="ac-trigger-8" role="button" aria-controls="ac-panel-8"
+                                            aria-disabled="false" aria-expanded="false">
+                                            <span>Home</span>
+                                            <svg xmlns="http://www.w3.org/2000/svg"
+                                                 class="h-4 w-4 text-slate-400 transition-transform ease-in-out"
+                                                 fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                      d="M9 5l7 7-7 7"></path>
+                                            </svg>
+                                        </button>
+                                        <ul class="ac-panel" id="ac-panel-8" role="region"
+                                            aria-labelledby="ac-trigger-8"
+                                            style="transition-duration: 200ms; height: 0px;">
 
+                                            {{-- Sub Home Cover --}}
+                                            <li>
+                                                <a href="{{ route('homePage') }}"
+                                                   class="nav-link flex items-center justify-between p-2 text-xs+ tracking-wide outline-none transition-[color,padding-left] duration-300 ease-in-out hover:pl-4 text-slate-600 hover:text-slate-800 dark:text-navy-200 dark:hover:text-navy-50"
+                                                   data-default-class="text-slate-600 hover:text-slate-800 dark:text-navy-200 dark:hover:text-navy-50"
+                                                   data-active-class="font-medium text-primary dark:text-accent-light">
+                                                    <div class="flex items-center space-x-2">
+                                                        <div
+                                                            class="h-1.5 w-1.5 rounded-full border border-current opacity-40">
+                                                        </div>
+                                                        <span>Home Cover</span>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                             {{-- Sub Payment Methods --}}  
+                                             <li>
+                                                <a href="{{route('payment-methods.index')}}"
+                                                   class="nav-link flex items-center justify-between p-2 text-xs+ tracking-wide outline-none transition-[color,padding-left] duration-300 ease-in-out hover:pl-4 text-slate-600 hover:text-slate-800 dark:text-navy-200 dark:hover:text-navy-50"
+                                                   data-default-class="text-slate-600 hover:text-slate-800 dark:text-navy-200 dark:hover:text-navy-50"
+                                                   data-active-class="font-medium text-primary dark:text-accent-light">
+                                                    <div class="flex items-center space-x-2">
+                                                        <div
+                                                            class="h-1.5 w-1.5 rounded-full border border-current opacity-40">
+                                                        </div>
+                                                        <span>Payment Methods</span>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                            {{-- Sub Packages  --}}
+                                            <li>
+                                                <a href="{{route('packages.index')}}"
+                                                   class="nav-link flex items-center justify-between p-2 text-xs+ tracking-wide outline-none transition-[color,padding-left] duration-300 ease-in-out hover:pl-4 text-slate-600 hover:text-slate-800 dark:text-navy-200 dark:hover:text-navy-50"
+                                                   data-default-class="text-slate-600 hover:text-slate-800 dark:text-navy-200 dark:hover:text-navy-50"
+                                                   data-active-class="font-medium text-primary dark:text-accent-light">
+                                                    <div class="flex items-center space-x-2">
+                                                        <div
+                                                            class="h-1.5 w-1.5 rounded-full border border-current opacity-40">
+                                                        </div>
+                                                        <span>Packages</span>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                            {{-- Sub Feedbacks --}}
+                                            <li>
+                                                <a href="{{route('feedbacks.index')}}"
+                                                   class="nav-link flex items-center justify-between p-2 text-xs+ tracking-wide outline-none transition-[color,padding-left] duration-300 ease-in-out hover:pl-4 text-slate-600 hover:text-slate-800 dark:text-navy-200 dark:hover:text-navy-50"
+                                                   data-default-class="text-slate-600 hover:text-slate-800 dark:text-navy-200 dark:hover:text-navy-50"
+                                                   data-active-class="font-medium text-primary dark:text-accent-light">
+                                                    <div class="flex items-center space-x-2">
+                                                        <div
+                                                            class="h-1.5 w-1.5 rounded-full border border-current opacity-40">
+                                                        </div>
+                                                        <span>Feedbacks</span>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                            {{-- Sub Technologies --}}
+                                            <li>
+                                                <a href="{{route('technologies.index')}}"
+                                                   class="nav-link flex items-center justify-between p-2 text-xs+ tracking-wide outline-none transition-[color,padding-left] duration-300 ease-in-out hover:pl-4 text-slate-600 hover:text-slate-800 dark:text-navy-200 dark:hover:text-navy-50"
+                                                   data-default-class="text-slate-600 hover:text-slate-800 dark:text-navy-200 dark:hover:text-navy-50"
+                                                   data-active-class="font-medium text-primary dark:text-accent-light">
+                                                    <div class="flex items-center space-x-2">
+                                                        <div
+                                                            class="h-1.5 w-1.5 rounded-full border border-current opacity-40">
+                                                        </div>
+                                                        <span>Technologies</span>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                            {{-- Sub FAQs --}}
+                                            <li>
+                                                <a href="{{route('faqs.index')}}"
+                                                   class="nav-link flex items-center justify-between p-2 text-xs+ tracking-wide outline-none transition-[color,padding-left] duration-300 ease-in-out hover:pl-4 text-slate-600 hover:text-slate-800 dark:text-navy-200 dark:hover:text-navy-50"
+                                                   data-default-class="text-slate-600 hover:text-slate-800 dark:text-navy-200 dark:hover:text-navy-50"
+                                                   data-active-class="font-medium text-primary dark:text-accent-light">
+                                                    <div class="flex items-center space-x-2">
+                                                        <div
+                                                            class="h-1.5 w-1.5 rounded-full border border-current opacity-40">
+                                                        </div>
+                                                        <span>FAQs</span>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                            {{-- Sub Features --}}
+                                            <li>
+                                                <a href="{{ route('features.edit', 1) }}"
+                                                   class="nav-link flex items-center justify-between p-2 text-xs+ tracking-wide outline-none transition-[color,padding-left] duration-300 ease-in-out hover:pl-4 text-slate-600 hover:text-slate-800 dark:text-navy-200 dark:hover:text-navy-50"
+                                                   data-default-class="text-slate-600 hover:text-slate-800 dark:text-navy-200 dark:hover:text-navy-50"
+                                                   data-active-class="font-medium text-primary dark:text-accent-light">
+                                                    <div class="flex items-center space-x-2">
+                                                        <div
+                                                            class="h-1.5 w-1.5 rounded-full border border-current opacity-40">
+                                                        </div>
+                                                        <span>Features</span>
+                                                    </div>
+                                                </a>
+                                            </li>
+
+
+
+
+                                                {{-- Start Sub Menu Needs --}}
+                                                <li>
+                                                    <a href="{{ route('main_needs.edit', 1) }}"
+                                                       class="nav-link flex items-center justify-between p-2 text-xs+ tracking-wide outline-none transition-[color,padding-left] duration-300 ease-in-out hover:pl-4 text-slate-600 hover:text-slate-800 dark:text-navy-200 dark:hover:text-navy-50"
+                                                       data-default-class="text-slate-600 hover:text-slate-800 dark:text-navy-200 dark:hover:text-navy-50"
+                                                       data-active-class="font-medium text-primary dark:text-accent-light">
+                                                        <div class="flex items-center space-x-2">
+                                                            <div
+                                                                class="h-1.5 w-1.5 rounded-full border border-current opacity-40">
+                                                            </div>
+                                                            <span>Main Needs</span>
+                                                        </div>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="{{ route('sub_needs.index') }}"
+                                                       class="nav-link flex items-center justify-between p-2 text-xs+ tracking-wide outline-none transition-[color,padding-left] duration-300 ease-in-out hover:pl-4 text-slate-600 hover:text-slate-800 dark:text-navy-200 dark:hover:text-navy-50"
+                                                       data-default-class="text-slate-600 hover:text-slate-800 dark:text-navy-200 dark:hover:text-navy-50"
+                                                       data-active-class="font-medium text-primary dark:text-accent-light">
+                                                        <div class="flex items-center space-x-2">
+                                                            <div
+                                                                class="h-1.5 w-1.5 rounded-full border border-current opacity-40">
+                                                            </div>
+                                                            <span>Sub Needs</span>
+                                                        </div>
+                                                    </a>
+                                                </li>
+          
+{{-- End Sub Menu Needs --}}
+
+
+ 
+
+
+
+                                      
+
+  
+                                        </ul>
+                                        
+                                    </li>
+                                </ul>
+ 
+                                
+                                
 {{--                                <ul class="flex flex-1 flex-col px-4 font-inter">--}}
 {{--                                    <li>--}}
 
@@ -106,59 +271,61 @@
 {{--                                    </li>--}}
 {{--                                </ul>--}}
 {{--                                <div class="my-3 mx-4 h-px bg-slate-100 dark:bg-navy-500"></div>--}}
-
-                                <ul class="flex flex-1 flex-col px-4 font-inter">
+                                        {{-- Main Domains --}}
+                                {{-- <ul class="flex flex-1 flex-col px-4 font-inter">
                                     <li>
                                         <a href="{{route('tenants.index')}}" class="">
                                             <span>Domains</span>
                                         </a>
                                     </li>
-                                </ul>
+                                </ul> --}}
                                 <div class="my-3 mx-4 h-px bg-slate-100 dark:bg-navy-500"></div>
-
-                                <ul class="flex flex-1 flex-col px-4 font-inter">
+                                    {{-- Main Payment Methods --}}
+                                {{-- <ul class="flex flex-1 flex-col px-4 font-inter">
                                     <li>
                                         <a href="{{route('payment-methods.index')}}" class="">
                                             <span>Payment Methods</span>
                                         </a>
                                     </li>
-                                </ul>
-                                <div class="my-3 mx-4 h-px bg-slate-100 dark:bg-navy-500"></div>
-
-                                <ul class="flex flex-1 flex-col px-4 font-inter">
+                                </ul> --}}
+                                {{-- <div class="my-3 mx-4 h-px bg-slate-100 dark:bg-navy-500"></div> --}}
+                                    {{-- Main Packages --}}
+                                {{-- <ul class="flex flex-1 flex-col px-4 font-inter">
                                     <li>
                                         <a href="{{route('packages.index')}}" class="">
                                             <span>Packages</span>
                                         </a>
                                     </li>
-                                </ul>
-                                <div class="my-3 mx-4 h-px bg-slate-100 dark:bg-navy-500"></div>
-                                <ul class="flex flex-1 flex-col px-4 font-inter">
+                                </ul> --}}
+                                {{-- <div class="my-3 mx-4 h-px bg-slate-100 dark:bg-navy-500"></div> --}}
+                                {{-- Main Feedbacks --}}
+                                {{-- <ul class="flex flex-1 flex-col px-4 font-inter">
                                     <li>
                                         <a href="{{route('feedbacks.index')}}" class="">
                                             <span>Feedbacks</span>
                                         </a>
                                     </li>
-                                </ul>
-                                <div class="my-3 mx-4 h-px bg-slate-100 dark:bg-navy-500"></div>
-
-                                <ul class="flex flex-1 flex-col px-4 font-inter">
+                                </ul> --}}
+                                {{-- <div class="my-3 mx-4 h-px bg-slate-100 dark:bg-navy-500"></div> --}}
+                                    {{-- Main Technologies --}}
+                                {{-- <ul class="flex flex-1 flex-col px-4 font-inter">
                                     <li>
                                         <a href="{{route('technologies.index')}}" class="">
                                             <span>Technologies</span>
                                         </a>
                                     </li>
-                                </ul>
-                                <div class="my-3 mx-4 h-px bg-slate-100 dark:bg-navy-500"></div>
-
-                                <ul class="flex flex-1 flex-col px-4 font-inter">
+                                </ul> --}}
+                                {{-- <div class="my-3 mx-4 h-px bg-slate-100 dark:bg-navy-500"></div> --}}
+                                    {{-- Main FAQs --}}
+                                {{-- <ul class="flex flex-1 flex-col px-4 font-inter">
                                     <li>
                                         <a href="{{route('faqs.index')}}" class="">
                                             <span>FAQs</span>
                                         </a>
                                     </li>
-                                </ul>
-                                <div class="my-3 mx-4 h-px bg-slate-100 dark:bg-navy-500"></div>
+                                </ul> --}}
+
+                                {{-- <div class="my-3 mx-4 h-px bg-slate-100 dark:bg-navy-500"></div> --}}
 
 
                                 {{-- <ul class="flex flex-1 flex-col px-4 font-inter">
@@ -245,14 +412,8 @@
                                 @endcan --}}
 
 
-                                <ul class="flex flex-1 flex-col px-4 font-inter">
-                                    <li>
-                                        <a href="{{ url('/contact-us') }}" class="">
-                                            <span>Contact Us</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                                <div class="my-3 mx-4 h-px bg-slate-100 dark:bg-navy-500"></div>
+                        
+                                {{-- <div class="my-3 mx-4 h-px bg-slate-100 dark:bg-navy-500"></div> --}}
 
                                 <ul class="flex flex-1 flex-col px-4 font-inter">
                                     <li>
@@ -261,22 +422,21 @@
                                         </a>
                                     </li>
                                 </ul>
-                                <div class="my-3 mx-4 h-px bg-slate-100 dark:bg-navy-500"></div>
-
-                                <ul class="flex flex-1 flex-col px-4 font-inter">
+                                {{-- <div class="my-3 mx-4 h-px bg-slate-100 dark:bg-navy-500"></div> --}}
+                                    {{-- Main Features --}}
+                                {{-- <ul class="flex flex-1 flex-col px-4 font-inter">
                                     <li>
                                         <a href="{{ route('features.edit', 1) }}"
                                             class="">
                                             <span>Features</span>
                                         </a>
                                     </li>
-                                </ul>
+                                </ul> --}}
                                 <div class="my-3 mx-4 h-px bg-slate-100 dark:bg-navy-500"></div>
-
                                 <ul class="flex flex-1 flex-col px-4 font-inter">
                                     <li>
-                                        <a href="{{ route('about_us.edit', 1) }}" class="">
-                                            <span>About Us</span>
+                                        <a href="{{route('tenants.index')}}" class="">
+                                            <span>Domains</span>
                                         </a>
                                     </li>
                                 </ul>
@@ -293,58 +453,27 @@
                                 <div class="my-3 mx-4 h-px bg-slate-100 dark:bg-navy-500"></div>
 
                                 <ul class="flex flex-1 flex-col px-4 font-inter">
-                                    <li class="ac nav-parent [&amp;.is-active_svg]:rotate-90 [&amp;.is-active_.ac-trigger]:font-semibold [&amp;.is-active_.ac-trigger]:text-slate-800 dark:[&amp;.is-active_.ac-trigger]:text-navy-50 js-enabled"
-                                        data-nav-parent-index="8" id="ac-8">
-                                        <button
-                                            class="ac-trigger flex w-full items-center justify-between py-2 text-xs+ tracking-wide text-slate-600 outline-none transition-[color,padding-left] duration-300 ease-in-out hover:text-slate-800 dark:text-navy-200 dark:hover:text-navy-50"
-                                            id="ac-trigger-8" role="button" aria-controls="ac-panel-8"
-                                            aria-disabled="false" aria-expanded="false">
-                                            <span>Needs</span>
-                                            <svg xmlns="http://www.w3.org/2000/svg"
-                                                 class="h-4 w-4 text-slate-400 transition-transform ease-in-out"
-                                                 fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                      d="M9 5l7 7-7 7"></path>
-                                            </svg>
-                                        </button>
-                                        <ul class="ac-panel" id="ac-panel-8" role="region"
-                                            aria-labelledby="ac-trigger-8"
-                                            style="transition-duration: 200ms; height: 0px;">
-
-
-                                            <li>
-                                                <a href="{{ route('main_needs.edit', 1) }}"
-                                                   class="nav-link flex items-center justify-between p-2 text-xs+ tracking-wide outline-none transition-[color,padding-left] duration-300 ease-in-out hover:pl-4 text-slate-600 hover:text-slate-800 dark:text-navy-200 dark:hover:text-navy-50"
-                                                   data-default-class="text-slate-600 hover:text-slate-800 dark:text-navy-200 dark:hover:text-navy-50"
-                                                   data-active-class="font-medium text-primary dark:text-accent-light">
-                                                    <div class="flex items-center space-x-2">
-                                                        <div
-                                                            class="h-1.5 w-1.5 rounded-full border border-current opacity-40">
-                                                        </div>
-                                                        <span>Main Needs</span>
-                                                    </div>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="{{ route('sub_needs.index') }}"
-                                                   class="nav-link flex items-center justify-between p-2 text-xs+ tracking-wide outline-none transition-[color,padding-left] duration-300 ease-in-out hover:pl-4 text-slate-600 hover:text-slate-800 dark:text-navy-200 dark:hover:text-navy-50"
-                                                   data-default-class="text-slate-600 hover:text-slate-800 dark:text-navy-200 dark:hover:text-navy-50"
-                                                   data-active-class="font-medium text-primary dark:text-accent-light">
-                                                    <div class="flex items-center space-x-2">
-                                                        <div
-                                                            class="h-1.5 w-1.5 rounded-full border border-current opacity-40">
-                                                        </div>
-                                                        <span>Sub Needs</span>
-                                                    </div>
-                                                </a>
-                                            </li>
-                                        </ul>
+                                    <li>
+                                        <a href="{{ url('/contact-us') }}" class="">
+                                            <span>Contact Us</span>
+                                        </a>
                                     </li>
                                 </ul>
 
-
-
                                 <div class="my-3 mx-4 h-px bg-slate-100 dark:bg-navy-500"></div>
+
+                                <ul class="flex flex-1 flex-col px-4 font-inter">
+                                    <li>
+                                        <a href="{{ route('about_us.edit', 1) }}" class="">
+                                            <span>About Us</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                                
+
+                          
+
+
                                 {{-- <ul class="flex flex-1 flex-col px-4 font-inter">
                                     <li>
                                         <a href="{{ route('roles.index') }}" class="">
@@ -354,6 +483,7 @@
                                 </ul>
                                 <div class="my-3 mx-4 h-px bg-slate-100 dark:bg-navy-500"></div> --}}
 
+                                <div class="my-3 mx-4 h-px bg-slate-100 dark:bg-navy-500"></div>
 
                                 <ul class="flex flex-1 flex-col px-4 font-inter">
                                     <li class="ac nav-parent [&amp;.is-active_svg]:rotate-90 [&amp;.is-active_.ac-trigger]:font-semibold [&amp;.is-active_.ac-trigger]:text-slate-800 dark:[&amp;.is-active_.ac-trigger]:text-navy-50 js-enabled"
