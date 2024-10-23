@@ -116,9 +116,8 @@ class UserController extends Controller
 
     public function trashed()
     {
-        return 'ssdsd' ;
         $users = User::onlyTrashed()->paginate(10);
-        return view('dashboard.users.deleted', compact('users'));
+        return view('dashboard.users.delete', compact('users'));
     }
 
     // Restore a soft-deleted user

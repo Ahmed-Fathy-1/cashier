@@ -38,15 +38,18 @@
                                             <form action="{{ route('users.restore', $user->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to restore this user?');">
                                                 @csrf
                                                 @method('PUT')
-                                                <button type="submit" class="text-blue-600 hover:text-blue-800">Restore</button>
-                                            </form>
+                                                <button type="submit"  
+                                                class="btn h-8 w-8 p-0 text-info hover:bg-info/20 focus:bg-info/20 active:bg-info/25">
+                                                <i class="fa fa-refresh"></i></button>                                           
+                                             </form>
 
                                             <!-- Permanent Delete Button -->
                                             <form action="{{ route('users.forceDelete', $user->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to permanently delete this user?');">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" class="text-red-600 hover:text-red-800">Permanent Delete</button>
-                                            </form>
+                                                <button type="submit"  
+                                                class="mx-2 btn bg-slate-150 font-medium text-slate-800 hover:bg-slate-200 focus:bg-slate-200 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90 btn h-8 w-8 p-0 text-error hover:bg-error/20 focus:bg-error/20 active:bg-error/25">
+                                                    <i class="fa fa-trash-alt"></i></button>                                            </form>
                                         </div>
                                     </td>
                                 </tr>
@@ -54,7 +57,7 @@
                         </tbody>
                     </table>
                     <div class="mt-4">
-                        {{ $users->links() }}
+                        {{ $users->links('vendor.pagination.mados-ui') }}
                     </div>
                 @else
                     <p class="text-center text-slate-600 dark:text-navy-200">No deleted users found.</p>

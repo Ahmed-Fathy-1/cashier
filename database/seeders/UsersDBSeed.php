@@ -17,7 +17,7 @@ class UsersDBSeed extends Seeder
     {
         User::insert([
             [
-                'name' => "Mohamed Mostafa",
+                'name' => "Mohamed Ibrahim",
                 "email" => "user@user.com",
                 "mobile" => "012253722",
                 "password" =>bcrypt('12345678'),

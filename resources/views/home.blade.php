@@ -7,9 +7,11 @@
 @endpush
 
 @section('main')
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+
   <main class="main-content w-full pb-8">
     <div class="mt-4 grid grid-cols-12 gap-4 px-[var(--margin-x)] transition-all duration-[.25s] sm:mt-5 sm:gap-5 lg:mt-6 lg:gap-6">
-      <div class="card col-span-12 sm:col-span-12">
+      <div class="col-span-12 sm:col-span-12">
         <div class="my-3 flex items-center justify-between px-4 sm:px-5">
           <h2 class="font-medium tracking-wide text-slate-700 dark:text-navy-100">
             Home
@@ -21,7 +23,7 @@
               <p class="text-xs+ uppercase">Users</p>
               <div class="mt-8 flex items-baseline space-x-1">
                 <p class="text-2xl font-semibold text-slate-700 dark:text-navy-100">
-                  50
+                  {{ $userCount }}
                 </p>
               </div>
             </div>
@@ -37,7 +39,7 @@
               <p class="text-xs+ uppercase">Domains</p>
               <div class="mt-8 flex items-baseline space-x-1">
                 <p class="text-2xl font-semibold text-slate-700 dark:text-navy-100">
-                  50
+                  {{ $domainsCount  }}
                 </p>
               </div>
             </div>
@@ -53,7 +55,7 @@
               <p class="text-xs+ uppercase">Feedbacks</p>
               <div class="mt-8 flex items-baseline space-x-1">
                 <p class="text-2xl font-semibold text-slate-700 dark:text-navy-100">
-                  50
+                  {{ $feedbackCount }}
                 </p>
               </div>
             </div>
@@ -69,7 +71,7 @@
               <p class="text-xs+ uppercase">Contact Us</p>
               <div class="mt-8 flex items-baseline space-x-1">
                 <p class="text-2xl font-semibold text-slate-700 dark:text-navy-100">
-                150
+                {{ $contactusCount }}
                 </p>
               </div>
             </div>
@@ -190,11 +192,65 @@
 
         <br>
         <br>
+        <div id="chart"></div>
       </div>
     </div>
  
   </main>
 
+  {{-- Apex Charts Script --}} 
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+            // Calculate max user count to set Y-axis
+            var userCounts = {!! json_encode($userCounts) !!};
+            var maxCount = Math.max(...userCounts);
+            var yAxisMax;
+
+            // Determine Y-axis max value based on user count
+            if (maxCount > 10) {
+                yAxisMax = Math.ceil(maxCount / 10) * 10; // Round up to the nearest 10
+            } else {
+                yAxisMax = 10; // Default max value if less than or equal to 10
+            }
+
+            var options = {
+                chart: {
+                    type: 'area',
+                    height: 350,
+                    zoom: {
+                        enabled: false
+                    },
+                },
+                series: [{
+                    name: 'User Count',
+                    data: userCounts // User counts data
+                }],
+                xaxis: {
+                    categories: {!! json_encode($months) !!}, // Month labels
+                },
+                yaxis: {
+                    max: yAxisMax, // Set calculated max for Y-axis
+                    tickAmount: yAxisMax > 10 ? 5 : 10, // Adjust tick amounts
+                    labels: {
+                        formatter: function(value) {
+                            return Math.floor(value); // Ensure whole numbers
+                        }
+                    }
+                },
+                title: {
+             text: 'User Count Over the Last 12 Months',
+            align: 'left'
+    },
+                tooltip: {
+                    shared: true,
+                    intersect: false
+                }
+            };
+
+            var chart = new ApexCharts(document.querySelector("#chart"), options);
+            chart.render();
+        });
+</script>
 
   @endsection
 
