@@ -31,7 +31,6 @@ class AboutUsController extends Controller
      */
     public function update(AboutUsRequest $request, string $id)
     {
-        // dd($request->all());
         $aboutUs = AboutUs::findOrFail($id);
         $data = $request->validated();
 
@@ -50,5 +49,6 @@ class AboutUsController extends Controller
         $aboutUs->update($data);
 
         return redirect()->back()->with('success', 'About Us updated successfully.');
+
     }
 }

@@ -249,6 +249,29 @@
                         <span class="text-tiny+ text-error">{{ $message }}</span>
                         @enderror
 
+                        <label class="block pt-4">
+                            <span class="font-medium text-slate-600 dark:text-navy-100">Workflow Manage Description</span>
+                        </label>
+                        <div class="w-full">
+                            <div id="editor5" class="h-48"></div>
+                        </div>
+                        <textarea id="descFive" name="workflow_manage_desc" style="display: none;">{{ $aboutUs->workflow_manage_desc }}</textarea>
+
+                        @error('workflow_manage_desc')
+                            <span class="text-tiny+ text-error">{{ $message }}</span>
+                        @enderror
+
+                        <label class="block">
+                            <span>Workflow Manage Number</span>
+
+                            <input name="workflow_manage_number"
+                                   class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
+                                   placeholder="Enter Number" type="text" value="{{ $aboutUs->workflow_manage_number }}">
+                        </label>
+                        @error('workflow_manage_number')
+                            <span class="text-tiny+ text-error">{{ $message }}</span>
+                        @enderror
+
                         <!-- Workflow Manage Image Label -->
                         <label class="block pt-4">
                             <span class="font-medium text-slate-600 dark:text-navy-100">Workflow Manage Image</span>
@@ -306,13 +329,13 @@
                         @enderror
 
                         <label class="block">
-                            <span>Workflow Edit Count</span>
+                            <span>Workflow Edit Number</span>
 
-                            <input name="workflow_edit_count	"
+                            <input name="workflow_edit_number"
                                    class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
-                                   placeholder="Enter Title" type="text" value="{{ $aboutUs->workflow_edit_count	 }}">
+                                   placeholder="Enter Title" type="text" value="{{ $aboutUs->workflow_edit_number }}">
                         </label>
-                        @error('workflow_edit_count	')
+                        @error('workflow_edit_number')
                         <span class="text-tiny+ text-error">{{ $message }}</span>
                         @enderror
 
@@ -434,6 +457,9 @@
         const editor4 = document.querySelector("#editor4");
         const quill4 = new Quill(editor4, config2);
 
+        const editor5= document.querySelector("#editor5");
+        const quill5 = new Quill(editor5, config2);
+
 
 
         // Get the value you want to set in the editor
@@ -441,6 +467,8 @@
         const descTwo = {!! json_encode($aboutUs->workflow_desc) !!};
         const descThree = {!! json_encode($aboutUs->workflow_download_desc) !!};
         const descFour = {!! json_encode($aboutUs->workflow_edit_desc) !!};
+        const descFive = {!! json_encode($aboutUs->workflow_manage_desc) !!};
+
 
 
         // Set the value of the editor
@@ -448,6 +476,7 @@
         quill2.root.innerHTML = descTwo;
         quill3.root.innerHTML = descThree;
         quill4.root.innerHTML = descFour;
+        quill5.root.innerHTML = descFive;
 
 
         // Attach event listener and update hidden input
@@ -465,6 +494,10 @@
 
         quill4.on("text-change", function() {
             document.getElementById("descFour").value = quill4.root.innerHTML;
+        });
+
+        quill5.on("text-change", function() {
+            document.getElementById("descFive").value = quill5.root.innerHTML;
         });
 
     </script>

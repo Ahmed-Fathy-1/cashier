@@ -28,10 +28,12 @@ return new class extends Migration
             $table->integer('workflow_download_number')->nullable();
             $table->string('workflow_download_image')->nullable();
             $table->string('workflow_manage_title')->nullable();
+            $table->string('workflow_manage_desc')->nullable();
+            $table->string('workflow_manage_number')->nullable();
             $table->string('workflow_manage_image')->nullable();
             $table->string('workflow_edit_title')->nullable();
             $table->text('workflow_edit_desc')->nullable();
-            $table->integer('workflow_edit_count')->nullable();
+            $table->integer('workflow_edit_number')->nullable();
             $table->string('workflow_edit_image')->nullable();
             $table->timestamps();
         });

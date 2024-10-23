@@ -82,10 +82,10 @@
               <i class="fa-solid fa-phone translate-x-1/4 translate-y-1/4 text-5xl opacity-15"></i>
             </div>
           </div>
-          
-          
+
+
         </div>
-        
+
             {{-- Cards With Line Loading --}}
         {{-- <div class="grid grid-cols-1 gap-4 px-4 sm:gap-5 sm:px-5 lg:grid-cols-2">
 
@@ -195,7 +195,7 @@
         <div id="chart"></div>
       </div>
     </div>
- 
+
   </main>
 
   {{-- Apex Charts Script --}} 

@@ -15,6 +15,7 @@ class AboutUsResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
+        // Prepare workflow data
         $workflows = [
             [
                 'title' => $this->workflow_download_title,
@@ -24,12 +25,14 @@ class AboutUsResource extends JsonResource
             ],
             [
                 'title' => $this->workflow_manage_title,
+                'description' => $this->workflow_manage_desc,
+                'number' => $this->workflow_manage_number,
                 'image' => $this->getImageUrl($this->workflow_manage_image),
             ],
             [
                 'title' => $this->workflow_edit_title,
                 'description' => $this->workflow_edit_desc,
-                'count' => $this->workflow_edit_count,
+                'number' => $this->workflow_edit_number,
                 'image' => $this->getImageUrl($this->workflow_edit_image),
             ],
         ];
