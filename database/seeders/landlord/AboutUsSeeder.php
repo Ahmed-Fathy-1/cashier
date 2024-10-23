@@ -14,7 +14,7 @@ class AboutUsSeeder extends Seeder
     {
         AboutUs::create([
             'intro_title' => 'About Us',
-            'intro_desc' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis aspernatur eum soluta nesciunt vitae. Magni repudiandae quo corrupti optio sunt iusto, doloribus quae debitis modi dolores explicabo eaque alias cum.',
+            'intro_desc' => 'You will find a very high performance and awesome collection from professional web developers and Ai programers work together You will find a very high performance and awesome collection from professional web developers and Ai programers work together',
             'numbers_clients_title' => 'Sart Client',
             'numbers_clients_count' => '21k',
             'numbers_downloads_title' => 'Apps Download',
