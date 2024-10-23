@@ -24,16 +24,16 @@ class HomeCoverController extends Controller
     public function update(HomeCoverRequest $request, $id)
     {
         $data = $request->validated();
-    
+
         $homecover = HomeCover::findOrFail($id);
-        
-        $data['image'] = $request->file('image') ? 
-                         $this->uploadFile($request->file('image'), $this->uploadPath) : 
+
+        $data['image'] = $request->file('image') ?
+                         $this->uploadFile($request->file('image'), $this->uploadPath) :
                          $homecover->image;
-    
+
         $homecover->update($data);
-    
+
         return redirect()->route('home_cover', $id)->with('success', 'Home Cover Updated Successfully');
     }
-    
+
 }
