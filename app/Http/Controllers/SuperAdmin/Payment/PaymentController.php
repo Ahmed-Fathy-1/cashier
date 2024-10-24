@@ -55,8 +55,6 @@ class PaymentController extends Controller
 
             $tenant = Tenant::create([
                 'id' => $payment->domain_name,
-                'name' => $payment->domain_name,
-                'user_id' => $user_tanent->id,
             ]);
 
             $tenant->domains()->create([

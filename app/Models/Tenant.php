@@ -15,6 +15,11 @@ class Tenant extends BaseTenant implements TenantWithDatabase
     protected $table = 'domains' ;
 
 
-
+    public static function getCustomColumns(): array
+    {
+        return [
+            'user_id',
+        ];
+    }
 
 }

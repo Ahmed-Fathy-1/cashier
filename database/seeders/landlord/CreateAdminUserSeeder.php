@@ -36,7 +36,7 @@ class CreateAdminUserSeeder extends Seeder
         foreach ($this->permissions as $permission) {
             Permission::firstOrCreate(['name' => $permission, 'guard_name' => 'web']);
         }
-    
+
         // Create admin user
         $user = User::create([
             "name" => "Ahmed Fathy",
@@ -47,16 +47,48 @@ class CreateAdminUserSeeder extends Seeder
             "phone_verified_at" => Carbon::now(),
             "image" => "feed-back-1.jpg",
         ]);
-    
+
         // Create admin role
         $role = Role::firstOrCreate(['guard_name' => 'web', 'name' => 'Super Admin']);
-    
+
         // Assign all permissions to the role
         $permissions = Permission::pluck('id')->toArray();
         $role->syncPermissions($permissions);
-    
+
         // Assign the role to the user
         $user->assignRole($role);
+
+
+
+
+        User::insert([
+            [
+                "name" => "Ayman Fathy",
+                "email" => "AymanAdmin@pos.com",
+                "phone" => "01040983170",
+                "password" => bcrypt('12345678'),
+                "email_verified_at" => Carbon::now(),
+                "phone_verified_at" => Carbon::now(),
+                "image" => "feed-back-1.jpg",
+            ],
+            [
+                "name" => "ibrahem Fathy",
+                "email" => "ibrahemAdmin@pos.com",
+                "phone" => "01040983170",
+                "password" => bcrypt('12345678'),
+                "email_verified_at" => Carbon::now(),
+                "phone_verified_at" => Carbon::now(),
+                "image" => "feed-back-1.jpg",
+            ],
+            [
+                "name" => "mohamed Fathy",
+                "email" => "mohamedAdmin@pos.com",
+                "phone" => "01040983170",
+                "password" => bcrypt('12345678'),
+                "email_verified_at" => Carbon::now(),
+                "phone_verified_at" => Carbon::now(),
+                "image" => "feed-back-1.jpg",
+            ],
+        ]);
     }
-    
 }

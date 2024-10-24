@@ -92,6 +92,7 @@
                                                     @foreach ($user->getRoleNames() as $role)
                                                         <label class="badge badge-secondary text-dark">{{ $role }}</label>
                                                     @endforeach
+                                             
                                                 @endif
                                             </td>
                                             <td data-column-id="actions" class="gridjs-td">
@@ -116,11 +117,6 @@
                                                             class="mx-2 btn bg-slate-150 font-medium text-slate-800 hover:bg-slate-200 focus:bg-slate-200 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90 btn h-8 w-8 p-0 text-error hover:bg-error/20 focus:bg-error/20 active:bg-error/25">
                                                                 <i class="fa fa-trash-alt"></i></button>
                                                         </form>
-
-
-
-
-
 
                                                     </div>
                                                 </span>

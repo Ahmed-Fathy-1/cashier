@@ -19,6 +19,7 @@ use Database\Seeders\landlord\MainNeedsSeeder;
 use Database\Seeders\landlord\PackageDetailsSeeder;
 use Database\Seeders\landlord\PackageSeeder;
 use Database\Seeders\landlord\PaymentMethodsSeeder;
+use Database\Seeders\landlord\PaymentsSeeder;
 use Database\Seeders\landlord\SettingSeeder;
 use Database\Seeders\landlord\ContactUsSeeder;
 
@@ -43,6 +44,7 @@ class DatabaseSeeder extends Seeder
         $this->call(PackageDetailsSeeder::class);
         $this->call(AboutUsSeeder::class);
 
+
         $this->call(ContactUsSeeder::class);
         $this->call(HomeCoverSeeder::class);
         $this->call(FeedBackSeeder::class);
@@ -52,5 +54,6 @@ class DatabaseSeeder extends Seeder
         $this->call(MainNeedsSeeder::class);
         $this->call(SubNeedsSeeder::class);
 
+        $this->call(PaymentsSeeder::class);
     }
 }
