@@ -1,0 +1,33 @@
+@import "./custom-bootstarp";
+@import "./aitech-custom.scss";
+
+// .layout {
+//   height: 5000px !important;
+// }
+
+/* start some general classes with Ibrahim */
+
+.only-screen{
+    position: absolute;
+    left: -1PX;
+    top: 1PX;
+    width: 1PX;
+    height: 1PX;
+    overflow: hidden;
+}
+
+.main-section{
+    margin: 20px 0 0;
+
+    @media(min-width:1024px){
+        margin: 20px 0 0;
+    }
+}
+
+.flex-center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* start some general classes with Ibrahim */

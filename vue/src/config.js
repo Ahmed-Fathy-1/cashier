@@ -1,2 +1,5 @@
-export const url = 'https://abusara.aitech.net.au/api'
-// export const url = 'http://abusara.test/api'
+export const url = "http://localhost:3001";
+
+export const extrnalUrl = 'http://cashier.test/api/';
+
+//export const url = "http://cashier.test/api";
