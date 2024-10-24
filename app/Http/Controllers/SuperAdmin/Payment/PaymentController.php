@@ -49,9 +49,8 @@ class PaymentController extends Controller
 
         $user_tanent = User::findOrFail($validated['user_id']);
 
-        // ,'completed','failed','cancelled
 
-        if ($payment->status == 'completed') {
+        if ($request->status == 'completed') {
 
             $tenant = Tenant::create([
                 'id' => $payment->domain_name,
