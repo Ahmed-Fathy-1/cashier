@@ -41,6 +41,7 @@ class PaymentController extends Controller
                 'user_id' => auth('api')->user()->id,
                 'package_id' => $request->package_id,
                 'amount' => $paymentIntent->amount,
+                'domain_name' => $request->domain_name,
                 'currency' => $paymentIntent->currency,
                 'receipt' => $paymentIntent->receipt_email ?? null,
                 'methods' => 'Stripe',

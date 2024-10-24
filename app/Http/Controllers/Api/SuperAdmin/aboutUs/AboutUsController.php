@@ -19,11 +19,6 @@ class AboutUsController extends Controller
      */
     protected $filePath = '/about_us';
 
-    public function __construct()
-    {
-        $this->middleware('auth:api');
-    }
-
     /**
      * Display a listing of the resource.
      */
@@ -33,22 +28,6 @@ class AboutUsController extends Controller
         return ResponseHelper::sendResponseSuccess([
             'aboutUs' => new AboutUsResource($aboutUs),
         ]);
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
     }
 
     /**
@@ -81,11 +60,4 @@ class AboutUsController extends Controller
         ]);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
-    }
 }

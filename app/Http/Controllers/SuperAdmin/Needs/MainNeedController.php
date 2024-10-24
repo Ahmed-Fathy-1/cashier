@@ -14,42 +14,6 @@ class MainNeedController extends Controller
 
     protected $filePath = 'images/needs';
 
-    public function __construct()
-    {
-        $this->middleware('auth:api');
-    }
-
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(MainNeed $mainNeed)
-    {
-        //
-    }
 
     /**
      * Show the form for editing the specified resource.
@@ -82,11 +46,4 @@ class MainNeedController extends Controller
         return back()->with('success', 'Main Need updated successfully!');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(MainNeed $mainNeed)
-    {
-        //
-    }
 }

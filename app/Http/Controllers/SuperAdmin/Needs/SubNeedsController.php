@@ -17,10 +17,6 @@ class SubNeedsController extends Controller
 
     protected $filePath = 'images/needs';
 
-    public function __construct()
-    {
-        $this->middleware('auth:api');
-    }
 
     /**
      * Display a listing of the resource.
@@ -57,16 +53,6 @@ class SubNeedsController extends Controller
         SubNeeds::create($data);
 
         return to_route('sub_needs.index')->with('success', 'Sub need created successfully!');
-    }
-
-
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(SubNeeds $subNeeds)
-    {
-        //
     }
 
     /**

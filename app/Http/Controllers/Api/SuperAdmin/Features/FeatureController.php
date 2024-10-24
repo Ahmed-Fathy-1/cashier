@@ -15,10 +15,6 @@ class FeatureController extends Controller
     use UploadFileTrait;
 
     protected $filePath = 'images/features';
-    public function __construct()
-    {
-        $this->middleware('auth:api');
-    }
 
     public function index()
     {
@@ -28,42 +24,4 @@ class FeatureController extends Controller
         ]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-         //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(FeatureRequest $request, $id)
-    {
-        $data = $request->validated(); // Get validated data
-        $feature = Feature::findOrFail($id);
-
-        // Update images or retain existing ones
-        foreach (range(1, 3) as $num) {
-            $key = "feature_{$num}_image";
-            $data[$key] = isset($data[$key])
-                ? $this->updateFile($data[$key], $feature->$key, $this->filePath)
-                : $feature->$key;
-        }
-
-        // Fill and save feature data
-        $feature->fill($data)->save();
-
-        return ResponseHelper::sendResponseSuccess([
-            'feature' => new FeatureResource($feature),
-        ]);}
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Feature $superAdminFeature)
-    {
-        //
-    }
 }

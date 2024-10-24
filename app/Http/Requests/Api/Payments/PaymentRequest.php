@@ -24,6 +24,7 @@ class PaymentRequest extends FormRequest
         return [
             'package_id' => ['required', 'integer', 'exists:packages,id'],
             'package_type' => ['required', 'integer'],
+            'domain_name' => ['required','unique:payments,domain_name', 'regex:/^([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}$/'],
         ];
     }
 

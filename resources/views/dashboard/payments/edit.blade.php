@@ -52,6 +52,29 @@
                     @csrf
                     @method('PUT') <!-- Use PUT for updating resources -->
                     <h4 class="space-y-4 p-4 sm:p-5">
+
+
+                        <label class="block">
+                            <span>username</span>
+                            <input name="name" type="text" maxlength="3"
+                                   class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent
+                               px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary
+                               dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
+                                    value="{{ old('name', $payment->user->name) }}">
+                        </label>
+                        @error('name')<span class="text-tiny+ text-error">{{ $message }}</span>@enderror
+                        <label class="block">
+                            <span>domain name</span>
+                            <input name="domain_name" type="text" maxlength="3"
+                                   class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent
+                               px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary
+                               dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
+                                   value="{{ old('name', $payment->domain_name) }}">
+                        </label>
+                        @error('domain_name')<span class="text-tiny+ text-error">{{ $message }}</span>@enderror
+
+                        <input type="hidden" name="user_id" value="{{ $payment->user_id }}">
+
                         <label class="block">
                             <span>Package</span>
                             <select name="package_id"
@@ -89,6 +112,24 @@
                                    placeholder="Enter Currency (e.g., USD)" value="{{ old('currency', $payment->currency) }}">
                         </label>
                         @error('currency')<span class="text-tiny+ text-error">{{ $message }}</span>@enderror
+
+                        <label class="block">
+                            <span>status</span>
+                            <select name="status"
+                                    class="form-select mt-1.5 w-full rounded-lg border border-slate-300 bg-white px-3 py-2
+                                hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:bg-navy-700
+                                dark:hover:border-navy-400 dark:focus:border-accent">
+                                    <option value="pending" {{ $payment->status == 'pending' ? 'selected' : '' }}>
+                                        pending
+                                    </option>
+                                    <option value="completed" {{ $payment->status == 'completed' ? 'selected' : '' }}>
+                                        completed
+                                    </option>
+                            </select>
+                        </label>
+                        @error('status')
+                        <span class="text-tiny+ text-error">{{ $message }}</span>
+                        @enderror
 
                         <div class="flex justify-end space-x-2">
                             <button type="submit"

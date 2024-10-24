@@ -68,6 +68,7 @@
                     <tr>
                         <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider dark:text-navy-200">ID</th>
                         <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider dark:text-navy-200">User Name</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider dark:text-navy-200">domain name</th>
                         <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider dark:text-navy-200">Package Name</th>
                         <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider dark:text-navy-200">Amount</th>
                         <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider dark:text-navy-200">Currency</th>
@@ -83,6 +84,7 @@
                             <tr>
                                 <td class="px-6 py-4 text-sm font-medium text-slate-900 dark:text-navy-50">{{ $i }}</td>
                                 <td class="px-6 py-4 text-sm text-slate-500 dark:text-navy-100">{{ $record->user->name }}</td>
+                                <td class="px-6 py-4 text-sm text-slate-500 dark:text-navy-100">{{ $record->domain_name }}</td>
                                 <td class="px-6 py-4 text-sm text-slate-500 dark:text-navy-100">{{ $record->package->title }}</td>
                                 <td class="px-6 py-4 text-sm text-slate-500 dark:text-navy-100">{{ $record->amount }}</td>
                                 <td class="px-6 py-4 text-sm text-slate-500 dark:text-navy-100">{{ $record->currency }}</td>
@@ -119,11 +121,11 @@
                                                 onsubmit="return confirm('Are you sure you want to delete this Payment Record?');">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit"  
+                                                <button type="submit"
                                                 class="mx-2 btn bg-slate-150 font-medium text-slate-800 hover:bg-slate-200 focus:bg-slate-200 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90 btn h-8 w-8 p-0 text-error hover:bg-error/20 focus:bg-error/20 active:bg-error/25">
                                                     <i class="fa fa-trash-alt"></i></button>
-        
-                                            </form> 
+
+                                            </form>
                                             {{-- @endcan --}}
                                         </div>
                                     </span>

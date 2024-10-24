@@ -17,9 +17,4 @@ class FeedBacksController extends Controller
         return $this->successResponse($feedbacks, 'Feedbacks retrieved successfully');
     }
 
-    public function deletedFeedbacks()
-    {
-        $feedbacks = FeedBack::onlyTrashed()->get();
-        return $this->successResponse($feedbacks, 'Deleted feedbacks retrieved successfully');
-    }
 }

@@ -19,9 +19,13 @@ return new class extends Migration
             $table->string('receipt')->nullable();
             $table->char('currency',3)->default('EGP');
             $table->string('methods')->nullable();
-            $table->enum('status',['pending','completed','failed','cancelled'])->default('pending');
+            $table->enum('status',['pending','completed'])->default('pending');
             $table->string('transaction_id')->nullable();
             $table->json('transaction_data')->nullable();
+            
+            // domain name
+            $table->string('domain_name');
+
             $table->softDeletes(); // Adds 'deleted_at' column
             $table->timestamps();
         });

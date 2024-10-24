@@ -30,9 +30,6 @@
         <div class="card">
             <div class="border-b border-slate-200 p-4 dark:border-navy-500 sm:px-5">
                 <h4 class="text-lg font-medium text-slate-700 dark:text-navy-100">Payments</h4>
-                <a href="{{ route('payments.create') }}" class="btn bg-primary text-white hover:bg-primary-focus mt-4">
-                    Add new Payment
-                </a>
                 <a class="btn bg-error text-white hover:bg-error-focus focus:bg-error-focus dark:bg-error dark:hover:bg-error-focus dark:focus:bg-error-focus mt-4"
                    href="{{ route('payments.deleted') }}"> Deleted Payments </a>
             </div>
@@ -63,6 +60,7 @@
                     <tr>
                         <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider dark:text-navy-200">ID</th>
                         <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider dark:text-navy-200">User Name</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider dark:text-navy-200">domain name</th>
                         <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider dark:text-navy-200">Package Name</th>
                         <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider dark:text-navy-200">Amount</th>
                         <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider dark:text-navy-200">Currency</th>
@@ -78,27 +76,11 @@
                             <tr>
                                 <td class="px-6 py-4 text-sm font-medium text-slate-900 dark:text-navy-50">{{ $i }}</td>
                                 <td class="px-6 py-4 text-sm text-slate-500 dark:text-navy-100">{{ $record->user->name }}</td>
+                                <td class="px-6 py-4 text-sm text-slate-500 dark:text-navy-100">{{ $record->domain_name }}</td>
                                 <td class="px-6 py-4 text-sm text-slate-500 dark:text-navy-100">{{ $record->package->title }}</td>
                                 <td class="px-6 py-4 text-sm text-slate-500 dark:text-navy-100">{{ $record->amount }}</td>
                                 <td class="px-6 py-4 text-sm text-slate-500 dark:text-navy-100">{{ $record->currency }}</td>
-                                <td class="">
-                                    <form action="{{ route('payments.status') }}"
-                                        method="post">
-                                        @csrf
-                                        <input type="hidden" name="id" value="{{ $record->id }}">
-                                        @if($record->status == 'pending')
-                                            <button data-close-modal=""
-                                                    class="btn m-3 bg-warning font-medium text-white hover:bg-success-focus focus:bg-success-focus active:bg-success-focus/90">
-                                                {{ $record->status }}
-                                            </button>
-                                        @else
-                                            <button data-close-modal=""
-                                                    class="btn m-3 bg-success font-medium text-white hover:bg-success-focus focus:bg-success-focus active:bg-success-focus/90">
-                                                {{ $record->status }}
-                                            </button>
-                                        @endif
-                                    </form>
-                                </td>
+                                <td class="px-6 py-4 text-sm text-slate-500 dark:text-navy-100">{{ $record->status }}</td>
                                 <td data-column-id="actions" class="gridjs-td">
                                     <span>
                                         <div class="flex space-x-2">

@@ -15,9 +15,9 @@ class HomeCoverController extends Controller
 
     protected $uploadPath = 'images/homecover';
 
-    public function show($id)
+    public function index()
     {
-        $homecover = HomeCover::findOrFail($id);
+        $homecover = HomeCover::find(1);
         return $this->successResponse($homecover, 'Home cover retrieved successfully');
     }
 }
