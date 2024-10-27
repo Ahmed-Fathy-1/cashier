@@ -34,7 +34,9 @@ class HomeController extends Controller
         $feedbackCount = FeedBack::count();
         $contactusCount = ContactUs::count();
 
-        // إنشاء البيانات الشهرية للرسوم البيانية
+        /**
+         * Charts
+         */
         $userCounts = [];
         $domainsCounts = [];
         $feedbackCounts = [];
@@ -45,7 +47,9 @@ class HomeController extends Controller
             $month = Carbon::now()->subMonths($i);
             $months[] = $month->format('F Y');
 
-            // حساب العدد الشهري لكل نوع
+            /**
+             * Count Monthly Number
+             */
             $userCounts[] = User::whereYear('created_at', $month->year)
                 ->whereMonth('created_at', $month->month)
                 ->count();

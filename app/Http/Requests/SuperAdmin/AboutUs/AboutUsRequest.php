@@ -37,15 +37,15 @@ class AboutUsRequest extends FormRequest
             'workflow_download_title' => 'nullable|string|max:255',
             'workflow_download_desc' => 'nullable|string',
             'workflow_download_number' => 'nullable|integer|min:0',
-            'workflow_download_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'workflow_download_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'workflow_manage_title' => 'nullable|string|max:255',
             'workflow_manage_desc' => 'nullable|string',
             'workflow_manage_number' => 'nullable|integer|min:0',
-            'workflow_manage_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'workflow_manage_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'workflow_edit_title' => 'nullable|string|max:255',
             'workflow_edit_desc' => 'nullable|string',
             'workflow_edit_number' => 'nullable|integer|min:0',
-            'workflow_edit_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'workflow_edit_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ];
     }
 }
