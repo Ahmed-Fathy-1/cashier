@@ -3,257 +3,123 @@
 @section('title', 'Home')
 
 @push('style')
-
 @endpush
 
 @section('main')
-<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 
-  <main class="main-content w-full pb-8">
-    <div class="mt-4 grid grid-cols-12 gap-4 px-[var(--margin-x)] transition-all duration-[.25s] sm:mt-5 sm:gap-5 lg:mt-6 lg:gap-6">
-      <div class="col-span-12 sm:col-span-12">
-        <div class="my-3 flex items-center justify-between px-4 sm:px-5">
-          <h2 class="font-medium tracking-wide text-slate-700 dark:text-navy-100">
-            Home
-          </h2>
+    <main class="main-content w-full pb-8">
+        <div class="mt-4 grid grid-cols-12 gap-4 px-[var(--margin-x)] transition-all duration-[.25s] sm:mt-5 sm:gap-5 lg:mt-6 lg:gap-6">
+            <div class="col-span-12 sm:col-span-12">
+                <div class="my-3 flex items-center justify-between px-4 sm:px-5">
+                    <h2 class="font-medium tracking-wide text-slate-700 dark:text-navy-100">Home</h2>
+                </div>
+
+                {{-- Stat Cards --}}
+                <div class="mt-4 grid grid-cols-4 gap-4 px-[var(--margin-x)] transition-all duration-[.25s] sm:mt-5 sm:gap-5 lg:mt-6 lg:gap-6">
+                    {{-- Stat Card Components --}}
+                    @php
+                        $stats = [
+                            ['title' => 'Users', 'count' => $userCount, 'icon' => 'fa-user', 'bg' => 'warning', 'link' => 'users.index'],
+                            ['title' => 'Domains', 'count' => $domainsCount, 'icon' => 'fa-globe', 'bg' => 'info', 'link' => 'tenants.index'],
+                            ['title' => 'Feedbacks', 'count' => $feedbackCount, 'icon' => 'fa-comments', 'bg' => 'success', 'link' => 'feedbacks.index'],
+                            ['title' => 'Contact Us', 'count' => $contactusCount, 'icon' => 'fa-phone', 'bg' => 'error', 'link' => 'contact-us.index']
+                        ];
+                    @endphp
+                    @foreach ($stats as $stat)
+                        <div class="card flex-row justify-between p-4">
+                            <div>
+                                <a class="text-xs+ uppercase" href={{ route($stat['link']) }}>{{ $stat['title'] }}</a>
+                                <div class="mt-8 flex items-baseline space-x-1">
+                                    <p class="text-2xl font-semibold text-slate-700 dark:text-navy-100">{{ $stat['count'] }}</p>
+                                </div>
+                            </div>
+                            <div class="mask is-squircle flex size-10 items-center justify-center bg-{{ $stat['bg'] }}/10">
+                                <i class="fa-solid {{ $stat['icon'] }} text-xl text-{{ $stat['bg'] }}"></i>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+
+                {{-- Charts Section --}}
+                <div class="mt-8 grid grid-cols-12 gap-6">
+                    {{-- Users Chart --}}
+                    <div class="col-span-12 lg:col-span-6">
+                        <div id="chart-users"></div>
+                    </div>
+
+                    {{-- Domains Chart --}}
+                    <div class="col-span-12 lg:col-span-6">
+                        <div id="chart-domains"></div>
+                    </div>
+
+                    {{-- Feedbacks Chart --}}
+                    <div class="col-span-12 lg:col-span-6">
+                        <div id="chart-feedbacks"></div>
+                    </div>
+
+                    {{-- Contact Us Chart --}}
+                    <div class="col-span-12 lg:col-span-6">
+                        <div id="chart-contactus"></div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="mt-4 grid grid-cols-4 gap-4 px-[var(--margin-x)] transition-all duration-[.25s] sm:mt-5 sm:gap-5 lg:mt-6 lg:gap-6">
-          <div class="card flex-row justify-between p-4">
-            <div>
-              <p class="text-xs+ uppercase">Users</p>
-              <div class="mt-8 flex items-baseline space-x-1">
-                <p class="text-2xl font-semibold text-slate-700 dark:text-navy-100">
-                  {{ $userCount }}
-                </p>
-              </div>
-            </div>
-            <div class="mask is-squircle flex size-10 items-center justify-center bg-warning/10">
-              <i class="fa-solid fa-user text-xl text-warning"></i>
-            </div>
-            <div class="absolute bottom-0 right-0 overflow-hidden rounded-lg">
-              <i class="fa-solid fa-user translate-x-1/4 translate-y-1/4 text-5xl opacity-15"></i>
-            </div>
-          </div>
-          <div class="card flex-row justify-between p-4">
-            <div>
-              <p class="text-xs+ uppercase">Domains</p>
-              <div class="mt-8 flex items-baseline space-x-1">
-                <p class="text-2xl font-semibold text-slate-700 dark:text-navy-100">
-                  {{ $domainsCount  }}
-                </p>
-              </div>
-            </div>
-            <div class="mask is-squircle flex size-10 items-center justify-center bg-info/10">
-              <i class="fa-solid fa-globe text-xl text-info"></i>
-            </div>
-            <div class="absolute bottom-0 right-0 overflow-hidden rounded-lg">
-              <i class="fa-solid fa-globe translate-x-1/4 translate-y-1/4 text-5xl opacity-15"></i>
-            </div>
-          </div>
-          <div class="card flex-row justify-between p-4">
-            <div>
-              <p class="text-xs+ uppercase">Feedbacks</p>
-              <div class="mt-8 flex items-baseline space-x-1">
-                <p class="text-2xl font-semibold text-slate-700 dark:text-navy-100">
-                  {{ $feedbackCount }}
-                </p>
-              </div>
-            </div>
-            <div class="mask is-squircle flex size-10 items-center justify-center bg-success/10">
-              <i class="fa-solid fa-comments text-xl text-success"></i>
-            </div>
-            <div class="absolute bottom-0 right-0 overflow-hidden rounded-lg">
-              <i class="fa-solid fa-comments translate-x-1/4 translate-y-1/4 text-5xl opacity-15"></i>
-            </div>
-          </div>
-          <div class="card flex-row justify-between p-4">
-            <div>
-              <p class="text-xs+ uppercase">Contact Us</p>
-              <div class="mt-8 flex items-baseline space-x-1">
-                <p class="text-2xl font-semibold text-slate-700 dark:text-navy-100">
-                {{ $contactusCount }}
-                </p>
-              </div>
-            </div>
-            <div class="mask is-squircle flex size-10 items-center justify-center bg-error/10">
-              <i class="fa-solid fa-phone text-xl text-error"></i>
-            </div>
-            <div class="absolute bottom-0 right-0 overflow-hidden rounded-lg">
-              <i class="fa-solid fa-phone translate-x-1/4 translate-y-1/4 text-5xl opacity-15"></i>
-            </div>
-          </div>
+    </main>
 
+    {{-- Apex Charts Script --}}
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
 
-        </div>
-
-            {{-- Cards With Line Loading --}}
-        {{-- <div class="grid grid-cols-1 gap-4 px-4 sm:gap-5 sm:px-5 lg:grid-cols-2">
-
-
-          <div class="rounded-lg border border-slate-150 p-4 dark:border-navy-600">
-            <div class="flex justify-between">
-              <div>
-                <span class="text-2xl font-medium text-slate-700 dark:text-navy-100"></span>
-                <span class="text-xs"></span>
-              </div>
-              <p class="text-xs+">Products</p>
-            </div>
-
-            <div class="progress mt-3 h-1.5 bg-slate-150 dark:bg-navy-500">
-              <div class="is-active relative w-8/12 overflow-hidden rounded-full bg-success"></div>
-            </div>
-            <div class="mt-2 flex justify-between text-xs text-slate-400 dark:text-navy-300">
-              <p>Monthly target</p>
-              <p>50%</p>
-            </div>
-          </div>
-
-
-
-          <div class="rounded-lg border border-slate-150 p-4 dark:border-navy-600">
-            <div class="flex justify-between">
-              <div>
-                <span class="text-2xl font-medium text-slate-700 dark:text-navy-100"></span>
-                <span class="text-xs"></span>
-              </div>
-              <p class="text-xs+">Services</p>
-            </div>
-
-            <div class="progress mt-3 h-1.5 bg-slate-150 dark:bg-navy-500">
-              <div class="relative w-8/12 overflow-hidden rounded-full bg-warning"></div>
-            </div>
-            <div class="mt-2 flex justify-between text-xs text-slate-400 dark:text-navy-300">
-              <p>Monthly target</p>
-              <p>70%</p>
-            </div>
-          </div>
-
-
-
-          <div class="rounded-lg border border-slate-150 p-4 dark:border-navy-600">
-            <div class="flex justify-between">
-              <div>
-                <span class="text-2xl font-medium text-slate-700 dark:text-navy-100"></span>
-                <span class="text-xs"></span>
-              </div>
-              <p class="text-xs+">Solutions</p>
-            </div>
-
-            <div class="progress mt-3 h-1.5 bg-slate-150 dark:bg-navy-500">
-              <div class="relative w-5/12 overflow-hidden rounded-full bg-secondary"></div>
-            </div>
-            <div class="mt-2 flex justify-between text-xs text-slate-400 dark:text-navy-300">
-              <p>Monthly target</p>
-              <p>65%</p>
-            </div>
-          </div>
-
-
-
-
-          <div class="rounded-lg border border-slate-150 p-4 dark:border-navy-600">
-            <div class="flex justify-between">
-              <div>
-                <span class="text-2xl font-medium text-slate-700 dark:text-navy-100"></span>
-                <span class="text-xs"></span>
-              </div>
-              <p class="text-xs+">Contact Us</p>
-            </div>
-
-            <div class="progress mt-3 h-1.5 bg-slate-150 dark:bg-navy-500">
-              <div class="is-active relative w-4/12 overflow-hidden rounded-full bg-slate-500 dark:bg-navy-400"></div>
-            </div>
-            <div class="mt-2 flex justify-between text-xs text-slate-400 dark:text-navy-300">
-              <p>Monthly target</p>
-              <p>30%</p>
-            </div>
-          </div>
-
-
-
-          <div class="rounded-lg border border-slate-150 p-4 dark:border-navy-600">
-            <div class="flex justify-between">
-              <div>
-                <span class="text-xs"></span>
-              </div>
-              <p class="text-xs+">Subscribes</p>
-            </div>
-
-            <div class="progress mt-3 h-1.5 bg-slate-150 dark:bg-navy-500">
-              <div class="is-active relative w-4/12 overflow-hidden rounded-full bg-slate-500 dark:bg-navy-400"></div>
-            </div>
-            <div class="mt-2 flex justify-between text-xs text-slate-400 dark:text-navy-300">
-              <p>Monthly target</p>
-              <p>35%</p>
-            </div>
-          </div>
-        </div> --}}
-
-
-        <br>
-        <br>
-        <div id="chart"></div>
-      </div>
-    </div>
-
-  </main>
-
-  {{-- Apex Charts Script --}} 
-  <script>
-    document.addEventListener("DOMContentLoaded", function() {
-            // Calculate max user count to set Y-axis
-            var userCounts = {!! json_encode($userCounts) !!};
-            var maxCount = Math.max(...userCounts);
-            var yAxisMax;
-
-            // Determine Y-axis max value based on user count
-            if (maxCount > 10) {
-                yAxisMax = Math.ceil(maxCount / 10) * 10; // Round up to the nearest 10
-            } else {
-                yAxisMax = 10; // Default max value if less than or equal to 10
+            function createChartOptions(name, data, months) {
+                const maxCount = Math.max(...data);
+                const yAxisMax = maxCount > 10 ? Math.ceil(maxCount / 10) * 10 : 10;
+                return {
+                    chart: { type: 'area', height: 350, zoom: { enabled: false } },
+                    series: [{ name: name, data: data }],
+                    xaxis: { categories: months },
+                    yaxis: {
+                        max: yAxisMax,
+                        tickAmount: yAxisMax > 10 ? 5 : 10,
+                        labels: { formatter: value => Math.floor(value) }
+                    },
+                    title: { text: `${name} Over the Last 12 Months`, align: 'left' },
+                    tooltip: { shared: true, intersect: false }
+                };
             }
 
-            var options = {
-                chart: {
-                    type: 'area',
-                    height: 350,
-                    zoom: {
-                        enabled: false
-                    },
-                },
-                series: [{
-                    name: 'User Count',
-                    data: userCounts // User counts data
-                }],
-                xaxis: {
-                    categories: {!! json_encode($months) !!}, // Month labels
-                },
-                yaxis: {
-                    max: yAxisMax, // Set calculated max for Y-axis
-                    tickAmount: yAxisMax > 10 ? 5 : 10, // Adjust tick amounts
-                    labels: {
-                        formatter: function(value) {
-                            return Math.floor(value); // Ensure whole numbers
-                        }
-                    }
-                },
-                title: {
-             text: 'User Count Over the Last 12 Months',
-            align: 'left'
-    },
-                tooltip: {
-                    shared: true,
-                    intersect: false
-                }
-            };
+            /**
+             * User Chart
+             */
+            const userCounts = {!! json_encode($userCounts) !!};
+            const months = {!! json_encode($months) !!};
+            const userChart = new ApexCharts(document.querySelector("#chart-users"), createChartOptions("User Count", userCounts, months));
+            userChart.render();
 
-            var chart = new ApexCharts(document.querySelector("#chart"), options);
-            chart.render();
+            /**
+             * Domains Chart
+             */
+            const domainCounts = {!! json_encode($domainsCounts) !!};
+            const domainChart = new ApexCharts(document.querySelector("#chart-domains"), createChartOptions("Domain Count", domainCounts, months));
+            domainChart.render();
+
+            /**
+             * Feedbacks Chart
+             */
+            const feedbackCounts = {!! json_encode($feedbackCounts) !!};
+            const feedbackChart = new ApexCharts(document.querySelector("#chart-feedbacks"), createChartOptions("Feedback Count", feedbackCounts, months));
+            feedbackChart.render();
+
+            /**
+             * Contact Us Chart
+             */
+            const contactusCounts = {!! json_encode($contactusCounts) !!};
+            const contactusChart = new ApexCharts(document.querySelector("#chart-contactus"), createChartOptions("Contact Us Count", contactusCounts, months));
+            contactusChart.render();
         });
-</script>
+    </script>
 
-  @endsection
+@endsection
 
 @push('scripts')
-
 @endpush

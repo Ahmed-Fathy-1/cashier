@@ -6,7 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\SuperAdmin\AboutUs\AboutUsRequest;
 use App\Http\Traits\Utils\UploadFileTrait;
 use App\Models\SuperAdmin\AboutUs;
-use Illuminate\Http\Request;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\View\View;
 
 class AboutUsController extends Controller
 {
@@ -15,40 +17,55 @@ class AboutUsController extends Controller
     protected $filePath = '/about_us';
 
     /**
+     * Show the form for editing the specified resource.
+     *
      * @param string $id
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Foundation\Application
+     * @return View
      */
-    public function edit(string $id)
+    public function edit(string $id): View
     {
-        $aboutUs = AboutUs::findOrFail($id);
-        return view('dashboard.about_us.edit', compact('aboutUs'));
+        try {
+            $aboutUs = AboutUs::findOrFail($id);
+            return view('dashboard.about_us.edit', compact('aboutUs'));
+        } catch (ModelNotFoundException $e) {
+            abort(404, 'About Us page not found.');
+        }
     }
 
     /**
+     * Update the specified resource in storage.
+     *
      * @param AboutUsRequest $request
      * @param string $id
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
-    public function update(AboutUsRequest $request, string $id)
+    public function update(AboutUsRequest $request, string $id): RedirectResponse
     {
-        $aboutUs = AboutUs::findOrFail($id);
-        $data = $request->validated();
+        try {
+            $aboutUs = AboutUs::findOrFail($id);
+            $data = $request->validated();
 
-        $data['workflow_download_image'] = $request->hasFile('workflow_download_image')
-            ? $this->updateFile($request->file('workflow_download_image'), $aboutUs->workflow_download_image, $this->filePath)
-            : $aboutUs->workflow_download_image;
+            // Array of image fields to handle
+            $imageFields = [
+                'workflow_download_image',
+                'workflow_manage_image',
+                'workflow_edit_image',
+            ];
 
-        $data['workflow_manage_image'] = $request->hasFile('workflow_manage_image')
-            ? $this->updateFile($request->file('workflow_manage_image'), $aboutUs->workflow_manage_image, $this->filePath)
-            : $aboutUs->workflow_manage_image;
+            // Process each image field
+            foreach ($imageFields as $field) {
+                if ($request->hasFile($field)) {
+                    $data[$field] = $this->updateFile($request->file($field), $aboutUs->$field, $this->filePath);
+                } else {
+                    $data[$field] = $aboutUs->$field;
+                }
+            }
 
-        $data['workflow_edit_image'] = $request->hasFile('workflow_edit_image')
-            ? $this->updateFile($request->file('workflow_edit_image'), $aboutUs->workflow_edit_image, $this->filePath)
-            : $aboutUs->workflow_edit_image;
+            $aboutUs->update($data);
+            return redirect()->back()->with('success', 'About Us updated successfully.');
 
-        $aboutUs->update($data);
-
-        return redirect()->back()->with('success', 'About Us updated successfully.');
-
+        } catch (ModelNotFoundException $e) {
+            abort(404, 'About Us page not found.');
+        }
     }
 }

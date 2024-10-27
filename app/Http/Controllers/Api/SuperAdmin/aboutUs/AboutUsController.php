@@ -1,63 +1,80 @@
 <?php
 
-namespace App\Http\Controllers\Api\SuperAdmin\aboutUs;
+namespace App\Http\Controllers\Api\SuperAdmin\AboutUs;
 
 use App\Http\Controllers\Controller;
 use App\Http\Helper\ResponseHelper;
 use App\Http\Requests\SuperAdmin\AboutUs\AboutUsRequest;
-use App\Http\Resources\Api\aboutUs\AboutUsResource;
+use App\Http\Resources\Api\AboutUs\AboutUsResource;
 use App\Http\Traits\Utils\UploadFileTrait;
 use App\Models\SuperAdmin\AboutUs;
-use Illuminate\Http\Request;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class AboutUsController extends Controller
 {
     use UploadFileTrait;
 
     /**
+     * Path for file uploads.
+     *
      * @var string
      */
     protected $filePath = '/about_us';
 
     /**
      * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\JsonResponse
      */
     public function index()
     {
-        $aboutUs = AboutUs::firstOrFail();
-        return ResponseHelper::sendResponseSuccess([
-            'aboutUs' => new AboutUsResource($aboutUs),
-        ]);
+        try {
+            $aboutUs = AboutUs::firstOrFail();
+            return ResponseHelper::sendResponseSuccess([
+                'aboutUs' => new AboutUsResource($aboutUs),
+            ]);
+        } catch (ModelNotFoundException $e) {
+            return ResponseHelper::sendResponseError('About Us page not found.', 404);
+        }
     }
 
     /**
      * Update the specified resource in storage.
+     *
+     * @param AboutUsRequest $request
+     * @param string $id
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function update(AboutUsRequest  $request, string $id)
+    public function update(AboutUsRequest $request, string $id)
     {
-        $aboutUs = AboutUs::findOrFail($id);
-        $data = $request->validated();
+        try {
+            $aboutUs = AboutUs::findOrFail($id);
+            $data = $request->validated();
 
-        // Handle images
-        $data['workflow_download_image'] = $request->hasFile('workflow_download_image')
-            ? $this->updateFile($request->file('workflow_download_image'), $aboutUs->workflow_download_image, $this->filePath)
-            : $aboutUs->workflow_download_image;
+            // Array of image fields to handle
+            $imageFields = [
+                'workflow_download_image',
+                'workflow_manage_image',
+                'workflow_edit_image',
+            ];
 
-        $data['workflow_manage_image'] = $request->hasFile('workflow_manage_image')
-            ? $this->updateFile($request->file('workflow_manage_image'), $aboutUs->workflow_manage_image, $this->filePath)
-            : $aboutUs->workflow_manage_image;
+            // Process each image field
+            foreach ($imageFields as $field) {
+                if ($request->hasFile($field)) {
+                    $data[$field] = $this->updateFile($request->file($field), $aboutUs->$field, $this->filePath);
+                } else {
+                    $data[$field] = $aboutUs->$field;
+                }
+            }
 
-        $data['workflow_edit_image'] = $request->hasFile('workflow_edit_image')
-            ? $this->updateFile($request->file('workflow_edit_image'), $aboutUs->workflow_edit_image, $this->filePath)
-            : $aboutUs->workflow_edit_image;
+            $aboutUs->update($data);
 
-        // Update the model with validated data
-        $aboutUs->update($data);
+            return ResponseHelper::sendResponseSuccess([
+                'about_us' => new AboutUsResource($aboutUs),
+            ]);
 
-        // Return a successful response with the updated resource
-        return ResponseHelper::sendResponseSuccess([
-            'about_us' => new AboutUsResource($aboutUs),
-        ]);
+        } catch (ModelNotFoundException $e) {
+            return ResponseHelper::sendResponseError('About Us page not found.', 404);
+        }
     }
-
 }

@@ -29,20 +29,43 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $userCount = User::count(); // Get user count
+        $userCount = User::count();
         $domainsCount = Tenant::count();
         $feedbackCount = FeedBack::count();
         $contactusCount = ContactUs::count();
-        // Get the user count for the next 6 months
+
+        // إنشاء البيانات الشهرية للرسوم البيانية
         $userCounts = [];
+        $domainsCounts = [];
+        $feedbackCounts = [];
+        $contactusCounts = [];
         $months = [];
+
         for ($i = 11; $i >= 0; $i--) {
             $month = Carbon::now()->subMonths($i);
-            $months[] = $month->format('F Y'); // Format the month for display
+            $months[] = $month->format('F Y');
+
+            // حساب العدد الشهري لكل نوع
             $userCounts[] = User::whereYear('created_at', $month->year)
-                                ->whereMonth('created_at', $month->month)
-                                ->count();
+                ->whereMonth('created_at', $month->month)
+                ->count();
+
+            $domainsCounts[] = Tenant::whereYear('created_at', $month->year)
+                ->whereMonth('created_at', $month->month)
+                ->count();
+
+            $feedbackCounts[] = FeedBack::whereYear('created_at', $month->year)
+                ->whereMonth('created_at', $month->month)
+                ->count();
+
+            $contactusCounts[] = ContactUs::whereYear('created_at', $month->year)
+                ->whereMonth('created_at', $month->month)
+                ->count();
         }
-        return view('home', compact('userCounts', 'months','userCount','domainsCount','feedbackCount','contactusCount')); // Pass it to the view
+
+        return view('home', compact(
+            'userCounts', 'domainsCounts', 'feedbackCounts', 'contactusCounts',
+            'months', 'userCount', 'domainsCount', 'feedbackCount', 'contactusCount'
+        ));
     }
 }
