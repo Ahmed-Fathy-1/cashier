@@ -105,9 +105,9 @@ const showPassword = () => {
 
 
 const handleSubmit = async () => {
-   const {email,password} = userLoggined.value;
-  //const email = "SuperAdmin@admin.com";
-  //const password = "12345678";
+   //const {email,password} = userLoggined.value;
+  const email = "SuperAdmin@admin.com";
+  const password = "12345678";
    const data = await authStore.login({ email: email, password: password });
    router.push('/')
 };
