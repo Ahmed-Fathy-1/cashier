@@ -15,6 +15,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Stripe\StripeClient;
+use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
 
 class PaymentController extends Controller
 {
@@ -50,24 +52,68 @@ class PaymentController extends Controller
         $user_tanent = User::find($validated['user_id']);
 
         if ($request->status == 'completed') {
-
-            $tenant = Tenant::create([
-                'id' => $payment->domain_name,
-            ]);
-
-            $tenant->domains()->create([
-                'domain' => $payment->domain_name,
-            ]);
-
-            $tenant->run(function () use($user_tanent) {
-                User::create([
-                    "name" => $user_tanent['name'],
-                    "email" => $user_tanent['email'],
-                    "email_verified_at" => $user_tanent['email_verified_at'],
-                    "password" => $user_tanent['password'],
-                    "mobile" => $user_tanent['mobile'],
+            try{
+                $tenant = Tenant::create([
+                    'id' => $payment->domain_name,
                 ]);
-            });
+
+                $tenant->domains()->create([
+                    'domain' => $payment->domain_name,
+                ]);
+
+                $tenant->run(function () use($user_tanent) {
+                    $user = User::create([
+                        "name" => $user_tanent['name'],
+                        "email" => $user_tanent['email'],
+                        "email_verified_at" => $user_tanent['email_verified_at'],
+                        "password" => $user_tanent['password'],
+                        "mobile" => $user_tanent['mobile'],
+                        "role_name" => "admin",
+                    ]);
+                   $permissions = [
+                       'home',
+                       "product",
+                       "create_product",
+                       "edit_product",
+                       "delete_product",
+                       'category',
+                       'create_category',
+                       "edit_category",
+                       "delete_category",
+                       "banner",
+                       "create_banner",
+                       "edit_banner",
+                       "delete_banner",
+                       "coupon",
+                       "create_coupon",
+                       "edit_coupon",
+                       "delete_coupon",
+                       "cashier",
+                       "orders",
+                       "invoices",
+                       "delivery",
+                       "employee",
+                       "create_employee",
+                       "edit_employee",
+                       "delete_employee",
+                       "role",
+                       "create_role",
+                       "edit_role",
+                       "delete_role",
+                       "setting",
+                   ];
+                   foreach ($permissions as $permission) {
+                       Permission::create(['name' => $permission]);
+                   }
+                    $role = Role::create(['name' => 'admin']);
+                    $permissions = Permission::pluck('id','id')->all();
+                    $role->syncPermissions($permissions); // multiple permissions
+                    $user->assignRole([$role->id]);
+                });
+
+            }catch (\Exception $e){
+                return redirect()->back()->with('error', 'Error processing payment');
+            }
 
             try {
                 $name = $user_tanent->name;
@@ -85,9 +131,7 @@ class PaymentController extends Controller
             } catch (\Exception $e) {
                 return redirect()->back()->with('error', 'Email could not be sent. Please try again.');
             }
-
         }
-
         return redirect()->route('payments.index')->with('success', 'Payment updated successfully.');
     }
 

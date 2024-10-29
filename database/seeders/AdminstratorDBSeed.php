@@ -25,7 +25,7 @@ class AdminstratorDBSeed extends Seeder
             "role_name" => "Super Admin",
         ]);
 
-        $role = Role::create(['name' => 'Super Admin']);
+        $role = Role::create(['name' => 'admin']);
         $permissions = Permission::pluck('id','id')->all();
         $role->syncPermissions($permissions); // multiple permissions
         $user->assignRole([$role->id]);

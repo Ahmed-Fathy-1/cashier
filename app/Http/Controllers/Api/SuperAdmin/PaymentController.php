@@ -30,18 +30,18 @@ class PaymentController extends Controller
             $stripe = new StripeClient(config('services.stripe.secret'));
             $paymentIntent = $stripe->paymentIntents->create([
                 'amount' => $amount * 100,
-                'currency' => 'egp',
+                'currency' => 'EGP',
                 'automatic_payment_methods' => [
                     'enabled' => true,
                 ],
             ]);
 
             $payment = new Payment();
-            
+
             $payment->forceFill([
                 'user_id' => auth('api')->user()->id,
                 'package_id' => $request->package_id,
-                'amount' => $paymentIntent->amount,
+                'amount' => $amount,
                 'domain_name' => $request->domain_name,
                 'currency' => $paymentIntent->currency,
                 'receipt' => $paymentIntent->receipt_email ?? null,

@@ -26,7 +26,7 @@ class AdminLoginController extends Controller
             return redirect()->back()->withErrors([ 'The email or password doesn\'t match']);
         }
         if(auth()->user()->role_name == null){
-            return redirect()->back()->with('warning', 'This pages for Administrator only');
+            return redirect()->back()->withErrors('warning', 'This pages for Administrator only');
         }
 
         if (\auth()->user()->hasRole('cashier')){
