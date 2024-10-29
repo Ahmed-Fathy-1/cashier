@@ -21,7 +21,7 @@ class MainNeedController extends Controller
      */
     public function index()
     {
-        $mainNeeds = MainNeed::PAGINATE(5);
+        $mainNeeds = MainNeed::get();
         return $this->successResponse(new MainNeedResource($mainNeeds), 'main_needs');
     }
 
