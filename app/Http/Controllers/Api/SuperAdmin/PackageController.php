@@ -22,7 +22,7 @@ class PackageController extends Controller
 
     public function show($id)
     {
-        $package = Package::find($id);
+        $package = Package::with('packageDetails')->find($id);
         return $this->successResponse($package, 'Package retrieved successfully.');
     }
 

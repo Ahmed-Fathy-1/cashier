@@ -37,6 +37,7 @@ class PaymentController extends Controller
             ]);
 
             $payment = new Payment();
+            
             $payment->forceFill([
                 'user_id' => auth('api')->user()->id,
                 'package_id' => $request->package_id,
@@ -49,13 +50,17 @@ class PaymentController extends Controller
                 'transaction_id' => $paymentIntent->id,
                 'transaction_data' => json_encode($paymentIntent),
             ])->save();
+
             $paymentData = [
                 'id' =>$payment->id,
                 'client_secret' => $paymentIntent->client_secret,
                 'payment_intent' => $paymentIntent->id,
             ];
+
             DB::commit();
+
             return  response()->json(['data' => $paymentData]);
+
         }catch (\Exception $ex){
             DB::rollBack();
             return  response()->json('error on payment process',['error' =>$ex->getMessage()]);
