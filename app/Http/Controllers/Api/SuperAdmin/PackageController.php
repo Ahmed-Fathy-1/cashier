@@ -22,7 +22,7 @@ class PackageController extends Controller
 
     public function show($id)
     {
-        $package = Package::findOrail($id);
+        $package = Package::find($id);
         return $this->successResponse($package, 'Package retrieved successfully.');
     }
 
