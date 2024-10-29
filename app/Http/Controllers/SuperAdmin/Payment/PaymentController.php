@@ -47,8 +47,7 @@ class PaymentController extends Controller
 
         $payment->update($validated);
 
-        $user_tanent = User::findOrFail($validated['user_id']);
-
+        $user_tanent = User::find($validated['user_id']);
 
         if ($request->status == 'completed') {
 
@@ -59,6 +58,16 @@ class PaymentController extends Controller
             $tenant->domains()->create([
                 'domain' => $payment->domain_name,
             ]);
+
+            $tenant->run(function () use($user_tanent) {
+                User::create([
+                    "name" => $user_tanent['name'],
+                    "email" => $user_tanent['email'],
+                    "email_verified_at" => $user_tanent['email_verified_at'],
+                    "password" => $user_tanent['password'],
+                    "mobile" => $user_tanent['mobile'],
+                ]);
+            });
 
             try {
                 $name = $user_tanent->name;
