@@ -21,7 +21,7 @@ class MainNeedController extends Controller
      */
     public function index()
     {
-        $mainNeeds = MainNeed::get();
+        $mainNeeds = MainNeed::first();
         return $this->successResponse(new MainNeedResource($mainNeeds), 'main_needs');
     }
 
