@@ -76,15 +76,15 @@
 </template>
 
 <script setup>
-import { onMounted, ref } from 'vue';
+import { onMounted, ref, toRaw } from 'vue';
 import { useAuthStore } from '@/store/store';
 import { useRouter } from 'vue-router';
 
 const show = ref(true);
 
 const userLoggined =  ref({
-      name: "",
-      email: ""
+    name: "",
+    email: ""
 });
 
 const router = useRouter();
@@ -96,23 +96,19 @@ const { initialize } = authStore;
 const handleChange = (e)=>{
   const {name,value} = e.target;
   userLoggined.value[name] = value
-  console.log(userLoggined.value);
 }
 
-onMounted(() => {
-  //initialize();
-});
 
 const showPassword = () => {
   show.value = !show.value;
 };
 
 
-const handleSubmit = () => {
-  // const {email,password} = userLoggined.value;
-  const email = "SuperAdmin@admin.com";
-  const password = "12345678";
-   authStore.login({ email: email, password: password });
+const handleSubmit = async () => {
+   const {email,password} = userLoggined.value;
+  //const email = "SuperAdmin@admin.com";
+  //const password = "12345678";
+   const data = await authStore.login({ email: email, password: password });
    router.push('/')
 };
 </script>

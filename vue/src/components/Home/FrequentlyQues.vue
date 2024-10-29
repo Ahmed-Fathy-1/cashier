@@ -12,14 +12,12 @@
     <div class="row gy-3">
       <div
         class="col-lg-6 col-md-12 col-12"
-        v-for="(item, outerIndex) in questions"
+        v-for="(item, outerIndex) in toRaw(data)"
         :key="outerIndex"
       >
-        <div class="accordion mt-5" :id="`accordionExample${outerIndex}`">
+        <div class="accordion mt-1" :id="`accordionExample${outerIndex}`">
           <div
             class="accordion-item"
-            v-for="(q, innerIndex) in item"
-            :key="innerIndex"
           >
             <h2 class="accordion-header">
               <button
@@ -30,7 +28,7 @@
                 aria-expanded="true"
                 :aria-controls="`collapse${outerIndex}${innerIndex}`"
               >
-                {{ q.question }}
+                {{ item?.question }}
               </button>
             </h2>
             <div
@@ -39,20 +37,57 @@
               :data-bs-parent="`#accordionExample${outerIndex}`"
             >
               <div class="accordion-body">
-                {{ q.answer }}
+                {{ item?.answer }}
               </div>
             </div>
           </div>
         </div>
       </div>
+
+      <!-- group 2-->
+     <!---- <div
+        class="col-lg-6 col-md-12 col-12"
+        v-for="(item, outerIndex) in toRaw(data)"
+        :key="outerIndex"
+      >
+        <div class="accordion mt-1" :id="`accordionExample${outerIndex}`">
+          <div
+            class="accordion-item"
+          >
+            <h2 class="accordion-header">
+              <button
+                class="accordion-button"
+                type="button"
+                data-bs-toggle="collapse"
+                :data-bs-target="`#collapse${outerIndex}${innerIndex}`"
+                aria-expanded="true"
+                :aria-controls="`collapse${outerIndex}${innerIndex}`"
+              >
+                {{ item?.question }}
+              </button>
+            </h2>
+            <div
+              :id="`collapse${outerIndex}${innerIndex}`"
+              class="accordion-collapse collapse"
+              :data-bs-parent="`#accordionExample${outerIndex}`"
+            >
+              <div class="accordion-body">
+                {{ item?.answer }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>-->
+
     </div>
   </div>
 </template>
 
 <script setup>
-import { onMounted, ref } from "vue";
+import { onMounted, ref, toRaw } from "vue";
 import { url } from "@/config";
 import axios from "axios";
+import fetchPageData from "@/api/get/fetchPageData";
 const questions = ref([]);
 
 const getQuestions = () => {
@@ -61,7 +96,15 @@ const getQuestions = () => {
   });
 };
 
-onMounted(() => {
-  getQuestions();
+const data = ref([]);
+const rating = ref(5);
+
+onMounted(async () => {
+  try {
+    data.value = await fetchPageData('faqs');
+  } catch (error) {
+    console.error("Error fetching page data:", error);
+  }
 });
+
 </script>

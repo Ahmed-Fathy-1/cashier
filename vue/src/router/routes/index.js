@@ -5,8 +5,8 @@ export default [
   ...landing,
   ...auth,
   {
-    path: "/check-out",
-    name: "checkout",
+    path: "/check-out/:packageId",
+    name: "Checkout",
     component: () => import("@/views/CheckOut.vue"),
   },
 ];

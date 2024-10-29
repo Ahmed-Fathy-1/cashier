@@ -18,21 +18,8 @@ export default {
     ContextRatingProvider,
     RatingServices,
   },
- setup() {
-
-    const router = useRouter(null);
-
-    onMounted(() => {
-      console.log('Component is mounted!');
-      if (!localStorage.getItem('token') || localStorage.getItem('token') === 'undefined') {
-        router.push('/login')
-      }
-      else{
-        const token = localStorage.getItem('token');
-      }
-    });
-  },
 };
+
 </script>
 
 <style>

@@ -25,10 +25,8 @@ export const useAuthStore = defineStore('auth', {
                 this.authUser = response.data.data.user; 
                 this.token = response.data.data.user.token; 
 
-                console.log('auther' , this.authUser);
-                console.log('token' , this.token);
-
                 localStorage.setItem('token', this.token);
+                localStorage.setItem('authUser', JSON.stringify(this.authUser));
                 // this.setAuthorizationHeader();
 
             } catch (error) {
@@ -43,24 +41,12 @@ export const useAuthStore = defineStore('auth', {
                 this.token = response.data.data.user.token; 
 
                 localStorage.setItem('token', this.token);
-                this.setAuthorizationHeader();
+                localStorage.setItem('authUser', JSON.stringify(this.authUser));
+                //this.setAuthorizationHeader();
 
             } catch (error) {
                 console.error('Login failed:', error);
                 throw error;
-            }
-        },
-        async getUser() {
-            try {
-                const response = await axios.get('/api/user', {
-                    headers: {
-                        Authorization: `Bearer ${this.token}`,
-                    },
-                });
-                this.authUser = response.data.data; 
-
-            } catch (error) {
-                console.error('Failed to fetch user:', error);
             }
         },
         async logout() {
@@ -78,14 +64,25 @@ export const useAuthStore = defineStore('auth', {
             this.authUser = null;
             this.token = '';
             localStorage.removeItem('token'); 
+            localStorage.removeItem('authUser')
         },
-        
         async initialize() {
             const token = localStorage.getItem('token');
+            const authUser = JSON.parse(localStorage.getItem('authUser'))
             if (token) {
                 this.token = token;
-               this.setAuthorizationHeader();
+                this.authUser = authUser;
+               //this.setAuthorizationHeader();
                // await this.getUser();
+            }
+        },
+        async getUser() {
+            const token = localStorage.getItem('token');
+            const authUser = JSON.parse(localStorage.getItem('authUser'))
+            if (token) {
+                this.token = token;
+                this.authUser = authUser;
+                return  authUser
             }
         },
     },

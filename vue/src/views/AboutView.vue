@@ -1,7 +1,7 @@
 <template>
   <div class="about-us">
     <div class="title text-center">
-      <h1>A: {{ data?.aboutUs?.intro_title}} </h1>
+      <h1>{{ data?.aboutUs?.intro_title}} </h1>
       <p>
         {{data?.aboutUs?.intro_desc}}
       </p>
@@ -21,12 +21,11 @@ import CounterSection from "@/components/Home/CounterSection.vue";
 import fetchPageData from "@/api/get/fetchPageData";
 import {ref,onMounted} from 'vue';
 
-const data = ref(null);
+const data = ref([]);
 
 onMounted(async () => {
   try {
     data.value = await fetchPageData('about-us');
-    console.log(data.value?.aboutUs?.intro_title); // This logs the title if available
   } catch (error) {
     console.error("Error fetching page data:", error);
   }

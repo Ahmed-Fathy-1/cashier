@@ -24,8 +24,8 @@
       </div>
 
       <div class="banner-image">
-       <!---- <img src="../../assets/images/machene2.png" alt="" /> -->
-       <img :src="data?.image" alt="">
+       <img src="../../assets/images/machene2.png" alt="" />
+       <!---- <img :src="data?.image" alt="">-->
       </div>
     </div>
   </section>
@@ -41,7 +41,7 @@ const data = ref(null);
 
 onMounted(async () => {
   try {
-    data.value = await fetchPageData('homecover/1');
+    data.value = await fetchPageData('homecovers');
   } catch (error) {
     console.error("Error fetching page data:", error);
   }

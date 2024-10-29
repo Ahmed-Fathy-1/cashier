@@ -2,7 +2,7 @@ import api from '..';
 
 const fetchPageData = async (path)=>{
     let data = null;
-    let token = '64|0r9sd8IwXwPMZCYOX19rYzOxj6m6pw9e3VPwKKF36d1d6387';
+    let token = '';
     
     if (localStorage.getItem('token') && localStorage.getItem('token') !== 'undifined') {
         token = localStorage.getItem('token');
@@ -21,7 +21,6 @@ const fetchPageData = async (path)=>{
         });
     }
     catch(error){
-       // data = null
         console.log(error);
     }    
     return data

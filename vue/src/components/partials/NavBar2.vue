@@ -25,40 +25,44 @@
           <li>
             <router-link to="/contact"> Contact Us </router-link>
           </li>
-
-          <v-btn
-            class="elevation-0 text-capitalize"
-            @click="$router.push('/login')"
-            size="small"
-          >
-            <span>Sign In</span>
-            <img src="../../assets/images/sign-in.png" width="20" alt="" />
-          </v-btn>
+          <li> <UserAuth /> </li>
+         
         </ul>
         <!-- links in small screens -->
-       <ToggleBtn :onButtonClick="handleClick" />
+        <ToggleBtn @click="toggleMenu" />
+
+
+        <!-- sidebar -->
+
+        <Sidebar  :menuActive="menuActive"/>
+
+
       </div>
     </div>
   </div>
 </template>
 
-<script >
-import { useScroll } from "@/compasaples/scroll";
+<script>
+import { defineComponent, inject, } from 'vue';
 import ToggleBtn from './ToggleBtn.vue';
+import Sidebar from './Sidebar.vue';
+import UserAuth from './UserAuth.vue';
 
-const { nav } = useScroll();
+export default defineComponent({
+  components: { ToggleBtn , Sidebar , UserAuth },
+  setup() {
+    const toggleSidebar =  inject('toggleSidebar');
 
-export default {
-  components: { ToggleBtn },
-  methods: {
-    handleClick() {
-      alert('function excued from 2')
-    }
-  }
-};
+    const toggleMenu = () => {
+      toggleSidebar()
+    };
 
+    return {
+      toggleMenu,
+    };
+  },
+});
 </script>
-
 
 <style lang="scss" scoped>
 ul {

@@ -49,7 +49,7 @@
               </p>
 
               <h3 class="price" v-if="active == false">
-                ${{ item?.package_details?.price_month }} <sub>/Month</sub>
+                ${{ item?.package_details?.Price_monthly }} <sub>/Month</sub>
               </h3>
 
               <h3 class="price" v-if="active == true">
@@ -61,11 +61,11 @@
                   'text-white': index == 1,
                   'text-primary': index == 0 || index == 2,
                 }"
-                @click="$router.push('/check-out')"
+                @click="navigateToCheckout(item?.id)"
                 class="text-capitalize elevation-0 mt-3 w-100"
                 variant="outlined"
-                >get start now</v-btn
-              >
+                >get start now</v-btn>
+              
 
               <!-- package details -->
               <div class="points mt-4">
@@ -154,18 +154,26 @@ import { ref, onMounted, toRaw } from "vue";
 import { url } from "@/config";
 import axios from "axios";
 import fetchPageData from "@/api/get/fetchPageData";
+import { useRouter } from "vue-router";
 
 const active = ref(true);
 
 
-const data = ref(null)
+const data = ref(null);
+const router = useRouter();
+
+
+const navigateToCheckout = (id) => {
+  console.log(`${id}`);
+  
+  router.push(`/check-out/${id}`);
+};
 
 onMounted(async() => {
  try {
     data.value = await fetchPageData('packages');
-    console.log(
-      toRaw(data?.value)
-    ); 
+    console.log(data.value);
+    
   } catch (error) {
     console.error("Error fetching page data:", error);
   }

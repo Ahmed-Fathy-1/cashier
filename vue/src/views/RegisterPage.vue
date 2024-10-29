@@ -196,8 +196,6 @@ const authStore = useAuthStore();
 const handleChange = (e)=>{
   const {name,value} = e.target;
   userRegestrated.value[name] = value
- // console.log(userRegestrated.value);
- // console.log('reg.............');
 }
 
 const handleConfirmChange = (e)=>{
@@ -223,10 +221,7 @@ const handleSubmit = () => {
       password_confirmation:password_confirmation
      });
     router.push('/')
-  }
-
-  console.log(userRegestrated.value);
-  
+  }  
 };
 
 

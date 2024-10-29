@@ -66,6 +66,7 @@
 import axios from "axios";
 import { ref } from "vue";
 import RatingServices from "../General/RatingServices.vue";
+import sendFormData from "@/api/post/secdFormData";
 
 export default {
 
@@ -87,16 +88,12 @@ export default {
 
     const handleMessageInfoChange = (e) => {
       const { name, value } = e.target;
-      messageInfo.value[name] = value;
-      console.log(messageInfo);
-      
+      messageInfo.value[name] = value;      
     };
 
     const handleSubmitMessage = async () => {
       try {
-        const response = await axios.post('http://localhost:4001/mails', messageInfo.value);
-        successMessage.value = 'Message sent successfully!';
-        console.log('Response:', response.data);
+        sendFormData('contact-us' , messageInfo.value)
       } catch (err) {
         error.value = 'An error occurred: ' + err.message;
         console.error('Error:', err);

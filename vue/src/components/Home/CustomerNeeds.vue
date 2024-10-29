@@ -51,7 +51,6 @@ const data = ref(null);
 onMounted(async () => {
   try {
     data.value = await fetchPageData('main_needs');
-    console.log(data.main_needs); // This logs the title if available
   } catch (error) {
     console.error("Error fetching page data:", error);
   }

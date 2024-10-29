@@ -6,12 +6,12 @@
       <div class="row gy-5 mt-5">
         <div
           class="col-lg-3 col-md-6 col-6"
-          v-for="(item, index) in tech"
+          v-for="(item, index) in toRaw(data)"
           :key="index"
         >
           <div :class="{ 'd-flex justify-content-center': pageSize > 992 }">
             <div class="tech-logo d-flex align-items-center gap-3">
-              <img :src="item.logo" width="60" alt="vue-logo" loading="lazy" />
+              <img :src="item.image_with_full_path" width="60" alt="vue-logo" loading="lazy" />
 
               <span>{{ item.name }}</span>
             </div>
@@ -23,23 +23,25 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue";
+import { ref, onMounted, toRaw } from "vue";
 import axios from "axios";
 import { url } from "@/config";
 import { useSidebarWidth } from "@/compasaples/media";
+import fetchPageData from "@/api/get/fetchPageData";
 
 const { pageSize } = useSidebarWidth();
-const tech = ref([]);
 
-const getTech = () => {
-  axios.get(`${url}/tech`).then((response) => {
-    tech.value = response.data;
-  });
-};
 
-onMounted(() => {
-  getTech();
+const data = ref(null);
+
+onMounted(async () => {
+  try {
+    data.value = await fetchPageData('technologies');
+  } catch (error) {
+    console.error("Error fetching page data:", error);
+  }
 });
+
 </script>
 
 <style lang="scss" scoped>

@@ -59,10 +59,7 @@ export default {
 
         const isRatingModalOpen = inject('isRatingModalOpen');
         const openRatingModal = inject('openRatingModal');
-        const closeRatingModal = inject('closeRatingModal');
-
-        console.log(isRatingModalOpen.value);
-        
+        const closeRatingModal = inject('closeRatingModal');        
 
         const rating = ref(0);
         const messageInfo = ref({ 
@@ -99,7 +96,6 @@ export default {
             try {
                 const response = await axios.post('http://localhost:5001/ratings', messageInfo.value);
                 successProcess.value = 'Message sent successfully!';
-                console.log('Response:', response.data);
                 closeDialog(); 
             } catch (err) {
                 error.value = 'An error occurred: ' + err.message;
