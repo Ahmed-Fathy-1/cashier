@@ -268,7 +268,7 @@
 
             <!-- stripe form -->
             <div v-if="cash == 'card'">
-              <div class="mt-5">
+              <div class="mt-0">
                 <input
                   class="w-100 btn btn-warning text-white"
                   value="Proceed to Payment"
