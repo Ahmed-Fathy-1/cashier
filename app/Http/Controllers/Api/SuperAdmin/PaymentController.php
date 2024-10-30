@@ -27,7 +27,9 @@ class PaymentController extends Controller
             if (!$amount) {
                 return response()->json(['error' => 'Invalid package price'], 400);
             }
+
             $stripe = new StripeClient(config('services.stripe.secret'));
+
             $paymentIntent = $stripe->paymentIntents->create([
                 'amount' => $amount * 100,
                 'currency' => 'EGP',
@@ -60,7 +62,6 @@ class PaymentController extends Controller
             DB::commit();
 
             return  response()->json(['data' => $paymentData]);
-
         }catch (\Exception $ex){
             DB::rollBack();
             return  response()->json('error on payment process',['error' =>$ex->getMessage()]);
