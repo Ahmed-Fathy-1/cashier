@@ -406,6 +406,7 @@
           }
   
           return true
+          
       },
   
       proceedToPayment() {
