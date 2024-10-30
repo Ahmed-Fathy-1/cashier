@@ -46,28 +46,26 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
         Route::post('logout', [AuthController::class, 'logout']);
     });
 
-    Route::get('/homecovers', [HomeCoverController::class, 'index']);
-
-    Route::post('/contact-us', [ContactUsController::class, 'store']);
-
-    Route::get('/faqs', [FAQController::class, 'index']);
-
-    Route::get('/feedbacks', [FeedBacksController::class, 'index']);
-
-    Route::get('/technologies', [TechnologyController::class, 'index']);
-
-    Route::apiResource('packages', PackageController::class);
-
-    Route::apiResource('features', FeatureController::class);
-
-    Route::apiResource('main_needs', MainNeedController::class);
-
-    Route::apiResource('sub_needs', SubNeedsController::class);
-
-    Route::apiResource('about-us', AboutUsController::class)->only(['index', 'update']);
-
     Route::post('/pay-package', [PaymentController::class, 'payPackage']);
-
 });
 
 
+Route::get('/homecovers', [HomeCoverController::class, 'index']);
+
+Route::post('/contact-us', [ContactUsController::class, 'store']);
+
+Route::get('/faqs', [FAQController::class, 'index']);
+
+Route::get('/feedbacks', [FeedBacksController::class, 'index']);
+
+Route::get('/technologies', [TechnologyController::class, 'index']);
+
+Route::apiResource('packages', PackageController::class);
+
+Route::apiResource('features', FeatureController::class);
+
+Route::apiResource('main_needs', MainNeedController::class);
+
+Route::apiResource('sub_needs', SubNeedsController::class);
+
+Route::apiResource('about-us', AboutUsController::class)->only(['index', 'update']);
