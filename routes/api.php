@@ -46,7 +46,10 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
         Route::post('logout', [AuthController::class, 'logout']);
     });
 
-    Route::post('/pay-package', [PaymentController::class, 'payPackage']);
+    // Route::post('/pay-package', [PaymentController::class, 'payPackage']);
+    Route::post('payment/initiate', [PaymentController::class, 'initiatePayment']);
+    Route::post('payment/complete', [PaymentController::class, 'completePayment']);
+    Route::post('payment/failure', [PaymentController::class, 'failPayment']);
 });
 
 
