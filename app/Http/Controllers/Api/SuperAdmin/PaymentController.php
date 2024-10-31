@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\Payments\PaymentRequest;
 use App\Models\Payment;
 use App\Models\SuperAdmin\Package;
+use App\Models\SuperAdmin\User;
 use Illuminate\Support\Facades\DB;
 use Stripe\StripeClient;
 use Stripe\PaymentIntent;
@@ -74,8 +75,13 @@ class PaymentController extends Controller
 //     }
 
 
-    public function initiatePayment(Request $request)
+    public function initiatePayment(PaymentRequest $request)
     {
+        $user = User::find($request->user_id);
+
+        $user->
+
+
         StripeGateway::setApiKey(env('STRIPE_KEY'));
 
         try {
@@ -88,11 +94,10 @@ class PaymentController extends Controller
             ]);
 
             // Save the $paymentIntent->id to identify this payment later
-
             $payment = new Payment();
 
             $payment->forceFill([
-                'user_id' => auth('api')->user()->id,
+                'user_id' => $user->id,
                 'package_id' => $request->package_id,
                 'amount' => $request->amount,
                 'domain_name' => $request->domain_name,
@@ -103,7 +108,6 @@ class PaymentController extends Controller
                 'transaction_id' => $paymentIntent->id,
                 'transaction_data' => json_encode($paymentIntent),
             ])->save();
-
 
         } catch (\Exception $e) {
             return  response()->json('error on payment process: '. $e->getMessage());
@@ -116,8 +120,9 @@ class PaymentController extends Controller
         ];
 
         return  response()->json(['data' => $data]);
-    }
 
+
+    }
 
     public function completePayment(Request $request)
     {
@@ -137,9 +142,7 @@ class PaymentController extends Controller
 
     public function failPayment(Request $request)
     {
-        
         // Log the failed payment if you wish
-
     }
 
 

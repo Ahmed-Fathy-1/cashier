@@ -5,7 +5,7 @@
         <div class="col-lg-12">
           <!-- drosat logo  -->
           <h2 class="fw-bold">Kashear Checkout</h2>
-  
+
           <!-- breadcrump -->
           <div class="bread-crumb d-flex align-items-center">
             <router-link to="/" class="text-black text-decoration-none"
@@ -16,14 +16,14 @@
               >Checkout
             </router-link>
           </div>
-  
+
           <div class="row">
             <div class="col-lg-6 col-md-12 col-12">
               <!-- payment card -->
               <v-card class="p-3 mt-3 payment-card border-1" elevation="0">
                 <!-- package name -->
                 <h4 class="text-center fw-bold mb-4 mt-2">Package Name</h4>
-  
+
                 <div
                   class="d-flex flex-lg-row flex-md-column flex-column text-md-center text-lg-start text-center justify-content-between"
                 >
@@ -35,7 +35,7 @@
                       in both ways card and cash payment
                     </p>
                   </div>
-  
+
                   <!-- Amount per year and per month -->
                   <div
                     class="right-side d-flex gap-4 align-items-center justify-content-center"
@@ -53,7 +53,7 @@
                       </v-progress-circular>
                       <p class="mb-0 pt-2">Month</p>
                     </div>
-  
+
                     <!-- year -->
                     <div class="text-center">
                       <v-progress-circular
@@ -70,7 +70,7 @@
                   </div>
                 </div>
               </v-card>
-  
+
               <!-- subdomain card -->
               <v-card class="p-3 mt-3 payment-card border-1" elevation="0">
                 <!-- check subdomain button -->
@@ -82,7 +82,7 @@
                   >
                     Enter Sub Domain* :</label
                   >
-                  
+
                   <div class="d-flex gap-2 align-items-center">
                     <input
                       class="form-control rounded-5 py-2"
@@ -94,9 +94,9 @@
                   </div>
                   <p class="text-error"> {{ domainError }} </p>
                 </div>
-                  
+
                   <!-- <p :class="color" class="pt-2">{{ errorMsg }}</p> -->
-  
+
                   <!-- select plan -->
                   <label
                     for="subDomain"
@@ -110,7 +110,7 @@
                       >{{ valueYear }} LE</span
                     >
                   </label>
-  
+
                   <select
                     class="form-select rounded-5 pt-2"
                     aria-label="Default select example"
@@ -122,7 +122,7 @@
                     <option value="1">Monthly</option>
                     <option value="2">Yearly</option>
                   </select>
-  
+
                   <p class="text-error"> {{ planError }} </p>
                 </div>
                 <!----
@@ -133,7 +133,7 @@
                 />
               -->
               </v-card>
-  
+
               <v-btn
                 class="elevation-0 mt-4 bg-primary text-capitalize d-lg-flex d-md-none d-none"
                 prepend-icon="mdi-chevron-left"
@@ -141,15 +141,15 @@
                 >Go Back</v-btn
               >
             </div>
-  
+
             <div class="col-lg-6 col-md-12 col-12">
               <!-- payment methods -->
               <div class="payment-methods mt-3">
                 <div class="d-flex gap-2 align-items-center">
                   <!-- cash payment -->
-  
+
                   <!----
-                   hashed toggle way 
+                   hashed toggle way
                   <div
                     class="card d-flex justify-content-center align-items-center p-2 w-100"
                     :class="cash == 'wallet' ? 'active-method' : 'method-card'"
@@ -162,14 +162,14 @@
                         height="30"
                         alt=""
                         class=""
-                      /> 
+                      />
                       <h6 class="m-0 fw-bold">Cash Payment</h6>
                     </div>
                   </div>
                 -->
-  
+
                   <!-- online payment -->
-  
+
                   <!----
                   <div
                     class="card method-card d-flex justify-content-center align-items-center p-2 w-100"
@@ -183,14 +183,14 @@
                         height="30"
                         alt=""
                         class=""
-                      /> 
+                      />
                       <h6 class="fw-bold m-0">Online Payment</h6>
                     </div>
                   </div>
                 -->
                 </div>
               </div>
-  
+
               <!-- wallet form -->
               <div class="form mt-4" v-if="cash == 'wallet'">
                 <div class="card rounded-2 p-3">
@@ -208,7 +208,7 @@
                       </span>
                       payment and upload the receipt
                     </h4>
-  
+
                     <div
                       class="d-flex gap-1 align-items-center justify-content-center"
                     >
@@ -222,7 +222,7 @@
                       </div>
                     </div>
                   </div>
-  
+
                   <div class="row g-3">
                     <div class="col-12">
                       <label
@@ -231,7 +231,7 @@
                       >
                         Amount :</label
                       >
-  
+
                       <input
                         class="form-control rounded-5 py-2"
                         type="text"
@@ -239,7 +239,7 @@
                         disabled="disable"
                       />
                     </div>
-  
+
                     <div class="col-12">
                       <label
                         for="name"
@@ -247,7 +247,7 @@
                       >
                         Receipt :</label
                       >
-  
+
                       <input
                         type="file"
                         class="form-control rounded-5"
@@ -257,7 +257,7 @@
                       <p class="text-error"> {{ receiptError }} </p>
                     </div>
                   </div>
-  
+
                   <input
                     type="button"
                     class="btn btn-primary mt-3 text-white"
@@ -265,7 +265,7 @@
                   />
                 </div>
               </div>
-  
+
               <!-- stripe form -->
               <div v-if="cash == 'card'">
                 <div class="mt-0">
@@ -275,7 +275,7 @@
                     type="button"
                     @click="proceedToPayment"
                   />
-  
+
                   <div
                     class="text-center text-primary fs-5 mt-3"
                     v-if="isLoading"
@@ -286,25 +286,25 @@
                     {{ domainMsg }}
                   </p> -->
                 </div>
-  
+
                 <div class="mt-3 bg-white p-3 rounded-4">
                   <div class="d-flex gap-5">
                     <form class="mt-3">
                       <div id="card-element">
-  
+
                       </div>
                       <div class="d-flex justify-content-center gap-3 mt-4">
                         <button class="btn btn-primary" type="submit">
                           Confirm Payment
                         </button>
-  
+
                         <div class="btn btn-danger">Cancel</div>
                       </div>
                     </form>
                   </div>
                 </div>
               </div>
-  
+
               <!-- customer servece -->
               <h6 class="fw-bold pt-3">
                 <div
@@ -332,7 +332,7 @@
       </div>
     </div>
   </template>
-  
+
   <script>
   import axios from 'axios';
   import { extrnalUrl } from '@/config';
@@ -359,24 +359,24 @@
       loader: false,
       valueMonth: 300,
       valueYear: 3000,
-  
+
       domainError:"",
       planError:"",
-      receiptError:"", 
-  
+      receiptError:"",
+
       package : {},
-  
+
       // stripe data
       paymentIntentId: "",
       paymentIntent: "",
       clientSecret: "",
-  
+
       stripe: null,
       cardElement: null,
       stripeKey:
         "pk_test_51NfHq4GMlC1CV659YL1B7Uzc5nAU2zBpj6vqj3qP34lR94dIFGuPlfEcwQF04C2kEPAwBNMeh4f0bC04OpSSrhQd00Ao40DeX8",
     }),
-  
+
     methods : {
       getSinglrPackage () {
         axios.get(`${extrnalUrl}packages/${this.$route.params.packageId}`, {
@@ -387,43 +387,43 @@
           this.package = response.data.data.package_details;
           this.valueYear = this.package.Price_annually;
           this.valueMonth = this.package.Price_monthly;
-  
+
           console.log("single package", this.package)
         })
       },
-  
+
       checkStripeFields(){
           if (this.subDomain === '') {
             this.domainError = 'Fill this field.';
           }
-  
+
           if (this.type === '') {
             this.planError = 'Fill this field.';
           }
-  
+
           if (this.subDomain === '' || this.type === '') {
             return false
           }
-  
+
           return true
-          
+
       },
-  
+
       proceedToPayment() {
           // this.isLoading = true;
             console.log('hit');
-            
+
           const isFeildsFill = this.checkStripeFields();
-  
+
           if (!isFeildsFill) {
             return false
           }
-  
+
           const amount =
             this.type == "1"
               ? this.package.price_monthly
               : this.package.price_annually;
-  
+
           axios
             .post(
               `${extrnalUrl}pay-package`,
@@ -439,20 +439,20 @@
               }
             )
             .then((response) => {
-  
+
               if (response.status != 200) {
                 console.log('not 200');
-                
+
                 return Promiserr.reject(error);
               }
-  
+
               this.isPaying = true;
               // this.isLoading = false;
-  
+
               this.paymentIntentId = response.data.data.id;
               this.paymentIntent = response.data.data.payment_intent;
               this.clientSecret = response.data.data.client_secret;
-  
+
               // Initialize Stripe
               return loadStripe(this.stripeKey);
             })
@@ -468,27 +468,27 @@
               return Promiserr.reject(error);
             });
       },
-    }, 
-  
+    },
+
     mounted () {
       this.getSinglrPackage();
     },
-  
-  
-  
+
+
+
     //   components: {
     //     Loader,
     //   },
-  
+
     //   computed: {
     //     ...mapState(useAuthStore, ["user"]),
     //   },
-  
+
     //   methods: {
     //     domainAlert() {
     //       this.domainMsg = "You must enter a valid domain";
     //     },
-  
+
     //     confirmDomain() {
     //       axios
     //         .post(
@@ -516,19 +516,19 @@
     //           console.log("error", error);
     //         });
     //     },
-  
+
     //     handleImage(e) {
     //       this.image = e.target.files[0];
     //     },
-  
+
     //     // wallet payment
     //     postWallet() {
     //       this.errorMessage = "";
     //       if (this.plan.id == 1) {
     //         this.loader = true;
-  
+
     //         this.confirmDomain();
-  
+
     //         axios
     //           .post(
     //             `${url}/admin/checkout-subdomain`,
@@ -553,11 +553,11 @@
     //               "drosat",
     //               JSON.stringify(response.data.data.drosat)
     //             );
-  
+
     //             this.$router.push(`/pricing/${localStorage.getItem("packageId")}`);
-  
+
     //             this.loader = false;
-  
+
     //             setTimeout(() => {
     //               window.location.reload();
     //             }, 500);
@@ -568,18 +568,18 @@
     //           });
     //       } else {
     //         this.errorMessage = "";
-  
+
     //         const formData = new FormData();
-  
+
     //         formData.append("id", localStorage.getItem("packageId"));
     //         formData.append("name", this.subDomain);
     //         formData.append("type", this.type);
     //         formData.append("method", "Wallet");
     //         formData.append("amount", this.amount);
     //         formData.append("receipt", this.image);
-  
+
     //         this.loader = true;
-  
+
     //         axios
     //           .post(`${url}/admin/checkout-subdomain`, formData, {
     //             headers: {
@@ -600,11 +600,11 @@
     //               "drosat",
     //               JSON.stringify(response.data.data.drosat)
     //             );
-  
+
     //             this.$router.push(`/pricing/${localStorage.getItem("packageId")}`);
-  
+
     //             this.loader = false;
-  
+
     //             setTimeout(() => {
     //               window.location.reload();
     //             }, 500);
@@ -615,7 +615,7 @@
     //           });
     //       }
     //     },
-  
+
     //     // git single plan
     //     getPlan() {
     //       axios
@@ -626,7 +626,7 @@
     //             response.data.data.Package.package_details.price_monthly;
     //           this.valueYear =
     //             response.data.data.Package.package_details.price_annually;
-  
+
     //           console.log("plan", this.plan);
     //           console.log(this.valueMonth);
     //           console.log(this.valueYear);
@@ -635,21 +635,21 @@
     //           console.error("Login error:", error);
     //         });
     //     },
-  
+
     //     // git phone number
     //     getPhoneNumber() {
     //       axios.get(`${url}/drosat/setting`).then((response) => {
     //         this.walletPhone = response.data.data.setting.phone;
     //       });
     //     },
-  
+
     //     // process to payment
-  
-  
+
+
     //     // handle payment
     //     handleStripePayment() {
     //       this.loader = true;
-  
+
     //       this.stripe
     //         .confirmCardPayment(this.clientSecret, {
     //           payment_method: {
@@ -676,23 +676,23 @@
     //         .then((response) => {
     //           if (response) {
     //             // window.location.reload();
-  
+
     //             localStorage.setItem(
     //               "user",
     //               JSON.stringify(response.data.data.user)
     //             );
-  
+
     //             if (this.user?.drosat?.name) {
     //               localStorage.setItem(
     //                 "manasa",
     //                 JSON.stringify(this.user.drosat.name)
     //               );
     //             }
-  
+
     //             this.$router.push(`/pricing/${localStorage.getItem("packageId")}`);
-  
+
     //             this.loader = false;
-  
+
     //             setTimeout(() => {
     //               window.location.reload();
     //             }, 500);
@@ -718,41 +718,41 @@
     //       }
     //     },
     //   },
-  
+
     //   mounted() {
     //     this.getPlan();
     //     this.getPhoneNumber();
     //   },
   };
   </script>
-  
+
   <style lang="scss" scoped>
   .contact-card {
     box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px !important;
   }
-  
+
   .payment-card {
     box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px !important;
   }
-  
+
   .line {
     h6 {
       color: #939191;
     }
   }
-  
+
   .method-card {
     background-color: #1869cc1f !important;
     cursor: pointer;
   }
-  
+
   .active-method {
     background-color: var(--bs-primary) !important;
     border: 1px solid #dddd !important;
     color: var(--bs-white) !important;
     cursor: pointer;
   }
-  
+
   .text-error{
     font-size: 12px;
     color: red;
@@ -760,11 +760,10 @@
     padding: 4px 0 4px .5rem !important;
     margin-top: 4px;
   }
-  
+
   .InputElement{
     padding: .5rem !important;
     border: 1px solid #000 !important;
     font-size: 3rem !important;
   }
   </style>
-  
