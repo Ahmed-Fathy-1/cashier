@@ -26,11 +26,11 @@ class AboutUsRequest extends FormRequest
             'intro_desc' => 'required|string',
 
             'numbers_clients_title' => 'nullable|string|max:255',
-            'numbers_clients_count' => 'nullable|integer|min:0',
+            'numbers_clients_count' => 'nullable|string|min:0',
             'numbers_downloads_title' => 'nullable|string|max:255',
-            'numbers_downloads_count' => 'nullable|integer|min:0',
+            'numbers_downloads_count' => 'nullable|string|min:0',
             'numbers_projects_title' => 'nullable|string|max:255',
-            'numbers_projects_count' => 'nullable|integer|min:0',
+            'numbers_projects_count' => 'nullable|string|min:0',
 
             'workflow_title' => 'nullable|string|max:255',
             'workflow_desc' => 'nullable|string',

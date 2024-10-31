@@ -215,7 +215,7 @@ const handleSubmit = () => {
   if (true) {
     authStore.register({
       name:name ,
-      mobile:mobile,
+      phone:mobile,
       email: email,
       password: password,
       password_confirmation:password_confirmation

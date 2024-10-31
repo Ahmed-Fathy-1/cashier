@@ -26,13 +26,13 @@ class FeatureRequest extends FormRequest
             'main_description' => 'required|string',
             'feature_1_title' => 'required|string|max:255',
             'feature_1_description' => 'required|string',
-            'feature_1_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'feature_1_image' => 'nullable|image|mimes:jpeg,png,svg,jpg,gif|max:2048',
             'feature_2_title' => 'required|string|max:255',
             'feature_2_description' => 'required|string',
-            'feature_2_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'feature_2_image' => 'nullable|image|mimes:jpeg,png,svg,jpg,gif|max:2048',
             'feature_3_title' => 'required|string|max:255',
             'feature_3_description' => 'required|string',
-            'feature_3_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'feature_3_image' => 'nullable|image|mimes:jpeg,png,svg,jpg,gif|max:2048',
         ];
     }
 }

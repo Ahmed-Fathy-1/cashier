@@ -14,7 +14,7 @@ export default {
     props:{
         onButtonClick:{
             type:Function,
-            required: true
+            required: false
         }
     }
 }

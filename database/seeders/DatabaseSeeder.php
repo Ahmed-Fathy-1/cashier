@@ -35,6 +35,16 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        // tenant
+
+        // $this->call(PermessionDBSeed::class);
+        // $this->call(RoleDBSeed::class);
+        // $this->call(AdminstratorDBSeed::class);
+        // $this->call(SettingDBSeeder::class);
+        // $this->call(HomePageMetaDBSeed::class);
+
+
+
 // ------------------------------------------------------------------------------------------------
 // landlord
         $this->call(CreateAdminUserSeeder::class);

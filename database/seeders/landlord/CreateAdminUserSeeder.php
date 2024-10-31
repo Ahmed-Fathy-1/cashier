@@ -28,7 +28,7 @@ class CreateAdminUserSeeder extends Seeder
         'homeCover-edit',
         'mainNeeds-edit',
         'settings-edit',
-        'profilePage',
+        'profilePage-list',
 
 
         'Domain-list',
@@ -91,25 +91,18 @@ class CreateAdminUserSeeder extends Seeder
         'paymentMethods-forceDelete',
         'paymentMethods-restore'
 
+
     ];
 
-    private $users = [
-        [
-            "name" => "Ahmed Fathy",
-            "email" => "SuperAdmin@admin.com",
-        ],
-        [
-            "name" => "Ayman Fathy",
-            "email" => "AymanAdmin@pos.com",
-        ],
-        [
-            "name" => "ibrahem Fathy",
-            "email" => "ibrahemAdmin@pos.com",
-        ],
-        [
-            "name" => "mohamed Fathy",
-            "email" => "mohamedAdmin@pos.com",
-        ],
+
+    private $permissionsAdmin = [
+        'faqs-list',
+
+        'packages-list',
+
+        'technologies-list',
+
+        'paymentMethods-list',
     ];
 
     /**
@@ -120,46 +113,59 @@ class CreateAdminUserSeeder extends Seeder
     public function run()
     {
         // Create permissions
-        $this->createPermissions();
-
-        // Create admin user and assign role
-        $adminUser = $this->createUser($this->users[0]);
-        $role = $this->createRole('Super Admin');
-        $this->assignPermissionsToRole($role);
-        $adminUser->assignRole($role);
-
-        // Create other users
-        foreach (array_slice($this->users, 1) as $userData) {
-            $this->createUser($userData);
-        }
-    }
-
-    private function createPermissions()
-    {
         foreach ($this->permissions as $permission) {
             Permission::firstOrCreate(['name' => $permission, 'guard_name' => 'web']);
         }
-    }
+        foreach ($this->permissionsAdmin as $permission) {
+            Permission::firstOrCreate(['name' => $permission, 'guard_name' => 'web']);
+        }
 
-    private function createRole(string $name): Role
-    {
-        return Role::firstOrCreate(['guard_name' => 'web', 'name' => $name]);
-    }
-
-    private function assignPermissionsToRole(Role $role)
-    {
-        $permissions = Permission::pluck('id')->toArray();
-        $role->syncPermissions($permissions);
-    }
-
-    private function createUser(array $data): User
-    {
-        return User::create(array_merge($data, [
+        // Create admin user
+        $user = User::create([
+            "name" => "Ahmed Fathy",
+            "email" => "SuperAdmin@admin.com",
             "phone" => "01040983170",
             "password" => bcrypt('12345678'),
             "email_verified_at" => Carbon::now(),
             "phone_verified_at" => Carbon::now(),
             "image" => "feed-back-1.jpg",
-        ]));
-    }
+        ]);
+
+        // Create admin role
+        $role = Role::firstOrCreate(['guard_name' => 'web', 'name' => 'Super Admin']);
+
+        // Assign all permissions to the role
+        $permissions = Permission::pluck('id')->toArray();
+        $role->syncPermissions($permissions);
+
+        // Assign the role to the user
+        $user->assignRole($role);
+
+        // ------------------------------------------------------------------------------------------------------------
+
+
+        // Create admin user
+        $user = User::create([
+            "name" => "ibrahem youssef",
+            "email" => "ibrahemAdmin@pos.com",
+            "phone" => "01040983170",
+            "password" => bcrypt('12345678'),
+            "email_verified_at" => Carbon::now(),
+            "phone_verified_at" => Carbon::now(),
+            "image" => "feed-back-1.jpg",
+        ]);
+
+        // Create admin role
+        $role = Role::firstOrCreate(['guard_name' => 'web', 'name' => 'Admin']);
+
+        // Assign all permissions to the role
+        $permissions = Permission::whereIn('id', $this->permissionsAdmin)->pluck('id')->toArray();
+
+        $role->syncPermissions($permissions);
+
+        // Assign the role to the user
+        $user->assignRole($role);
+}
+
+
 }
