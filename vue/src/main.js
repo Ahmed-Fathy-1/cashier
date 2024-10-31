@@ -19,6 +19,8 @@ plugins(app);
 
 app.use(createPinia());
 app.use(router);
+
+
 // app.use(metaManager);
 
 app.mount("#app");

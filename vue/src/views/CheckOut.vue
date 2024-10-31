@@ -267,6 +267,7 @@
               </div>
   
               <!-- stripe form -->
+          
               <div v-if="cash == 'card'">
                 <div class="mt-0">
                   <input
@@ -282,9 +283,10 @@
                   >
                     Loading...
                   </div>
-                  <!-- <p class="text-danger text-center pt-3">
+                  <p class="text-danger text-center pt-3">
                     {{ domainMsg }}
-                  </p> -->
+                  </p> 
+               
                 </div>
   
                 <div class="mt-3 bg-white p-3 rounded-4">
@@ -355,7 +357,7 @@
       plan: {},
       walletPhone: "",
       isPaying: false,
-      domainMsg: "You must enter a valid sub domain first.",
+      domainMsg: "",
       loader: false,
       valueMonth: 300,
       valueYear: 3000,
@@ -373,8 +375,8 @@
   
       stripe: null,
       cardElement: null,
-      stripeKey:
-        "pk_test_51NfHq4GMlC1CV659YL1B7Uzc5nAU2zBpj6vqj3qP34lR94dIFGuPlfEcwQF04C2kEPAwBNMeh4f0bC04OpSSrhQd00Ao40DeX8",
+      stripeKey: 'process.env.STRIPE_KEY'
+        
     }),
   
     methods : {
@@ -406,7 +408,6 @@
           }
   
           return true
-          
       },
   
       proceedToPayment() {
@@ -426,7 +427,7 @@
   
           axios
             .post(
-              `${extrnalUrl}pay-package`,
+              `${extrnalUrl}payment/initiate`,
               {
                 package_id : this.package.id,
                 package_type: this.type,
@@ -443,18 +444,21 @@
               if (response.status != 200) {
                 console.log('not 200');
                 
-                return Promiserr.reject(error);
+               // return Promiserr.reject(error);
               }
   
               this.isPaying = true;
               // this.isLoading = false;
+
+              console.log(response);
+              
   
               this.paymentIntentId = response.data.data.id;
               this.paymentIntent = response.data.data.payment_intent;
               this.clientSecret = response.data.data.client_secret;
   
               // Initialize Stripe
-              return loadStripe(this.stripeKey);
+              return loadStripe(process.env.STRIPE_KEY);
             })
             .then((stripe) => {
               this.stripe = stripe;

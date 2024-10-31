@@ -14,4 +14,19 @@ export default [
     name: "Checkout2",
     component: () => import("@/views/CheckOut2.vue"),
   },
+  {
+    path: "/stripe",
+    name: "Stripe",
+    component: () => import("@/views/StripePage.vue"),
+  },
+  {
+    path: "/stripe-test",
+    name: "StripeTest",
+    component: () => import("@/views/StripeTest.vue"),
+  },
+  {
+    path: "/success",
+    name: "Success",
+    component: () => import("@/views/Success.vue"),
+  },
 ];

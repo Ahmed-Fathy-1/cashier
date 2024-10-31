@@ -61,7 +61,7 @@
                   'text-white': index == 1,
                   'text-primary': index == 0 || index == 2,
                 }"
-                @click="$router.push({name : 'Checkout' , params : {packageId : item.id }})"
+                @click="$router.push({name : 'Checkout2' , params : {packageId : item.id }})"
                 class="text-capitalize elevation-0 mt-3 w-100"
                 variant="outlined"
                 >get start now</v-btn>

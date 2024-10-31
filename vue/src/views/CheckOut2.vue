@@ -379,7 +379,7 @@ export default {
 
   methods : {
     getSinglrPackage () {
-      axios.get(`${extrnalUrl}packages/${this.$route.params.packageId}`, {
+      axios.get(`${extrnalUrl}payment/initiate`, {
         headers : {
           Authorization : `Bearer ${localStorage.getItem("token")}`
         }
@@ -424,7 +424,7 @@ export default {
 
         axios
           .post(
-            `${extrnalUrl}pay-package`,
+            `${extrnalUrl}payment/initiate`,
             {
               package_id : this.package.id,
               package_type: this.type,
@@ -469,7 +469,7 @@ export default {
   }, 
 
   mounted () {
-    this.getSinglrPackage();
+    //this.getSinglrPackage();
   },
 
 
