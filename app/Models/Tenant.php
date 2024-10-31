@@ -13,6 +13,14 @@ class Tenant extends BaseTenant implements TenantWithDatabase
 {
     use HasDatabase, HasDomains, HasFactory;
 
+    public static function getCustomColumns(): array
+    {
+        return [
+            'id',
+            'user_id',
+        ];
+    }
+
     public function user(){
         return $this->belongsTo(User::class);
     }

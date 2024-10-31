@@ -15,14 +15,14 @@ class PaymentsSeeder extends Seeder
     {
         Payment::insert([
             [
-                'user_id' => 2,
+                'user_id' => 1,
                 'package_id' => 2,
                 'amount' => '200',
                 'domain_name' => 'abofathy',
                 'created_at' => now()
             ],
             [
-                'user_id' => 3,
+                'user_id' => 2,
                 'package_id' => 3,
                 'amount' => '300',
                 'domain_name' => 'abofahd',

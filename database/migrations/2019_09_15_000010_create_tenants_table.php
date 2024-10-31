@@ -19,7 +19,7 @@ class CreateTenantsTable extends Migration
             $table->string('id')->primary();
 
             // your custom columns may go here
-            // $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
 
             $table->timestamps();
             $table->json('data')->nullable();
