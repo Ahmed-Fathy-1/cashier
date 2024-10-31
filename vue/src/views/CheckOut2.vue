@@ -373,8 +373,7 @@ export default {
 
     stripe: null,
     cardElement: null,
-    stripeKey:
-      "pk_test_51NfHq4GMlC1CV659YL1B7Uzc5nAU2zBpj6vqj3qP34lR94dIFGuPlfEcwQF04C2kEPAwBNMeh4f0bC04OpSSrhQd00Ao40DeX8",
+    stripeKey:"pk_test_51OOMOtK2t4I8yGl8aqXfrvJOdLScxRJ34dCEdYRaMpwuwvaxOBDLf3SdRmUXCAHlLsG8LbTprI8IB5h8llHZLmUc007scTeX5f",
   }),
 
   methods : {

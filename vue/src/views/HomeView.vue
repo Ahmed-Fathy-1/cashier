@@ -3,15 +3,28 @@
   <WhayUs />
   <TechSetion />
   <CustomerNeeds />
-  <CounterSection />
+  <CounterSection  :numbers="data?.aboutUs?.numbers"/>
   <PackagesSection />
   <Feedback />
   <FrequentlyQues />
 </template>
 
 <script setup>
+import fetchPageData from "@/api/get/fetchPageData";
 import AppBanner from "@/components/Home/AppBanner.vue";
-import { defineAsyncComponent } from "vue";
+import { defineAsyncComponent, onMounted, ref } from "vue";
+
+
+
+const data = ref([]);
+
+onMounted(async () => {
+  try {
+    data.value = await fetchPageData('about-us');
+  } catch (error) {
+    console.error("Error fetching page data:", error);
+  }
+});
 
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
