@@ -23,6 +23,16 @@ class TechnologySeed extends Seeder
                 'name'=> 'Vue',
                 'image'=>  '/image.png',
                 'created_at'=> now()
+            ],
+            [
+                'name'=> 'Vite',
+                'image'=>  '/image3.png',
+                'created_at' => now()
+            ],
+            [
+                'name'=> 'Bootstrap',
+                'image'=>  '/image4.png',
+                'created_at'=> now()
             ]
         ]);
     }
