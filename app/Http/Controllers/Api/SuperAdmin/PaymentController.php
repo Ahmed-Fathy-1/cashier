@@ -47,7 +47,7 @@ class PaymentController extends Controller
             $payment = new Payment();
 
             $payment->forceFill([
-                'user_id' => auth('api')->user()->id,
+                'user_id' => $request->user_id,
                 'package_id' => $request->package_id,
                 'amount' => $amount,
                 'domain_name' => $request->domain_name,
