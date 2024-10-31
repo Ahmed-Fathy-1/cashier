@@ -28,7 +28,7 @@ class CreateAdminUserSeeder extends Seeder
         'homeCover-edit',
         'mainNeeds-edit',
         'settings-edit',
-        'profilePage-list',
+        'profilePage',
 
 
         'Domain-list',
