@@ -74,4 +74,8 @@ class User extends Authenticatable
     {
         return $this->hasMany(Package::class);
     }
+
+    public function domains(){
+        return $this->hasMany(Tenant::class);
+    }
 }

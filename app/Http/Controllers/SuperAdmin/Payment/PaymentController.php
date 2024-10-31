@@ -50,11 +50,12 @@ class PaymentController extends Controller
         $payment->update($validated);
 
         $user_tanent = User::find($validated['user_id']);
-
+        
         if ($request->status == 'completed') {
             try{
                 $tenant = Tenant::create([
                     'id' => $payment->domain_name,
+                    'user_id' => $request->user_id,
                 ]);
 
                 $tenant->domains()->create([
