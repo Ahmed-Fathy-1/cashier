@@ -24,9 +24,11 @@
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
             </svg>
                 <li>
-                    <a href="{{ route('payments.index') }}" class="text-primary transition-colors hover:text-primary-focus dark:text-accent-light dark:hover:text-accent">
-                        Payments
-                    </a>
+                    @can('payments-list')
+                        <a href="{{ route('payments.index') }}" class="text-primary transition-colors hover:text-primary-focus dark:text-accent-light dark:hover:text-accent">
+                            Payments
+                        </a>
+                    @endcan
                 </li>
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
                 stroke="currentColor">
@@ -89,44 +91,52 @@
                                 <td class="px-6 py-4 text-sm text-slate-500 dark:text-navy-100">{{ $record->amount }}</td>
                                 <td class="px-6 py-4 text-sm text-slate-500 dark:text-navy-100">{{ $record->currency }}</td>
                                 <td class="">
-                                    <form action="{{ route('payments.status') }}"
-                                        method="post">
-                                        @csrf
-                                        <input type="hidden" name="id" value="{{ $record->id }}">
-                                        @if($record->status == 'pending')
-                                            <button data-close-modal=""
-                                                    class="btn m-3 bg-warning font-medium text-white hover:bg-success-focus focus:bg-success-focus active:bg-success-focus/90">
-                                                {{ $record->status }}
-                                            </button>
-                                        @else
-                                            <button data-close-modal=""
-                                                    class="btn m-3 bg-success font-medium text-white hover:bg-success-focus focus:bg-success-focus active:bg-success-focus/90">
-                                                {{ $record->status }}
-                                            </button>
-                                        @endif
-                                    </form>
+
+                                    @can('payments-status')
+                                        <form action="{{ route('payments.forcedelete', $record->id) }}"
+                                            method="post">
+                                            @csrf
+                                            <input type="hidden" name="id" value="{{ $record->id }}">
+                                            @if($record->status == 'pending')
+                                                <button data-close-modal=""
+                                                        class="btn m-3 bg-warning font-medium text-white hover:bg-success-focus focus:bg-success-focus active:bg-success-focus/90">
+                                                    {{ $record->status }}
+                                                </button>
+                                            @else
+                                                <button data-close-modal=""
+                                                        class="btn m-3 bg-success font-medium text-white hover:bg-success-focus focus:bg-success-focus active:bg-success-focus/90">
+                                                    {{ $record->status }}
+                                                </button>
+                                            @endif
+                                        </form>
+                                    @endcan
+
                                 </td>
                                 <td data-column-id="actions" class="gridjs-td">
                                     <span>
                                         <div class="flex space-x-2">
-                                            <form class="RESTORE" action="{{ route('payments.retirieve', $record->id) }}" method="POST">
-                                                <input type="hidden" name="_method" value="">
-                                                <input type="hidden" name="_token" value="{{ csrf_token() }}" />
-                                                <button type="submit" class="btn bg-slate-150 font-medium text-slate-800 hover:bg-slate-200 focus:bg-slate-200 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90 btn h-8 w-8 p-0 text-info hover:bg-info/20 focus:bg-info/20 active:bg-info/25">
-                                                    <i class="fa fa-undo"></i>
-                                                </button>
-                                            </form>
 
-                                            <form action="{{ route('payments.forcedelete', $record->id) }}" method="POST"
-                                                onsubmit="return confirm('Are you sure you want to delete this Payment Record?');">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit"
-                                                class="mx-2 btn bg-slate-150 font-medium text-slate-800 hover:bg-slate-200 focus:bg-slate-200 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90 btn h-8 w-8 p-0 text-error hover:bg-error/20 focus:bg-error/20 active:bg-error/25">
-                                                    <i class="fa fa-trash-alt"></i></button>
+                                            @can('payments-restore')
+                                                <form class="RESTORE" action="{{ route('payments.retirieve', $record->id) }}" method="POST">
+                                                    <input type="hidden" name="_method" value="">
+                                                    <input type="hidden" name="_token" value="{{ csrf_token() }}" />
+                                                    <button type="submit" class="btn bg-slate-150 font-medium text-slate-800 hover:bg-slate-200 focus:bg-slate-200 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90 btn h-8 w-8 p-0 text-info hover:bg-info/20 focus:bg-info/20 active:bg-info/25">
+                                                        <i class="fa fa-undo"></i>
+                                                    </button>
+                                                </form>
+                                            @endcan
 
-                                            </form>
-                                            {{-- @endcan --}}
+                                            @can('payments-forceDelete')
+                                                <form action="{{ route('payments.forcedelete', $record->id) }}" method="POST"
+                                                    onsubmit="return confirm('Are you sure you want to delete this Payment Record?');">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit"
+                                                    class="mx-2 btn bg-slate-150 font-medium text-slate-800 hover:bg-slate-200 focus:bg-slate-200 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90 btn h-8 w-8 p-0 text-error hover:bg-error/20 focus:bg-error/20 active:bg-error/25">
+                                                        <i class="fa fa-trash-alt"></i></button>
+
+                                                </form>
+                                             @endcan
                                         </div>
                                     </span>
                                 </td>

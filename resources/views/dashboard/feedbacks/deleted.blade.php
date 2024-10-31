@@ -20,8 +20,10 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
                     </svg>
                 </li>
-                <a class="text-primary transition-colors hover:text-primary-focus dark:text-accent-light dark:hover:text-accent"
-                href="{{ route('feedbacks.index') }}">Feedback List</a>
+                @can('feedbacks-list')
+                    <a class="text-primary transition-colors hover:text-primary-focus dark:text-accent-light dark:hover:text-accent"
+                    href="{{ route('feedbacks.index') }}">Feedback List</a>
+                @endcan
             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
                 stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
@@ -69,19 +71,25 @@
                                 <td class="px-6 py-4 text-sm text-slate-500 dark:text-navy-100">{{ $feedback->content }}
                                 </td>
                                 <td class="px-6 py-4 text-sm text-slate-500 dark:text-navy-100 flex flex-row">
-                                    <a href="{{ route('feedbacks.restore', $feedback->id) }}"
-                                        class="mx-2 btn bg-slate-150 font-medium text-slate-800 hover:bg-slate-200 focus:bg-slate-203 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90 btn h-8 w-8 p-0 text-info hover:bg-info/20 focus:bg-error/20 active:bg-info/25">
-                                        <i class="fa fa-refresh"></i>
-                                    </a>
-                                    <form action="{{ route('feedbacks.permdelete', $feedback->id) }}" method="POST"
-                                        onsubmit="return confirm('Are you sure you want to delete this feedback?');">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit"  
-                                        class="mx-2 btn bg-slate-150 font-medium text-slate-800 hover:bg-slate-200 focus:bg-slate-200 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90 btn h-8 w-8 p-0 text-error hover:bg-error/20 focus:bg-error/20 active:bg-error/25">
-                                            <i class="fa fa-trash-alt"></i></button>
 
-                                    </form>                                                                                
+                                    @can('feedbacks-restore')
+                                        <a href="{{ route('feedbacks.restore', $feedback->id) }}"
+                                            class="mx-2 btn bg-slate-150 font-medium text-slate-800 hover:bg-slate-200 focus:bg-slate-203 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90 btn h-8 w-8 p-0 text-info hover:bg-info/20 focus:bg-error/20 active:bg-info/25">
+                                            <i class="fa fa-refresh"></i>
+                                        </a>
+                                    @endcan
+
+                                    @can('feedbacks-forceDelete')
+                                        <form action="{{ route('feedbacks.permdelete', $feedback->id) }}" method="POST"
+                                            onsubmit="return confirm('Are you sure you want to delete this feedback?');">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit"
+                                            class="mx-2 btn bg-slate-150 font-medium text-slate-800 hover:bg-slate-200 focus:bg-slate-200 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90 btn h-8 w-8 p-0 text-error hover:bg-error/20 focus:bg-error/20 active:bg-error/25">
+                                                <i class="fa fa-trash-alt"></i></button>
+
+                                        </form>
+                                    @endcan
                                 </td>
                             </tr>
                         @endforeach

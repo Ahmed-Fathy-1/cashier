@@ -14,10 +14,10 @@ class RoleController extends Controller
 
     function __construct()
     {
-        // $this->middleware(['can:Role-list'], ['only' => ['index', 'show']]);
-        // $this->middleware(['can:Role-create'], ['only' => ['create', 'store']]);
-        // $this->middleware(['can:Role-edit'], ['only' => ['edit', 'update']]);
-        // $this->middleware(['can:Role-delete'], ['only' => ['destroy']]);
+         $this->middleware(['can:Role-list'], ['only' => ['index', 'show']]);
+         $this->middleware(['can:Role-create'], ['only' => ['create', 'store']]);
+         $this->middleware(['can:Role-edit'], ['only' => ['edit', 'update']]);
+         $this->middleware(['can:Role-delete'], ['only' => ['destroy']]);
     }
 
     public function index(Request $request)

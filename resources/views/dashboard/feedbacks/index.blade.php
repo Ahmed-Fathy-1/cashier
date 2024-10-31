@@ -15,7 +15,7 @@
                 <li>
                     <a href="{{ route('homePage') }}"
                         class="text-primary transition-colors hover:text-primary-focus dark:text-accent-light dark:hover:text-accent">
-                        Home > 
+                        Home >
                     </a>
                     <a>
                     Feedbacks
@@ -29,8 +29,10 @@
                 <h4 class="text-lg font-medium text-slate-700 dark:text-navy-100">
                     Feedback List
                 </h4>
+                @can('feedbacks-delete')
                     <a class="btn bg-error text-white hover:bg-error-focus focus:bg-error-focus dark:bg-error dark:hover:bg-error-focus dark:focus:bg-error-focus"
                     href="{{ route('feedbacks.trashedFeedbacks') }}"> View Deleted Feedbacks</a>
+                @endcan
             </div>
 
             <div class="p-4 sm:p-5">
@@ -65,15 +67,17 @@
                                 </td>
 
                                 <td class="px-6 py-4 text-sm text-slate-500 dark:text-navy-100">
-                                    <form action="{{ route('feedbacks.destroy', $feedback->id) }}" method="POST"
-                                        onsubmit="return confirm('Are you sure you want to delete this feedback?');">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit"  
-                                        class="mx-2 btn bg-slate-150 font-medium text-slate-800 hover:bg-slate-200 focus:bg-slate-200 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90 btn h-8 w-8 p-0 text-error hover:bg-error/20 focus:bg-error/20 active:bg-error/25">
-                                            <i class="fa fa-trash-alt"></i></button>
+                                    @can('feedbacks-delete')
+                                        <form action="{{ route('feedbacks.destroy', $feedback->id) }}" method="POST"
+                                            onsubmit="return confirm('Are you sure you want to delete this feedback?');">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit"
+                                            class="mx-2 btn bg-slate-150 font-medium text-slate-800 hover:bg-slate-200 focus:bg-slate-200 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90 btn h-8 w-8 p-0 text-error hover:bg-error/20 focus:bg-error/20 active:bg-error/25">
+                                                <i class="fa fa-trash-alt"></i></button>
 
-                                    </form> 
+                                        </form>
+                                    @endcan
                                 </td>
                             </tr>
                         @endforeach

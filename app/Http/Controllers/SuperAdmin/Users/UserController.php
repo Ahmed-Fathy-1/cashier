@@ -17,27 +17,41 @@ class UserController extends Controller
 
     function __construct()
     {
-        // $this->middleware(['can:User-list'], ['only' => ['index', 'show']]);
-        // $this->middleware(['can:User-create'], ['only' => ['create', 'store']]);
-        // $this->middleware(['can:User-edit'], ['only' => ['edit', 'update']]);
-        // $this->middleware(['can:User-delete'], ['only' => ['destroy']]);
+         $this->middleware(['can:User-list'], ['only' => ['index', 'show']]);
+         $this->middleware(['can:User-create'], ['only' => ['create', 'store']]);
+         $this->middleware(['can:User-edit'], ['only' => ['edit', 'update']]);
+         $this->middleware(['can:User-delete'], ['only' => ['destroy','trashed','restore']]);
     }
 
-
+    /**
+     * @var string
+     */
     protected $filePath = 'images/users';
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Foundation\Application
+     */
     public function index(Request $request)
     {
         $users = User::latest()->paginate(5);
         return view('dashboard.users.index',compact('users'));
     }
 
+    /**
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Foundation\Application
+     */
     public function create()
     {
         $roles = Role::pluck('name','name')->all();
         return view('dashboard.users.create',compact('roles'));
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Illuminate\Validation\ValidationException
+     */
     public function store(Request $request)
     {
         $this->validate($request, [
@@ -61,12 +75,20 @@ class UserController extends Controller
                         ->with('success','User created successfully');
     }
 
+    /**
+     * @param $id
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Foundation\Application
+     */
     public function show($id)
     {
         $users = User::findOrFail($id);
         return view('dashboard.users.show',compact('users'));
     }
 
+    /**
+     * @param $id
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Foundation\Application
+     */
     public function edit($id)
     {
         $users = User::find($id);
@@ -75,6 +97,12 @@ class UserController extends Controller
         return view('dashboard.users.edit',compact('users','roles','userRole'));
     }
 
+    /**
+     * @param Request $request
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Illuminate\Validation\ValidationException
+     */
     public function update(Request $request, $id)
     {
         $this->validate($request, [
@@ -107,6 +135,10 @@ class UserController extends Controller
                         ->with('success','User updated successfully');
     }
 
+    /**
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function destroy($id)
     {
         User::find($id)->delete();
@@ -114,12 +146,19 @@ class UserController extends Controller
                         ->with('success','User deleted successfully');
     }
 
+    /**
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Foundation\Application
+     */
     public function trashed()
     {
         $users = User::onlyTrashed()->paginate(10);
         return view('dashboard.users.delete', compact('users'));
     }
 
+    /**
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
     // Restore a soft-deleted user
     public function restore($id)
     {
@@ -128,6 +167,10 @@ class UserController extends Controller
         return redirect()->route('users.trashed')->with('success', 'User restored successfully.');
     }
 
+    /**
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
     // Permanently delete a user
     public function forceDelete($id)
     {

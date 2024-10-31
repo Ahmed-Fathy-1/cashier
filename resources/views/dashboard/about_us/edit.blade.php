@@ -45,7 +45,8 @@
 
                     </div>
                 </div>
-                <form action="{{ route('about_us.update', $aboutUs->id) }}" method="POST" enctype="multipart/form-data"
+                @can('aboutUs-edit')
+                    <form action="{{ route('about_us.update', $aboutUs->id) }}" method="POST" enctype="multipart/form-data"
                       id="about-form">
                     @csrf
                     @method('PUT')
@@ -373,12 +374,15 @@
 
                         <!-- Repeat similar blocks for other descriptions -->
 
-                        <div class="flex justify-end pt-4">
-                            <button type="submit"
-                                    class="btn bg-primary text-white hover:bg-primary-focus">Update</button>
-                        </div>
+                        @can('aboutUs-submit')
+                            <div class="flex justify-end pt-4">
+                                <button type="submit"
+                                        class="btn bg-primary text-white hover:bg-primary-focus">Update</button>
+                            </div>
+                        @endcan
                     </div>
                 </form>
+                @endcan
             </div>
         </div>
     </main>

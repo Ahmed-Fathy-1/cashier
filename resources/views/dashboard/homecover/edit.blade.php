@@ -46,7 +46,8 @@
 
                     </div>
                 </div>
-                <form action="{{ route('update_home_cover', $homecover->id) }}" method="POST" enctype="multipart/form-data"
+                @can('homeCover-edit')
+                    <form action="{{ route('update_home_cover', $homecover->id) }}" method="POST" enctype="multipart/form-data"
                     id="identifier">
                     @csrf
                     @method('PUT')
@@ -127,6 +128,7 @@
                         </div>
                     </div>
                 </form>
+                @endcan
 
     </main>
 

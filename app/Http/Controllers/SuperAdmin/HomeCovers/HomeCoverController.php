@@ -15,6 +15,11 @@ class HomeCoverController extends Controller
     use UploadFileTrait;
     protected $uploadPath = 'images/homecover';
 
+    function __construct()
+    {
+        $this->middleware(['can:homeCover-edit'], ['only' => ['edit', 'update']]);
+    }
+
     public function edit($id)
     {
         $homecover = HomeCover::findOrFail($id);

@@ -15,6 +15,7 @@ class TenantController extends Controller
     use UploadFileTrait;
 
     protected $filePath = 'images/users';
+
     /**
      * Display a listing of the resource.
      */

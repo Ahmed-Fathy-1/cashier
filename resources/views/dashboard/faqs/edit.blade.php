@@ -13,10 +13,12 @@
             </div>
             <ul class="hidden flex-wrap items-center space-x-2 sm:flex">
                 <li>
-                    <a href="{{ route('faqs.index') }}"
-                        class="text-primary transition-colors hover:text-primary-focus dark:text-accent-light dark:hover:text-accent">
-                        FAQs
-                    </a>
+                    @can('faqs-list')
+                        <a href="{{ route('faqs.index') }}"
+                            class="text-primary transition-colors hover:text-primary-focus dark:text-accent-light dark:hover:text-accent">
+                            FAQs
+                        </a>
+                    @endcan
                 </li>
             </ul>
         </div>
@@ -29,7 +31,8 @@
             </div>
 
             <div class="p-4 sm:p-5">
-                <form action="{{ route('faqs.update', $faq->id) }}" method="POST">
+                @can('faqs-edit')
+                    <form action="{{ route('faqs.update', $faq->id) }}" method="POST">
                     @csrf
                     @method('PATCH')
 
@@ -48,6 +51,7 @@
                         <button type="submit" class="btn bg-primary text-white hover:bg-primary-focus focus:bg-primary-focus dark:bg-primary dark:hover:bg-primary-focus dark:focus:bg-primary-focus">Update FAQ</button>
                     </div>
                 </form>
+                @endcan
             </div>
         </div>
     </main>

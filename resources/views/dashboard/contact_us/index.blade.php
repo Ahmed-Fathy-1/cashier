@@ -42,11 +42,14 @@
                 <h4 class="text-lg font-medium text-slate-700 dark:text-navy-100">
                     Contact Us Entries
                 </h4>
-                <a href="{{ route('contact-us.trashed') }}" class="btn bg-error text-white hover:bg-error-focus focus:bg-error-focus dark:bg-error dark:hover:bg-error-focus dark:focus:bg-error-focus mt-4">
-                    View Deleted Contacts
-                </a>
-                
-                
+
+                @can('contactUs-forceDeleted')
+                    <a href="{{ route('contact-us.trashed') }}" class="btn bg-error text-white hover:bg-error-focus focus:bg-error-focus dark:bg-error dark:hover:bg-error-focus dark:focus:bg-error-focus mt-4">
+                        View Deleted Contacts
+                    </a>
+                @endcan
+
+
             </div>
 
             <div class="p-4 sm:p-5">
@@ -69,9 +72,11 @@
                                 <td class="px-6 py-4 text-sm text-slate-500 dark:text-navy-100">{{ $contact->phone ?? 'N/A' }}</td>
                                 <td class="px-6 py-4 text-sm text-slate-500 dark:text-navy-100 flex space-x-2">
                                     <!-- View Button -->
-                                    <a href="{{ route('contact-us.show', $contact->id) }}" class="btn h-8 w-8 p-0 text-success hover:bg-success/20 focus:bg-success/20 active:bg-success/25">
-                                        <i class="fa-regular fa-eye"></i>
-                                    </a>
+                                    @can('contactUs-list')
+                                        <a href="{{ route('contact-us.show', $contact->id) }}" class="btn h-8 w-8 p-0 text-success hover:bg-success/20 focus:bg-success/20 active:bg-success/25">
+                                            <i class="fa-regular fa-eye"></i>
+                                        </a>
+                                    @endcan
 
                                     <!-- Delete Button with data-route attribute -->
 
@@ -83,7 +88,7 @@
                                         onsubmit="return confirm('Are you sure you want to delete this feedback?');">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit"  
+                                        <button type="submit"
                                         class="mx-2 btn bg-slate-150 font-medium text-slate-800 hover:bg-slate-200 focus:bg-slate-200 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90 btn h-8 w-8 p-0 text-error hover:bg-error/20 focus:bg-error/20 active:bg-error/25">
                                             <i class="fa fa-trash-alt"></i></button>
                                     </form>
@@ -92,9 +97,9 @@
 
 
                                 </td>
-                            </tr>  
+                            </tr>
                         @endforeach
-                    </div>                          
+                    </div>
                     </tbody>
                 </table>
             </div>

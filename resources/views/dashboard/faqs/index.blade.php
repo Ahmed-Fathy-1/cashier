@@ -19,12 +19,12 @@
                 <li>
                     <a href="{{ route('homePage') }}"
                         class="text-primary transition-colors hover:text-primary-focus dark:text-accent-light dark:hover:text-accent">
-                        Home > 
+                        Home >
                     </a>
                 </li>
                 <li>
                     <a>
-                        FAQs 
+                        FAQs
                     </a>
                 </li>
             </ul>
@@ -35,12 +35,18 @@
                 <h4 class="text-lg font-medium text-slate-700 dark:text-navy-100">
                     FAQs List
                 </h4>
-                <a href="{{ route('faqs.create') }}"
-                    class="btn bg-primary text-white hover:bg-primary-focus focus:bg-primary-focus dark:bg-primary dark:hover:bg-primary-focus dark:focus:bg-primary-focus mt-4">
-                    Add New FAQ
-                </a>
-                <a class="btn bg-error text-white hover:bg-error-focus focus:bg-error-focus dark:bg-error dark:hover:bg-error-focus dark:focus:bg-error-focus mt-4"
-                    href="{{ route('faqs.trashedFaqs') }}">View Deleted FAQs</a>
+                @can('faqs-create')
+                    <a href="{{ route('faqs.create') }}"
+                        class="btn bg-primary text-white hover:bg-primary-focus focus:bg-primary-focus dark:bg-primary dark:hover:bg-primary-focus dark:focus:bg-primary-focus mt-4">
+                        Add New FAQ
+                    </a>
+                @endcan
+
+                @can('faqs-forceDelete')
+                    <a class="btn bg-error text-white hover:bg-error-focus focus:bg-error-focus dark:bg-error dark:hover:bg-error-focus dark:focus:bg-error-focus mt-4"
+                        href="{{ route('faqs.trashedFaqs') }}">View Deleted FAQs</a>
+                @endcan
+
             </div>
 
             <div class="p-4 sm:p-5">
@@ -72,19 +78,24 @@
                                 <td class="px-6 py-4 text-sm text-slate-500 dark:text-navy-100">{{ $faq->answer }}</td>
 
                                 <td class="px-6 py-4 text-sm text-slate-500 dark:text-navy-100 flex flex-row">
-                                    <a href="{{ route('faqs.edit', $faq->id) }}"
-                                        class="mx-2 btn bg-slate-150 font-medium text-slate-800 hover:bg-slate-200 focus:bg-slate-203 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90 btn h-8 w-8 p-0 text-info hover:bg-info/20 focus:bg-info/20 active:bg-info/25">
-                                        <i class="fa fa-edit"></i>
-                                    </a>
-                                    <form action="{{ route('faqs.destroy', $faq->id) }}" method="POST"
-                                        onsubmit="return confirm('Are you sure you want to delete this FAQs ?');">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit"  
-                                        class="mx-2 btn bg-slate-150 font-medium text-slate-800 hover:bg-slate-200 focus:bg-slate-200 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90 btn h-8 w-8 p-0 text-error hover:bg-error/20 focus:bg-error/20 active:bg-error/25">
-                                            <i class="fa fa-trash-alt"></i></button>
+                                    @can('faqs-edit')
+                                        <a href="{{ route('faqs.edit', $faq->id) }}"
+                                            class="mx-2 btn bg-slate-150 font-medium text-slate-800 hover:bg-slate-200 focus:bg-slate-203 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90 btn h-8 w-8 p-0 text-info hover:bg-info/20 focus:bg-info/20 active:bg-info/25">
+                                            <i class="fa fa-edit"></i>
+                                        </a>
+                                    @endcan
 
-                                    </form>
+                                     @can('faqs-delete')
+                                        <form action="{{ route('faqs.destroy', $faq->id) }}" method="POST"
+                                            onsubmit="return confirm('Are you sure you want to delete this FAQs ?');">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit"
+                                            class="mx-2 btn bg-slate-150 font-medium text-slate-800 hover:bg-slate-200 focus:bg-slate-200 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90 btn h-8 w-8 p-0 text-error hover:bg-error/20 focus:bg-error/20 active:bg-error/25">
+                                                <i class="fa fa-trash-alt"></i></button>
+
+                                        </form>
+                                    @endcan
                                 </td>
                             </tr>
 

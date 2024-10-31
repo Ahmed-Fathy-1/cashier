@@ -47,7 +47,8 @@
 
                     </div>
                 </div>
-                <form action="{{ route('settings.update', 1) }}" method="POST" enctype="multipart/form-data" id="identifier">
+                @can('settings-edit')
+                    <form action="{{ route('settings.update', 1) }}" method="POST" enctype="multipart/form-data" id="identifier">
                     @csrf
                     @method('PUT')
                     <div class="space-y-4 p-4 sm:p-5">
@@ -276,6 +277,7 @@
                     </div>
             </div>
             </form>
+                @endcan
 
     </main>
 

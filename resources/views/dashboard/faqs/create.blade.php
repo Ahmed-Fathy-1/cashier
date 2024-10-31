@@ -21,10 +21,13 @@
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
             </svg>
                 <li class="flex items-center space-x-2">
-                    <a href="{{ route('faqs.index') }}"
-                        class="text-primary transition-colors hover:text-primary-focus dark:text-accent-light dark:hover:text-accent">
-                        FAQs
-                    </a>
+
+                    @can('faqs-list')
+                        <a href="{{ route('faqs.index') }}"
+                            class="text-primary transition-colors hover:text-primary-focus dark:text-accent-light dark:hover:text-accent">
+                            FAQs
+                        </a>
+                    @endcan
                 </li>
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
                 stroke="currentColor">
@@ -33,7 +36,7 @@
                 <li>Create New FAQ</li>
             </ul>
         </div>
-        
+
         <div class="col-span-12 grid lg:col-span-12">
             <div class="card">
                 <div class="border-b border-slate-200 p-4 dark:border-navy-500 sm:px-5">
@@ -46,8 +49,8 @@
                         </h4>
                     </div>
                 </div>
-                
-                <form action="{{ route('faqs.store') }}" method="POST">
+                @can('faqs-create')
+                    <form action="{{ route('faqs.store') }}" method="POST">
                     @csrf
                     <div class="space-y-4 p-4 sm:p-5">
 
@@ -83,6 +86,7 @@
                         </div>
                     </div>
                 </form>
+                @endcan
             </div>
         </div>
     </main>

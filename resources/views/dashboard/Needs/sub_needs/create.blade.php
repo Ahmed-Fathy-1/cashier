@@ -21,9 +21,12 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
                     </svg>
                 </li>
-        
-                <a class="text-primary transition-colors hover:text-primary-focus dark:text-accent-light dark:hover:text-accent"
-                href="{{ route('sub_needs.index') }}">Sub-Needs</a>
+
+                @can('subNeeds-list')
+                    <a class="text-primary transition-colors hover:text-primary-focus dark:text-accent-light dark:hover:text-accent"
+                    href="{{ route('sub_needs.index') }}">Sub-Needs</a>
+                @endcan
+
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
                 </svg>
@@ -49,7 +52,8 @@
 
                     </div>
                 </div>
-                <form action="{{ route('sub_needs.store') }}" method="POST" enctype="multipart/form-data" id="identifier">
+                @can('subNeeds-create')
+                    <form action="{{ route('sub_needs.store') }}" method="POST" enctype="multipart/form-data" id="identifier">
                     @csrf
                     <h4 class="space-y-4 p-4 sm:p-5">
                         <br>
@@ -112,6 +116,7 @@
                         </div>
                     </h4>
                 </form>
+                @endcan
             </h4>
         </div>
     </main>

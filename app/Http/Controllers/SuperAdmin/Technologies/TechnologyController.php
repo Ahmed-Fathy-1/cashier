@@ -12,6 +12,14 @@ class TechnologyController extends Controller
     use UploadFileTrait;
     protected $uploadPath = 'images/technologies';
 
+    function __construct()
+    {
+        $this->middleware(['can:technologies-list'], ['only' => ['index', 'show']]);
+        $this->middleware(['can:technologies-create'], ['only' => ['create', 'store']]);
+        $this->middleware(['can:technologies-edit'], ['only' => ['edit', 'update']]);
+        $this->middleware(['can:technologies-delete'], ['only' => ['destroy','trashedTechnologies','restore']]);
+    }
+
     public function index()
     {
         $techs = Technology::all();

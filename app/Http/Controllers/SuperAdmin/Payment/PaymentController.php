@@ -19,6 +19,14 @@ use Stripe\StripeClient;
 class PaymentController extends Controller
 {
 
+    function __construct()
+    {
+        $this->middleware(['can:payments-list'], ['only' => ['index']]);
+//        $this->middleware(['can:paymentMethods-create'], ['only' => ['create', 'store']]);
+        $this->middleware(['can:payments-edit'], ['only' => ['edit', 'update']]);
+        $this->middleware(['can:payments-delete'], ['only' => ['destroy' , 'showDeleted', 'forceDelete' , 'restore']]);
+    }
+
     public function index()
     {
         $payments = Payment::paginate(10);

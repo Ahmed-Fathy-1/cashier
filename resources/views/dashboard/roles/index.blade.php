@@ -1,6 +1,6 @@
 @extends('dashboard.layouts.master')
 
-@section('title', 'role')
+@section('title', 'Role')
 
 @push('style')
     <script src="{{ asset('assets/js/pages/components-modal.js') }}" defer=""></script>
@@ -24,7 +24,7 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
                     </svg>
                 </li>
-                <li>roles list</li>
+                <li>Roles list</li>
             </ul>
         </div>
 
@@ -42,14 +42,13 @@
                             Table With roles
                         </h2>
                         <div class="flex">
-                            {{-- @can('Role-create') --}}
-
-                            <a href="{{ route('roles.create') }}"
-                            class="btn space-x-2 bg-primary font-medium text-white hover:bg-primary-focus focus:bg-primary-focus active:bg-primary-focus/90 dark:bg-accent dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90">
-                            <i class="fa-solid fa-plus"></i>
-                            <span> Add role </span>
-                        </a>
-                        {{-- @endcan --}}
+                             @can('Role-create')
+                                <a href="{{ route('roles.create') }}"
+                                    class="btn space-x-2 bg-primary font-medium text-white hover:bg-primary-focus focus:bg-primary-focus active:bg-primary-focus/90 dark:bg-accent dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90">
+                                    <i class="fa-solid fa-plus"></i>
+                                    <span> Add role </span>
+                                </a>
+                            @endcan
 
                         </div>
                     </div>
@@ -85,23 +84,22 @@
                                             <td data-column-id="actions" class="gridjs-td">
                                                 <span>
                                                     <div class="flex space-x-2">
-                                                        {{-- @can('Role-list') --}}
+                                                         @can('Role-list')
+                                                            <a href="{{ route('roles.show', $role->id) }}"
+                                                                class="btn h-8 w-8 p-0 text-success hover:bg-success/20 focus:bg-success/20 active:bg-success/25">
+                                                                <i class="fa-regular fa-eye"></i>
+                                                            </a>
+                                                         @endcan
 
-                                                        <a href="{{ route('roles.show', $role->id) }}"
-                                                            class="btn h-8 w-8 p-0 text-success hover:bg-success/20 focus:bg-success/20 active:bg-success/25">
-                                                            <i class="fa-regular fa-eye"></i>
-                                                        </a>
-                                                        {{-- @endcan --}}
-                                                        {{-- @can('Role-edit') --}}
+                                                         @can('Role-edit')
+                                                            <a href="{{ route('roles.edit', $role->id) }}"
+                                                                onclick="$notification({ text: 'Item edit action', variant: 'info' })"
+                                                                class="btn h-8 w-8 p-0 text-info hover:bg-info/20 focus:bg-info/20 active:bg-info/25">
+                                                                <i class="fa fa-edit"></i>
+                                                            </a>
+                                                         @endcan
 
-                                                        <a href="{{ route('roles.edit', $role->id) }}"
-                                                            onclick="$notification({ text: 'Item edit action', variant: 'info' })"
-                                                            class="btn h-8 w-8 p-0 text-info hover:bg-info/20 focus:bg-info/20 active:bg-info/25">
-                                                            <i class="fa fa-edit"></i>
-                                                        </a>
-                                                        {{-- @endcan --}}
-                                                        {{-- @can('Role-delete') --}}
-
+                                                         @can('Role-delete')
                                                         <button data-toggle="modal" data-target="#modal1"
                                                             class="btn bg-slate-150 font-medium text-slate-800 hover:bg-slate-200 focus:bg-slate-200 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90 btn h-8 w-8 p-0 text-error hover:bg-error/20 focus:bg-error/20 active:bg-error/25">
                                                             <i class="fa fa-trash-alt"></i>
@@ -143,7 +141,7 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        {{-- @endcan --}}
+                                                     @endcan
 
                                                     </div>
                                                 </span>

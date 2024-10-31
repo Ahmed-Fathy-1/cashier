@@ -17,6 +17,13 @@ class SubNeedsController extends Controller
 
     protected $filePath = 'images/needs';
 
+    function __construct()
+    {
+        $this->middleware(['can:subNeeds-list'], ['only' => ['index']]);
+        $this->middleware(['can:subNeeds-create'], ['only' => ['create', 'store']]);
+        $this->middleware(['can:subNeeds-edit'], ['only' => ['edit', 'update']]);
+        $this->middleware(['can:subNeeds-delete'], ['only' => ['destroy','showDeleted','forceDelete','restore']]);
+    }
 
     /**
      * Display a listing of the resource.

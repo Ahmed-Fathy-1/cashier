@@ -69,196 +69,237 @@
 
 
                                             {{-- Sub Payment Methods --}}
-                                            <li>
-                                                <a href="{{ route('payment-methods.index') }}"
-                                                    class="nav-link flex items-center justify-between p-2 text-xs+ tracking-wide outline-none transition-[color,padding-left] duration-300 ease-in-out hover:pl-4 text-slate-600 hover:text-slate-800 dark:text-navy-200 dark:hover:text-navy-50"
-                                                    data-default-class="text-slate-600 hover:text-slate-800 dark:text-navy-200 dark:hover:text-navy-50"
-                                                    data-active-class="font-medium text-primary dark:text-accent-light">
-                                                    <div class="flex items-center space-x-2">
-                                                        <div
-                                                            class="h-1.5 w-1.5 rounded-full border border-current opacity-40">
+                                            @can('paymentMethods-list')
+                                                <li>
+                                                    <a href="{{ route('payment-methods.index') }}"
+                                                        class="nav-link flex items-center justify-between p-2 text-xs+ tracking-wide outline-none transition-[color,padding-left] duration-300 ease-in-out hover:pl-4 text-slate-600 hover:text-slate-800 dark:text-navy-200 dark:hover:text-navy-50"
+                                                        data-default-class="text-slate-600 hover:text-slate-800 dark:text-navy-200 dark:hover:text-navy-50"
+                                                        data-active-class="font-medium text-primary dark:text-accent-light">
+                                                        <div class="flex items-center space-x-2">
+                                                            <div
+                                                                class="h-1.5 w-1.5 rounded-full border border-current opacity-40">
+                                                            </div>
+                                                            <span>Payment Methods</span>
                                                         </div>
-                                                        <span>Payment Methods</span>
-                                                    </div>
-                                                </a>
-                                            </li>
+                                                    </a>
+                                                </li>
+                                            @endcan
+
 
 
                                             {{-- Sub Packages  --}}
-                                            <li>
-                                                <a href="{{ route('packages.index') }}"
-                                                    class="nav-link flex items-center justify-between p-2 text-xs+ tracking-wide outline-none transition-[color,padding-left] duration-300 ease-in-out hover:pl-4 text-slate-600 hover:text-slate-800 dark:text-navy-200 dark:hover:text-navy-50"
-                                                    data-default-class="text-slate-600 hover:text-slate-800 dark:text-navy-200 dark:hover:text-navy-50"
-                                                    data-active-class="font-medium text-primary dark:text-accent-light">
-                                                    <div class="flex items-center space-x-2">
-                                                        <div
-                                                            class="h-1.5 w-1.5 rounded-full border border-current opacity-40">
+                                            @can('packages-list')
+                                                <li>
+                                                    <a href="{{ route('packages.index') }}"
+                                                        class="nav-link flex items-center justify-between p-2 text-xs+ tracking-wide outline-none transition-[color,padding-left] duration-300 ease-in-out hover:pl-4 text-slate-600 hover:text-slate-800 dark:text-navy-200 dark:hover:text-navy-50"
+                                                        data-default-class="text-slate-600 hover:text-slate-800 dark:text-navy-200 dark:hover:text-navy-50"
+                                                        data-active-class="font-medium text-primary dark:text-accent-light">
+                                                        <div class="flex items-center space-x-2">
+                                                            <div
+                                                                class="h-1.5 w-1.5 rounded-full border border-current opacity-40">
+                                                            </div>
+                                                            <span>Packages</span>
                                                         </div>
-                                                        <span>Packages</span>
-                                                    </div>
-                                                </a>
-                                            </li>
+                                                    </a>
+                                                </li>
+                                            @endcan
 
 
 
                                             {{-- Sub Feedbacks --}}
-                                            <li>
-                                                <a href="{{ route('feedbacks.index') }}"
-                                                    class="nav-link flex items-center justify-between p-2 text-xs+ tracking-wide outline-none transition-[color,padding-left] duration-300 ease-in-out hover:pl-4 text-slate-600 hover:text-slate-800 dark:text-navy-200 dark:hover:text-navy-50"
-                                                    data-default-class="text-slate-600 hover:text-slate-800 dark:text-navy-200 dark:hover:text-navy-50"
-                                                    data-active-class="font-medium text-primary dark:text-accent-light">
-                                                    <div class="flex items-center space-x-2">
-                                                        <div
-                                                            class="h-1.5 w-1.5 rounded-full border border-current opacity-40">
+                                            @can('feedbacks-list')
+                                                <li>
+                                                    <a href="{{ route('feedbacks.index') }}"
+                                                        class="nav-link flex items-center justify-between p-2 text-xs+ tracking-wide outline-none transition-[color,padding-left] duration-300 ease-in-out hover:pl-4 text-slate-600 hover:text-slate-800 dark:text-navy-200 dark:hover:text-navy-50"
+                                                        data-default-class="text-slate-600 hover:text-slate-800 dark:text-navy-200 dark:hover:text-navy-50"
+                                                        data-active-class="font-medium text-primary dark:text-accent-light">
+                                                        <div class="flex items-center space-x-2">
+                                                            <div
+                                                                class="h-1.5 w-1.5 rounded-full border border-current opacity-40">
+                                                            </div>
+                                                            <span>Feedbacks</span>
                                                         </div>
-                                                        <span>Feedbacks</span>
-                                                    </div>
-                                                </a>
-                                            </li>
+                                                    </a>
+                                                </li>
+                                            @endcan
 
 
 
                                             {{-- Sub Technologies --}}
-                                            <li>
-                                                <a href="{{ route('technologies.index') }}"
-                                                    class="nav-link flex items-center justify-between p-2 text-xs+ tracking-wide outline-none transition-[color,padding-left] duration-300 ease-in-out hover:pl-4 text-slate-600 hover:text-slate-800 dark:text-navy-200 dark:hover:text-navy-50"
-                                                    data-default-class="text-slate-600 hover:text-slate-800 dark:text-navy-200 dark:hover:text-navy-50"
-                                                    data-active-class="font-medium text-primary dark:text-accent-light">
-                                                    <div class="flex items-center space-x-2">
-                                                        <div
-                                                            class="h-1.5 w-1.5 rounded-full border border-current opacity-40">
+                                            @can('technologies-list')
+                                                <li>
+                                                    <a href="{{ route('technologies.index') }}"
+                                                        class="nav-link flex items-center justify-between p-2 text-xs+ tracking-wide outline-none transition-[color,padding-left] duration-300 ease-in-out hover:pl-4 text-slate-600 hover:text-slate-800 dark:text-navy-200 dark:hover:text-navy-50"
+                                                        data-default-class="text-slate-600 hover:text-slate-800 dark:text-navy-200 dark:hover:text-navy-50"
+                                                        data-active-class="font-medium text-primary dark:text-accent-light">
+                                                        <div class="flex items-center space-x-2">
+                                                            <div
+                                                                class="h-1.5 w-1.5 rounded-full border border-current opacity-40">
+                                                            </div>
+                                                            <span>Technologies</span>
                                                         </div>
-                                                        <span>Technologies</span>
-                                                    </div>
-                                                </a>
-                                            </li>
+                                                    </a>
+                                                </li>
+                                            @endcan
 
 
                                             {{-- Sub FAQs --}}
-                                            <li>
-                                                <a href="{{ route('faqs.index') }}"
-                                                    class="nav-link flex items-center justify-between p-2 text-xs+ tracking-wide outline-none transition-[color,padding-left] duration-300 ease-in-out hover:pl-4 text-slate-600 hover:text-slate-800 dark:text-navy-200 dark:hover:text-navy-50"
-                                                    data-default-class="text-slate-600 hover:text-slate-800 dark:text-navy-200 dark:hover:text-navy-50"
-                                                    data-active-class="font-medium text-primary dark:text-accent-light">
-                                                    <div class="flex items-center space-x-2">
-                                                        <div
-                                                            class="h-1.5 w-1.5 rounded-full border border-current opacity-40">
+                                            @can('faqs-list')
+                                                <li>
+                                                    <a href="{{ route('faqs.index') }}"
+                                                        class="nav-link flex items-center justify-between p-2 text-xs+ tracking-wide outline-none transition-[color,padding-left] duration-300 ease-in-out hover:pl-4 text-slate-600 hover:text-slate-800 dark:text-navy-200 dark:hover:text-navy-50"
+                                                        data-default-class="text-slate-600 hover:text-slate-800 dark:text-navy-200 dark:hover:text-navy-50"
+                                                        data-active-class="font-medium text-primary dark:text-accent-light">
+                                                        <div class="flex items-center space-x-2">
+                                                            <div
+                                                                class="h-1.5 w-1.5 rounded-full border border-current opacity-40">
+                                                            </div>
+                                                            <span>FAQs</span>
                                                         </div>
-                                                        <span>FAQs</span>
-                                                    </div>
-                                                </a>
-                                            </li>
+                                                    </a>
+                                                </li>
+                                            @endcan
 
 
                                             {{-- Sub Features --}}
-                                            <li>
-                                                <a href="{{ route('features.edit', 1) }}"
-                                                    class="nav-link flex items-center justify-between p-2 text-xs+ tracking-wide outline-none transition-[color,padding-left] duration-300 ease-in-out hover:pl-4 text-slate-600 hover:text-slate-800 dark:text-navy-200 dark:hover:text-navy-50"
-                                                    data-default-class="text-slate-600 hover:text-slate-800 dark:text-navy-200 dark:hover:text-navy-50"
-                                                    data-active-class="font-medium text-primary dark:text-accent-light">
-                                                    <div class="flex items-center space-x-2">
-                                                        <div
-                                                            class="h-1.5 w-1.5 rounded-full border border-current opacity-40">
+                                            @can('features-edit')
+                                                <li>
+                                                    <a href="{{ route('features.edit', 1) }}"
+                                                        class="nav-link flex items-center justify-between p-2 text-xs+ tracking-wide outline-none transition-[color,padding-left] duration-300 ease-in-out hover:pl-4 text-slate-600 hover:text-slate-800 dark:text-navy-200 dark:hover:text-navy-50"
+                                                        data-default-class="text-slate-600 hover:text-slate-800 dark:text-navy-200 dark:hover:text-navy-50"
+                                                        data-active-class="font-medium text-primary dark:text-accent-light">
+                                                        <div class="flex items-center space-x-2">
+                                                            <div
+                                                                class="h-1.5 w-1.5 rounded-full border border-current opacity-40">
+                                                            </div>
+                                                            <span>Features</span>
                                                         </div>
-                                                        <span>Features</span>
-                                                    </div>
-                                                </a>
-                                            </li>
+                                                    </a>
+                                                </li>
+                                            @endcan
 
 
 
 
                                             {{-- Start Sub Menu Needs --}}
-                                            <li>
-                                                <a href="{{ route('main_needs.edit', 1) }}"
-                                                    class="nav-link flex items-center justify-between p-2 text-xs+ tracking-wide outline-none transition-[color,padding-left] duration-300 ease-in-out hover:pl-4 text-slate-600 hover:text-slate-800 dark:text-navy-200 dark:hover:text-navy-50"
-                                                    data-default-class="text-slate-600 hover:text-slate-800 dark:text-navy-200 dark:hover:text-navy-50"
-                                                    data-active-class="font-medium text-primary dark:text-accent-light">
-                                                    <div class="flex items-center space-x-2">
-                                                        <div
-                                                            class="h-1.5 w-1.5 rounded-full border border-current opacity-40">
+                                            @can('mainNeeds-edit')
+                                                <li>
+                                                    <a href="{{ route('main_needs.edit', 1) }}"
+                                                        class="nav-link flex items-center justify-between p-2 text-xs+ tracking-wide outline-none transition-[color,padding-left] duration-300 ease-in-out hover:pl-4 text-slate-600 hover:text-slate-800 dark:text-navy-200 dark:hover:text-navy-50"
+                                                        data-default-class="text-slate-600 hover:text-slate-800 dark:text-navy-200 dark:hover:text-navy-50"
+                                                        data-active-class="font-medium text-primary dark:text-accent-light">
+                                                        <div class="flex items-center space-x-2">
+                                                            <div
+                                                                class="h-1.5 w-1.5 rounded-full border border-current opacity-40">
+                                                            </div>
+                                                            <span>Main Needs</span>
                                                         </div>
-                                                        <span>Main Needs</span>
-                                                    </div>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="{{ route('sub_needs.index') }}"
-                                                    class="nav-link flex items-center justify-between p-2 text-xs+ tracking-wide outline-none transition-[color,padding-left] duration-300 ease-in-out hover:pl-4 text-slate-600 hover:text-slate-800 dark:text-navy-200 dark:hover:text-navy-50"
-                                                    data-default-class="text-slate-600 hover:text-slate-800 dark:text-navy-200 dark:hover:text-navy-50"
-                                                    data-active-class="font-medium text-primary dark:text-accent-light">
-                                                    <div class="flex items-center space-x-2">
-                                                        <div
-                                                            class="h-1.5 w-1.5 rounded-full border border-current opacity-40">
+                                                    </a>
+                                                </li>
+                                            @endcan
+
+                                            @can('subNeeds-list')
+                                                <li>
+                                                    <a href="{{ route('sub_needs.index') }}"
+                                                        class="nav-link flex items-center justify-between p-2 text-xs+ tracking-wide outline-none transition-[color,padding-left] duration-300 ease-in-out hover:pl-4 text-slate-600 hover:text-slate-800 dark:text-navy-200 dark:hover:text-navy-50"
+                                                        data-default-class="text-slate-600 hover:text-slate-800 dark:text-navy-200 dark:hover:text-navy-50"
+                                                        data-active-class="font-medium text-primary dark:text-accent-light">
+                                                        <div class="flex items-center space-x-2">
+                                                            <div
+                                                                class="h-1.5 w-1.5 rounded-full border border-current opacity-40">
+                                                            </div>
+                                                            <span>Sub Needs</span>
                                                         </div>
-                                                        <span>Sub Needs</span>
-                                                    </div>
-                                                </a>
-                                            </li>
+                                                    </a>
+                                                </li>
+                                            @endcan
 
                                         </ul>
 
                                     </li>
                                 </ul>
+
+                                @can('User-list')
                                 <div class="my-3 mx-4 h-px bg-slate-100 dark:bg-navy-500"></div>
 
 
                                 <ul class="flex flex-1 flex-col px-4 font-inter">
-                                    <li>
-                                        <a href="{{ route('users.index') }}#" class="">
-                                            <span>Users</span>
-                                        </a>
-                                    </li>
+
+                                        <li>
+                                            <a href="{{ route('users.index') }}#" class="">
+                                                <span>Users</span>
+                                            </a>
+                                        </li>
+
                                 </ul>
 
-                                <div class="my-3 mx-4 h-px bg-slate-100 dark:bg-navy-500"></div>
-
-                                <ul class="flex flex-1 flex-col px-4 font-inter">
-                                    <li>
-                                        <a href="{{ route('roles.index') }}" class="">
-                                            <span>Roles</span>
-                                        </a>
-                                    </li>
-                                </ul>
 
                                 <div class="my-3 mx-4 h-px bg-slate-100 dark:bg-navy-500"></div>
-                                <ul class="flex flex-1 flex-col px-4 font-inter">
-                                    <li>
-                                        <a href="{{ route('tenants.index') }}" class="">
-                                            <span>Domains</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                                <div class="my-3 mx-4 h-px bg-slate-100 dark:bg-navy-500"></div>
+                                @endcan
+
+                                @can('Role-list')
+                                    <ul class="flex flex-1 flex-col px-4 font-inter">
 
 
-                                <ul class="flex flex-1 flex-col px-4 font-inter">
-                                    <li>
-                                        <a href="{{ route('payments.index') }}" class="">
-                                            <span>Payments</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                                <div class="my-3 mx-4 h-px bg-slate-100 dark:bg-navy-500"></div>
+                                            <li>
+                                                <a href="{{ route('roles.index') }}" class="">
+                                                    <span>Roles</span>
+                                                </a>
+                                            </li>
+                                    </ul>
 
-                                <ul class="flex flex-1 flex-col px-4 font-inter">
-                                    <li>
-                                        <a href="{{ url('/contact-us') }}" class="">
-                                            <span>Contact Us</span>
-                                        </a>
-                                    </li>
-                                </ul>
 
                                 <div class="my-3 mx-4 h-px bg-slate-100 dark:bg-navy-500"></div>
+                                @endcan
 
-                                <ul class="flex flex-1 flex-col px-4 font-inter">
-                                    <li>
-                                        <a href="{{ route('about_us.edit', 1) }}" class="">
-                                            <span>About Us</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                                <div class="my-3 mx-4 h-px bg-slate-100 dark:bg-navy-500"></div>
+                                @can('Domain-list')
+                                    <ul class="flex flex-1 flex-col px-4 font-inter">
+
+                                            <li>
+                                                <a href="{{ route('tenants.index') }}" class="">
+                                                    <span>Domains</span>
+                                                </a>
+                                            </li>
+
+                                    </ul>
+                                    <div class="my-3 mx-4 h-px bg-slate-100 dark:bg-navy-500"></div>
+                                @endcan
+
+                                @can('payments-list')
+                                    <ul class="flex flex-1 flex-col px-4 font-inter">
+
+                                            <li>
+                                                <a href="{{ route('payments.index') }}" class="">
+                                                    <span>Payments</span>
+                                                </a>
+                                            </li>
+
+                                    </ul>
+                                    <div class="my-3 mx-4 h-px bg-slate-100 dark:bg-navy-500"></div>
+                                @endcan
+
+                                @can('contactUs-list')
+                                    <ul class="flex flex-1 flex-col px-4 font-inter">
+                                        <li>
+                                            <a href="{{ url('/contact-us') }}" class="">
+                                                <span>Contact Us</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+
+                                    <div class="my-3 mx-4 h-px bg-slate-100 dark:bg-navy-500"></div>
+                                @endcan
+
+                                @can('aboutUs-edit')
+                                    <ul class="flex flex-1 flex-col px-4 font-inter">
+                                        <li>
+                                            <a href="{{ route('about_us.edit', 1) }}" class="">
+                                                <span>About Us</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                    <div class="my-3 mx-4 h-px bg-slate-100 dark:bg-navy-500"></div>
+                                @endcan
 
 
                                 <ul class="flex flex-1 flex-col px-4 font-inter">
@@ -281,35 +322,40 @@
                                             style="transition-duration: 200ms; height: 0px;">
 
 
-                                            <li>
-                                                <a href="{{ route('settings.edit', 1) }}"
-                                                    class="nav-link flex items-center justify-between p-2 text-xs+ tracking-wide outline-none transition-[color,padding-left] duration-300 ease-in-out hover:pl-4 text-slate-600 hover:text-slate-800 dark:text-navy-200 dark:hover:text-navy-50"
-                                                    data-default-class="text-slate-600 hover:text-slate-800 dark:text-navy-200 dark:hover:text-navy-50"
-                                                    data-active-class="font-medium text-primary dark:text-accent-light">
-                                                    <div class="flex items-center space-x-2">
-                                                        <div
-                                                            class="h-1.5 w-1.5 rounded-full border border-current opacity-40">
+                                            @can('settings-edit')
+                                                <li>
+                                                    <a href="{{ route('settings.edit', 1) }}"
+                                                        class="nav-link flex items-center justify-between p-2 text-xs+ tracking-wide outline-none transition-[color,padding-left] duration-300 ease-in-out hover:pl-4 text-slate-600 hover:text-slate-800 dark:text-navy-200 dark:hover:text-navy-50"
+                                                        data-default-class="text-slate-600 hover:text-slate-800 dark:text-navy-200 dark:hover:text-navy-50"
+                                                        data-active-class="font-medium text-primary dark:text-accent-light">
+                                                        <div class="flex items-center space-x-2">
+                                                            <div
+                                                                class="h-1.5 w-1.5 rounded-full border border-current opacity-40">
+                                                            </div>
+                                                            <span>Web Site Settings</span>
                                                         </div>
-                                                        <span>Web Site Settings</span>
-                                                    </div>
-                                                </a>
-                                            </li>
+                                                    </a>
+                                                </li>
+                                            @endcan
 
 
 
-                                            <li>
-                                                <a href="{{ route('profile_page', auth()->user()->id) }}"
-                                                    class="nav-link flex items-center justify-between p-2 text-xs+ tracking-wide outline-none transition-[color,padding-left] duration-300 ease-in-out hover:pl-4 text-slate-600 hover:text-slate-800 dark:text-navy-200 dark:hover:text-navy-50"
-                                                    data-default-class="text-slate-600 hover:text-slate-800 dark:text-navy-200 dark:hover:text-navy-50"
-                                                    data-active-class="font-medium text-primary dark:text-accent-light">
-                                                    <div class="flex items-center space-x-2">
-                                                        <div
-                                                            class="h-1.5 w-1.5 rounded-full border border-current opacity-40">
+                                            @can('profilePage')
+                                                <li>
+                                                    <a href="{{ route('profile_page', auth()->user()->id) }}"
+                                                        class="nav-link flex items-center justify-between p-2 text-xs+ tracking-wide outline-none transition-[color,padding-left] duration-300 ease-in-out hover:pl-4 text-slate-600 hover:text-slate-800 dark:text-navy-200 dark:hover:text-navy-50"
+                                                        data-default-class="text-slate-600 hover:text-slate-800 dark:text-navy-200 dark:hover:text-navy-50"
+                                                        data-active-class="font-medium text-primary dark:text-accent-light">
+                                                        <div class="flex items-center space-x-2">
+                                                            <div
+                                                                class="h-1.5 w-1.5 rounded-full border border-current opacity-40">
+                                                            </div>
+                                                            <span>Profile</span>
                                                         </div>
-                                                        <span>Profile</span>
-                                                    </div>
-                                                </a>
-                                            </li>
+                                                    </a>
+                                                </li>
+                                            @endcan
+
                                         </ul>
                                     </li>
                                 </ul>

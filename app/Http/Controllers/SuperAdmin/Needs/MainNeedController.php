@@ -14,6 +14,10 @@ class MainNeedController extends Controller
 
     protected $filePath = 'images/needs';
 
+    function __construct()
+    {
+        $this->middleware(['can:mainNeeds-edit'], ['only' => ['edit', 'update']]);
+    }
 
     /**
      * Show the form for editing the specified resource.

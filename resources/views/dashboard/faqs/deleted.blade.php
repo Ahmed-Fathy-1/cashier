@@ -15,18 +15,20 @@
                 <li>
                     <a href="{{ route('homePage') }}"
                         class="text-primary transition-colors hover:text-primary-focus dark:text-accent-light dark:hover:text-accent">
-                        Home > 
+                        Home >
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('faqs.index') }}"
-                    class="text-primary transition-colors hover:text-primary-focus dark:text-accent-light dark:hover:text-accent">
-                        FAQs >
-                    </a>
+                    @can('faqs-list')
+                        <a href="{{ route('faqs.index') }}"
+                        class="text-primary transition-colors hover:text-primary-focus dark:text-accent-light dark:hover:text-accent">
+                            FAQs >
+                        </a>
+                    @endcan
                 </li>
                 <li>
                     <a>
-                        FAQs Deleted List 
+                        FAQs Deleted List
                     </a>
                 </li>
 
@@ -57,20 +59,26 @@
                                 <td class="px-6 py-4 text-sm text-slate-500 dark:text-navy-100">{{ $faq->question }}</td>
                                 <td class="px-6 py-4 text-sm text-slate-500 dark:text-navy-100">{{ $faq->answer }}</td>
                                 <td class="px-6 py-4 text-sm text-slate-500 dark:text-navy-100 flex flex-row">
-                                    <a href="{{ route('faqs.restore', $faq->id) }}"
-                                        class="btn h-8 w-8 p-0 text-info hover:bg-info/20 focus:bg-info/20 active:bg-info/25">
-                                        <i class="fa fa-refresh"></i>
-                                    </a>
 
-                                    <form action="{{ route('faqs.permdelete', $faq->id) }}" method="POST"
-                                        onsubmit="return confirm('Are you sure you want to delete this FAQs ?');">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit"  
-                                        class="mx-2 btn bg-slate-150 font-medium text-slate-800 hover:bg-slate-200 focus:bg-slate-200 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90 btn h-8 w-8 p-0 text-error hover:bg-error/20 focus:bg-error/20 active:bg-error/25">
-                                            <i class="fa fa-trash-alt"></i></button>
+                                    @can('faqs-restored')
+                                        <a href="{{ route('faqs.restore', $faq->id) }}"
+                                            class="btn h-8 w-8 p-0 text-info hover:bg-info/20 focus:bg-info/20 active:bg-info/25">
+                                            <i class="fa fa-refresh"></i>
+                                        </a>
+                                    @endcan
 
-                                    </form>
+                                    @can('faqs-forceDelete')
+                                        <form action="{{ route('faqs.permdelete', $faq->id) }}" method="POST"
+                                            onsubmit="return confirm('Are you sure you want to delete this FAQs ?');">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit"
+                                            class="mx-2 btn bg-slate-150 font-medium text-slate-800 hover:bg-slate-200 focus:bg-slate-200 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90 btn h-8 w-8 p-0 text-error hover:bg-error/20 focus:bg-error/20 active:bg-error/25">
+                                                <i class="fa fa-trash-alt"></i></button>
+
+                                        </form>
+                                    @endcan
+
                                 </td>
                             </tr>
                         @endforeach

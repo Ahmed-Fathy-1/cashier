@@ -48,18 +48,25 @@
 
                     </div>
                     <div class="flex space-x-2">
-                        <a href="{{ route('users.create') }}"
-                            class="btn space-x-2 bg-primary font-medium text-white hover:bg-primary-focus focus:bg-primary-focus active:bg-primary-focus/90 dark:bg-accent dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90">
+
+                        @can('User-create')
+                            <a href="{{ route('users.create') }}"
+                                class="btn space-x-2 bg-primary font-medium text-white hover:bg-primary-focus focus:bg-primary-focus active:bg-primary-focus/90 dark:bg-accent dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90">
+                        @endcan
+
                             <i class="fa-solid fa-plus"></i>
                             <span>Add User</span>
                         </a>
 
                         <!-- View Deleted Users Button -->
-                        <a href="{{ route('users.trashed') }}"
-                            class="btn space-x-2 bg-error font-medium text-white hover:bg-error-focus focus:bg-error-focus active:bg-error-focus/90 dark:bg-error dark:hover:bg-error-focus dark:focus:bg-error-focus dark:active:bg-error/90">
-                            <i class="fa-solid fa-trash"></i>
-                            <span>View Deleted Users</span>
-                        </a>
+                        @can('User-forceDelete')
+                            <a href="{{ route('users.trashed') }}"
+                                class="btn space-x-2 bg-error font-medium text-white hover:bg-error-focus focus:bg-error-focus active:bg-error-focus/90 dark:bg-error dark:hover:bg-error-focus dark:focus:bg-error-focus dark:active:bg-error/90">
+                                <i class="fa-solid fa-trash"></i>
+                                <span>View Deleted Users</span>
+                            </a>
+                        @endcan
+
                     </div>
                     <!-- User Table -->
                     <div class="card mt-3">
@@ -92,31 +99,38 @@
                                                     @foreach ($user->getRoleNames() as $role)
                                                         <label class="badge badge-secondary text-dark">{{ $role }}</label>
                                                     @endforeach
-                                             
+
                                                 @endif
                                             </td>
                                             <td data-column-id="actions" class="gridjs-td">
                                                 <span>
                                                     <div class="flex space-x-2">
-                                                        <a href="{{ route('users.show', $user->id) }}"
-                                                            class="btn h-8 w-8 p-0 text-success hover:bg-success/20 focus:bg-success/20 active:bg-success/25">
-                                                            <i class="fa-regular fa-eye"></i>
-                                                        </a>
-                                                        <a href="{{ route('users.edit', $user->id) }}"
-                                                            class="btn h-8 w-8 p-0 text-info hover:bg-info/20 focus:bg-info/20 active:bg-info/25">
-                                                            <i class="fa fa-edit"></i>
-                                                        </a>
+                                                        @can('User-list')
+                                                            <a href="{{ route('users.show', $user->id) }}"
+                                                                class="btn h-8 w-8 p-0 text-success hover:bg-success/20 focus:bg-success/20 active:bg-success/25">
+                                                                <i class="fa-regular fa-eye"></i>
+                                                            </a>
+                                                        @endcan
+
+                                                        @can('User-edit')
+                                                            <a href="{{ route('users.edit', $user->id) }}"
+                                                                class="btn h-8 w-8 p-0 text-info hover:bg-info/20 focus:bg-info/20 active:bg-info/25">
+                                                                <i class="fa fa-edit"></i>
+                                                            </a>
+                                                        @endcan
 
 
 
-                                                        <form action="{{ route('users.destroy', $user->id) }}" method="POST"
-                                                            onsubmit="return confirm('Are you sure you want to delete this user?');">
-                                                            @csrf
-                                                            @method('DELETE')
-                                                            <button type="submit"
-                                                            class="mx-2 btn bg-slate-150 font-medium text-slate-800 hover:bg-slate-200 focus:bg-slate-200 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90 btn h-8 w-8 p-0 text-error hover:bg-error/20 focus:bg-error/20 active:bg-error/25">
-                                                                <i class="fa fa-trash-alt"></i></button>
-                                                        </form>
+                                                        @can('User-delete')
+                                                            <form action="{{ route('users.destroy', $user->id) }}" method="POST"
+                                                                onsubmit="return confirm('Are you sure you want to delete this user?');">
+                                                                @csrf
+                                                                @method('DELETE')
+                                                                <button type="submit"
+                                                                class="mx-2 btn bg-slate-150 font-medium text-slate-800 hover:bg-slate-200 focus:bg-slate-200 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90 btn h-8 w-8 p-0 text-error hover:bg-error/20 focus:bg-error/20 active:bg-error/25">
+                                                                    <i class="fa fa-trash-alt"></i></button>
+                                                            </form>
+                                                        @endcan
 
                                                     </div>
                                                 </span>

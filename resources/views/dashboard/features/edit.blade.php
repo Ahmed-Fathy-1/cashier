@@ -47,7 +47,8 @@
 
                     </div>
                 </div>
-                <form action="{{ route('features.update', 1) }}" method="POST" enctype="multipart/form-data" id="identifier">
+                @can('features-edit')
+                    <form action="{{ route('features.update', 1) }}" method="POST" enctype="multipart/form-data" id="identifier">
                     @csrf
                     @method('PUT')
                     <h4 class="space-y-4 p-4 sm:p-5">
@@ -244,14 +245,17 @@
                             @enderror
 
                         </label>
-                        <div class="flex justify-end space-x-2">
-                            <button type="submit"
-                                    class="btn space-x-2 bg-success font-medium text-white hover:bg-success-focus focus:bg-success-focus active:bg-success-focus/90 dark:bg-accent dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90">
-                                <span>Update</span>
-                            </button>
-                        </div>
+
+
+                            <div class="flex justify-end space-x-2">
+                                <button type="submit"
+                                        class="btn space-x-2 bg-success font-medium text-white hover:bg-success-focus focus:bg-success-focus active:bg-success-focus/90 dark:bg-accent dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90">
+                                    <span>Update</span>
+                                </button>
+                            </div>
                     </h4>
                 </form>
+                @endcan
             </h4>
         </div>
     </main>

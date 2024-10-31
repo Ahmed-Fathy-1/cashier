@@ -17,10 +17,10 @@ class PackageController extends Controller
 
     function __construct()
     {
-        // $this->middleware(['can:Package-list'], ['only' => ['index', 'show']]);
-        // $this->middleware(['can:Package-create'], ['only' => ['create', 'store']]);
-        // $this->middleware(['can:Package-edit'], ['only' => ['edit', 'update']]);
-        // $this->middleware(['can:Package-delete'], ['only' => ['destroy']]);
+         $this->middleware(['can:packages-list'], ['only' => ['index']]);
+         $this->middleware(['can:package-create'], ['only' => ['create', 'store']]);
+         $this->middleware(['can:packages-edit'], ['only' => ['edit', 'update']]);
+         $this->middleware(['can:packages-delete'], ['only' => ['destroy','archivedPackages','restore','forceDelete']]);
     }
 
     public function index(Request $request)
@@ -124,7 +124,7 @@ class PackageController extends Controller
         $package->restore();
         return redirect()->route('packages.index')->with('success', 'Package restored successfully');
     }
-    
+
     public function forceDelete($id)
     {
         $package = Package::withTrashed()->findOrFail($id);

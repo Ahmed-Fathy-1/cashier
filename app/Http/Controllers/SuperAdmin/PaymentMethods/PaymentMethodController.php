@@ -17,10 +17,10 @@ class PaymentMethodController extends Controller
 
     function __construct()
     {
-        // $this->middleware(['can:PaymentMethod-list'], ['only' => ['index', 'show']]);
-        // $this->middleware(['can:PaymentMethod-create'], ['only' => ['create', 'store']]);
-        // $this->middleware(['can:PaymentMethod-edit'], ['only' => ['edit', 'update']]);
-        // $this->middleware(['can:PaymentMethod-delete'], ['only' => ['destroy']]);
+         $this->middleware(['can:paymentMethods-list'], ['only' => ['index']]);
+         $this->middleware(['can:paymentMethods-create'], ['only' => ['create', 'store']]);
+         $this->middleware(['can:paymentMethods-edit'], ['only' => ['edit', 'update']]);
+         $this->middleware(['can:paymentMethods-delete'], ['only' => ['destroy' , 'trashedPaymethod', 'forceDelete' , 'restore']]);
     }
 
     public function index(Request $request)

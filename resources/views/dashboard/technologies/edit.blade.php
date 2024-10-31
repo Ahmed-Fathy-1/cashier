@@ -13,10 +13,12 @@
             </div>
             <ul class="hidden flex-wrap items-center space-x-2 sm:flex">
                 <li>
-                    <a href="{{ route('technologies.index') }}"
-                        class="text-primary transition-colors hover:text-primary-focus dark:text-accent-light dark:hover:text-accent">
-                        Technologies
-                    </a>
+                    @can('technologies-list')
+                        <a href="{{ route('technologies.index') }}"
+                            class="text-primary transition-colors hover:text-primary-focus dark:text-accent-light dark:hover:text-accent">
+                            Technologies
+                        </a>
+                    @endcan
                 </li>
             </ul>
         </div>
@@ -31,7 +33,8 @@
             </div>
 
             <div class="p-4 sm:p-5">
-                <form action="{{ route('technologies.update', $tech->id) }}" method="POST" enctype="multipart/form-data">
+                @can('technologies-edit')
+                    <form action="{{ route('technologies.update', $tech->id) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
 
@@ -63,6 +66,7 @@
                         <button type="submit" class="btn bg-primary text-white hover:bg-primary-focus focus:bg-primary-focus dark:bg-primary dark:hover:bg-primary-focus dark:focus:bg-primary-focus">Update Technology</button>
                     </div>
                 </form>
+                @endcan
             </div>
         </div>
     </main>

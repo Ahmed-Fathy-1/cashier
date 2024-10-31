@@ -25,8 +25,10 @@
                     </svg>
                 </li>
                 <li class="flex items-center space-x-2">
-                    <a class="text-primary transition-colors hover:text-primary-focus dark:text-accent-light dark:hover:text-accent"
-                        href="{{ route('packages.index') }}">package List</a>
+                    @can('packages-list')
+                        <a class="text-primary transition-colors hover:text-primary-focus dark:text-accent-light dark:hover:text-accent"
+                            href="{{ route('packages.index') }}">package List</a>
+                    @endcan
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
                         stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
@@ -176,8 +178,8 @@
                                             <div class="flex justify-between items-center space-x-2">
 
                                                 <button data-toggle="modal" data-target="#modal2"
-                                                    class="btn bg-primary font-medium text-white hover:bg-primary-focus focus:bg-primary-focus active:bg-primary/90 
-                                                dark:bg-accent dark:text-navy-50 dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90 
+                                                    class="btn bg-primary font-medium text-white hover:bg-primary-focus focus:bg-primary-focus active:bg-primary/90
+                                                dark:bg-accent dark:text-navy-50 dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90
                                                 h-8 w-8 p-0">
                                                     <i class="fa fa-undo"></i>
                                                 </button>
@@ -208,16 +210,18 @@
                                                                 Confirmed Delete</h2>
                                                             <p class="mt-2">Are you sure you want to delete this item?
                                                             </p>
-                                                            <form
-                                                                action="{{ route('packages.forceDelete', $package->id) }}"
-                                                                method="POST">
-                                                                @method('delete')
-                                                                @csrf
-                                                                <button data-close-modal=""
-                                                                    class="btn mt-6 bg-success font-medium text-white hover:bg-success-focus focus:bg-success-focus active:bg-success-focus/90">
-                                                                    submit
-                                                                </button>
-                                                            </form>
+                                                            @can('packages-forceDelete')
+                                                                <form
+                                                                    action="{{ route('packages.forceDelete', $package->id) }}"
+                                                                    method="POST">
+                                                                    @method('delete')
+                                                                    @csrf
+                                                                    <button data-close-modal=""
+                                                                        class="btn mt-6 bg-success font-medium text-white hover:bg-success-focus focus:bg-success-focus active:bg-success-focus/90">
+                                                                        submit
+                                                                    </button>
+                                                                </form>
+                                                            @endcan
                                                         </div>
                                                     </div>
                                                 </div>
@@ -239,14 +243,16 @@
                                                                 Confirmed Restore</h2>
                                                             <p class="mt-2">Are you sure you want to delete this item?
                                                             </p>
-                                                            <form action="{{ route('packages.restore', $package->id) }}"
-                                                                method="POST">
-                                                                @csrf
-                                                                <button data-close-modal=""
-                                                                    class="btn mt-6 bg-success font-medium text-white hover:bg-success-focus focus:bg-success-focus active:bg-success-focus/90">
-                                                                    Restore
-                                                                </button>
-                                                            </form>
+                                                            @can('packages-restore')
+                                                                <form action="{{ route('packages.restore', $package->id) }}"
+                                                                    method="POST">
+                                                                    @csrf
+                                                                    <button data-close-modal=""
+                                                                        class="btn mt-6 bg-success font-medium text-white hover:bg-success-focus focus:bg-success-focus active:bg-success-focus/90">
+                                                                        Restore
+                                                                    </button>
+                                                                </form>
+                                                            @endcan
                                                         </div>
                                                     </div>
                                                 </div>

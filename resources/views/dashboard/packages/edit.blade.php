@@ -25,8 +25,10 @@
                     </svg>
                 </li>
                 <li class="flex items-center space-x-2">
-                    <a class="text-primary transition-colors hover:text-primary-focus dark:text-accent-light dark:hover:text-accent"
-                        href="{{ route('packages.index') }}">package List</a>
+                    @can('packages-list')
+                        <a class="text-primary transition-colors hover:text-primary-focus dark:text-accent-light dark:hover:text-accent"
+                            href="{{ route('packages.index') }}">package List</a>
+                    @endcan
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
                         stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
@@ -53,7 +55,8 @@
 
                     </div>
                 </div>
-                <form action="{{ route('packages.update', $packages->id) }}" method="POST" enctype="multipart/form-data">
+                @can('packages-edit')
+                    <form action="{{ route('packages.update', $packages->id) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
                     <div class="space-y-4 p-4 sm:p-5">
@@ -298,6 +301,7 @@
                         </div>
                     </div>
                 </form>
+                @endcan
             </div>
         </div>
 

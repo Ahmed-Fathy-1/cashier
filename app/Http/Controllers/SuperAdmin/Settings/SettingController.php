@@ -16,7 +16,7 @@ class SettingController extends Controller
 
     public function __construct()
     {
-        // $this->middleware(['can:Settings-edit'], ['only' => ['edit', 'update']]);
+         $this->middleware(['can:settings-edit'], ['only' => ['edit', 'update']]);
     }
 
 

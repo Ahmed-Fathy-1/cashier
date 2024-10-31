@@ -17,10 +17,12 @@
                         class="text-primary transition-colors hover:text-primary-focus dark:text-accent-light dark:hover:text-accent">
                         Home >
                     </a>
-                    <a href="{{ route('technologies.index') }}"
-                        class="text-primary transition-colors hover:text-primary-focus dark:text-accent-light dark:hover:text-accent">
-                        Technologies >  
-                    </a>
+                    @can('technologies-list')
+                        <a href="{{ route('technologies.index') }}"
+                            class="text-primary transition-colors hover:text-primary-focus dark:text-accent-light dark:hover:text-accent">
+                            Technologies >
+                        </a>
+                    @endcan
                      <a>
                         Technologies Create
                      </a>
@@ -30,21 +32,22 @@
         </div>
 
         <div class="card shadow-lg rounded-lg bg-gradient-to-r from-indigo-100 to-indigo-50 dark:from-navy-700 dark:to-navy-800">
-    
+
 
             <div class="p-6 bg-white dark:bg-navy-700 rounded-b-lg">
-                <form action="{{ route('technologies.store') }}" method="POST" enctype="multipart/form-data">
+                @can('technologies-create')
+                    <form action="{{ route('technologies.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="mb-6">
                         <label for="name" class="block text-sm font-semibold text-slate-800 dark:text-navy-50 mb-2">Technology Name</label>
-                        <input type="text" name="name" id="name" 
-                               class="w-full p-3 bg-slate-50 border border-slate-300 rounded-lg shadow-sm dark:bg-navy-800 dark:border-navy-600 dark:text-navy-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition ease-in-out" 
+                        <input type="text" name="name" id="name"
+                               class="w-full p-3 bg-slate-50 border border-slate-300 rounded-lg shadow-sm dark:bg-navy-800 dark:border-navy-600 dark:text-navy-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition ease-in-out"
                                placeholder="Enter technology name" required>
                     </div>
 
                     <div class="mt-6 mb-6">
                         <label for="image" class="block text-sm font-semibold text-slate-800 dark:text-navy-50 mb-2">Technology Image</label>
-                        <input type="file" name="image" id="image" 
+                        <input type="file" name="image" id="image"
                                class="w-full p-3 bg-slate-50 border border-slate-300 rounded-lg shadow-sm dark:bg-navy-800 dark:border-navy-600 dark:text-navy-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition ease-in-out">
                     </div>
 
@@ -58,6 +61,7 @@
                         </div>
                     </div>
                 </form>
+                @endcan
             </div>
         </div>
     </main>

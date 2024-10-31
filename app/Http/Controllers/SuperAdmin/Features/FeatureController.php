@@ -15,6 +15,11 @@ class FeatureController extends Controller
 
     protected $filePath = 'images/features';
 
+    function __construct()
+    {
+        $this->middleware(['can:features-edit'], ['only' => ['edit', 'update']]);
+    }
+
     /**
      * Show the form for editing the specified resource.
      */

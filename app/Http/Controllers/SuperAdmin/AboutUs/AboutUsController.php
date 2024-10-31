@@ -16,6 +16,11 @@ class AboutUsController extends Controller
 
     protected $filePath = '/about_us';
 
+    function __construct()
+    {
+        $this->middleware(['can:aboutUs-edit'], ['only' => ['edit', 'update']]);
+    }
+
     /**
      * Show the form for editing the specified resource.
      *

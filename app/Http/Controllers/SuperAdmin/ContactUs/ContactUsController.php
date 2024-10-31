@@ -10,34 +10,21 @@ use App\Http\Requests\Api\ContactUs\ContactUsRequest;
 
 class ContactUsController extends Controller
 {
+
+    function __construct()
+    {
+        $this->middleware(['can:contactUs-list'], ['only' => ['index', 'show']]);
+        $this->middleware(['can:contactUs-delete'], ['only' => ['destroy','trashed','restore','forceDelete']]);
+    }
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $contacts = ContactUs::paginate(10);    
+        $contacts = ContactUs::paginate(10);
         return view('dashboard.contact_us.index', compact('contacts'));
     }
-    
-    
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(ContactUsRequest $request)
-    {
-        ContactUs::create($request->validated());
-        return response()->json(['message' => 'Your message has been sent successfully.'], 201);
-    }
-
 
     /**
      * Display the specified resource.
@@ -73,19 +60,31 @@ class ContactUsController extends Controller
         $contact->delete();
         return redirect()->route('contact-us.index')->with('success', 'Contact entry deleted successfully.');
     }
+
+    /**
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Foundation\Application
+     */
     public function trashed()
     {
         $contacts = ContactUs::onlyTrashed()->paginate(10);
         return view('dashboard.contact_us.deleted', compact('contacts'));
     }
 
+    /**
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function restore($id)
     {
         $contact = ContactUs::withTrashed()->findOrFail($id);
         $contact->restore();
         return redirect()->route('contact-us.trashed')->with('success', 'Contact entry restored successfully.');
     }
-    
+
+    /**
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function forceDelete($id)
     {
         $contact = ContactUs::withTrashed()->findOrFail($id);

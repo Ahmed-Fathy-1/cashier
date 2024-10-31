@@ -42,19 +42,21 @@
                             Cards Of packages
                         </h2>
                         <div class="flex">
-                            {{-- @can('package-create') --}}
+                             @can('package-create')
+                                <a href="{{ route('packages.create') }}"
+                                    class="mx-2 btn space-x-2 bg-primary font-medium text-white hover:bg-primary-focus focus:bg-primary-focus active:bg-primary-focus/90 dark:bg-accent dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90">
+                                    <i class="fa-solid fa-plus"></i>
+                                    <span> Add package </span>
+                                </a>
+                             @endcan
 
-                            <a href="{{ route('packages.create') }}"
-                                class="mx-2 btn space-x-2 bg-primary font-medium text-white hover:bg-primary-focus focus:bg-primary-focus active:bg-primary-focus/90 dark:bg-accent dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90">
-                                <i class="fa-solid fa-plus"></i>
-                                <span> Add package </span>
-                            </a>
-                            {{-- @endcan --}}
-                            <a href="{{ route('packages.archived') }}"
-                                class="mx-2 btn space-x-2 bg-success font-medium text-white hover:bg-success-focus focus:bg-success-focus active:bg-success/90 dark:bg-secondary dark:hover:bg-secondary-focus dark:focus:bg-secondary-focus dark:active:bg-secondary/90">
-                                <i class="fa-solid fa-box-archive"></i>
-                                <span> archived package </span>
-                            </a>
+                            @can('packages-archived')
+                                <a href="{{ route('packages.archived') }}"
+                                    class="mx-2 btn space-x-2 bg-success font-medium text-white hover:bg-success-focus focus:bg-success-focus active:bg-success/90 dark:bg-secondary dark:hover:bg-secondary-focus dark:focus:bg-secondary-focus dark:active:bg-secondary/90">
+                                    <i class="fa-solid fa-box-archive"></i>
+                                    <span> archived package </span>
+                                </a>
+                            @endcan
                         </div>
                     </div>
 
@@ -182,18 +184,23 @@
                                         <span>
                                             <div class="flex justify-between items-center space-x-2">
 
-                                                <a href="{{ route('packages.edit', $package->id) }}"
-                                                    onclick="$notification({ text: 'Item edit action', variant: 'info' })"
-                                                    class="btn h-8 w-8 p-0 text-info hover:bg-info/20 focus:bg-info/20 active:bg-info/25">
-                                                    <i class="fa fa-edit"></i>
-                                                </a>
-                                                <form class="delete" action="{{ route('packages.destroy', $package->id) }}" method="POST">
-                                                    <input type="hidden" name="_method" value="DELETE">
-                                                    <input type="hidden" name="_token" value="{{ csrf_token() }}" />
-                                                    <button type="submit" class="btn bg-slate-150 font-medium text-slate-800 hover:bg-slate-200 focus:bg-slate-200 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90 btn h-8 w-8 p-0 text-error hover:bg-error/20 focus:bg-error/20 active:bg-error/25">
-                                                         <i class="fa fa-trash-alt"></i>
-                                                    </button>
-                                                </form>
+                                                @can('packages-edit')
+                                                    <a href="{{ route('packages.edit', $package->id) }}"
+                                                        onclick="$notification({ text: 'Item edit action', variant: 'info' })"
+                                                        class="btn h-8 w-8 p-0 text-info hover:bg-info/20 focus:bg-info/20 active:bg-info/25">
+                                                        <i class="fa fa-edit"></i>
+                                                    </a>
+                                                @endcan
+
+                                                @can('packages-delete')
+                                                    <form class="delete" action="{{ route('packages.destroy', $package->id) }}" method="POST">
+                                                        <input type="hidden" name="_method" value="DELETE">
+                                                        <input type="hidden" name="_token" value="{{ csrf_token() }}" />
+                                                        <button type="submit" class="btn bg-slate-150 font-medium text-slate-800 hover:bg-slate-200 focus:bg-slate-200 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90 btn h-8 w-8 p-0 text-error hover:bg-error/20 focus:bg-error/20 active:bg-error/25">
+                                                             <i class="fa fa-trash-alt"></i>
+                                                        </button>
+                                                    </form>
+                                                @endcan
 
                                             </div>
                                         </span>

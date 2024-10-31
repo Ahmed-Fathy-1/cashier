@@ -8,6 +8,14 @@ use App\Http\Requests\SuperAdmin\FAQs\FAQRequest;
 
 class FAQController extends Controller
 {
+    function __construct()
+    {
+        $this->middleware(['can:faqs-list'], ['only' => ['index']]);
+        $this->middleware(['can:faqs-create'], ['only' => ['create', 'store']]);
+        $this->middleware(['can:faqs-edit'], ['only' => ['edit', 'update']]);
+        $this->middleware(['can:faqs-delete'], ['only' => ['destroy','trashedFaqs','restore','forceDelete']]);
+    }
+
     public function index()
     {
         $faqs = FAQ::all();
@@ -71,6 +79,6 @@ class FAQController extends Controller
         return redirect()->route('faqs.index')
             ->with('success', 'FAQ deleted permanently');
     }
-    
+
 
 }

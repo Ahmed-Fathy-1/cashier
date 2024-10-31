@@ -9,23 +9,20 @@ use Request;
 
 class FeedBacksController extends Controller
 {
-    
+
+    function __construct()
+    {
+        $this->middleware(['can:feedbacks-list'], ['only' => ['index']]);
+        $this->middleware(['can:feedbacks-delete'], ['only' => ['destroy','trashedFeedbacks','forceDelete','restore']]);
+    }
+
     public function index()
     {
         $feedbacks = Feedback::paginate(10);
         return view('dashboard.feedbacks.index', compact('feedbacks'));
     }
-    
 
-    public function create(FeedbackRequest $request)
-    {
-        $data = $request->validated();
 
-        FeedBack::create($data);
-
-        return view('/');
-
-    }
     public function destroy($id)
     {
         $feedback = FeedBack::findOrFail($id);

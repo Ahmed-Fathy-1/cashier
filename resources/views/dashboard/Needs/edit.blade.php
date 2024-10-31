@@ -47,7 +47,8 @@
 
                     </div>
                 </div>
-                <form action="{{ route('main_needs.update', 1) }}" method="POST" enctype="multipart/form-data" id="identifier">
+                @can('mainNeeds-edit')
+                    <form action="{{ route('main_needs.update', 1) }}" method="POST" enctype="multipart/form-data" id="identifier">
                     @csrf
                     @method('PUT')
                     <h4 class="space-y-4 p-4 sm:p-5">
@@ -111,6 +112,7 @@
                         </div>
                     </h4>
                 </form>
+                @endcan
             </h4>
         </div>
     </main>
